@@ -1,0 +1,30 @@
+{
+  "name": "pencil",
+  "version": "0.0.1",
+  "description": "jQuery wrapper",
+  "homepage": "https://github.com/trymore/pencil",
+  "authors": [
+    "Daisuke Mino <minodisk@trymore-inc.jp>"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trymore/pencil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trymore/pencil/issues"
+  },
+  "copyright": "TryMore.Inc",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "tests",
+    "gulpfile.coffee",
+    "package.json",
+    "testem.json"
+  ]
+}
