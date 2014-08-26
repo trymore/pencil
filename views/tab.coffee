@@ -7,20 +7,14 @@ View = require './view'
 module.exports =
 class Tab extends View
 
+  selectorButtons: '.js-component[data-component=selectable][data-name=buttons]'
+  selectorContents: '.js-component[data-component=selectable][data-name=contents]'
+
   constructor: ->
     super
+    @$ @selectorButtons
+    .on 'selectable.changed', @toggle
+    @$contents = @$ @selectorContents
 
-    @$buttons = @$ '.js-tabButton'
-    .on 'click', @toggle
-    @$contents = @$ '.js-tabContent'
-
-  toggle: (e) =>
-    for button, i in @$buttons
-      $button = @$buttons.eq i
-      $content = @$contents.eq i
-      if button is e.currentTarget
-        $button.addClass 'is-selected'
-        $content.addClass 'is-selected'
-      else
-        $button.removeClass 'is-selected'
-        $content.removeClass 'is-selected'
+  toggle: ({}, index) =>
+    @$contents.data('view').selectAt index
