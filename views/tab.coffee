@@ -7,8 +7,8 @@ View = require './view'
 module.exports =
 class Tab extends View
 
-  selectorButtons: '.js-component[data-component=selectable][data-name=buttons]'
-  selectorContents: '.js-component[data-component=selectable][data-name=contents]'
+  selectorButtons: '.js-button'
+  selectorContents: '.js-content'
 
   constructor: ->
     super
