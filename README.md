@@ -6,13 +6,19 @@ jQueryをクラスとして継承することのできるViewクラス、それ�
 
 ## 依存ライブラリ
 
-* jQuery v1.11.0〜 or v2.1.0〜
-* Lodash v2.4.0〜
+* [jQuery](https://github.com/jquery/jquery) v1.11.0〜 or v2.1.0〜
+* [Lodash](https://github.com/lodash/lodash) v2.4.0〜
 
-基本的にはリリースされているバージョンとマイナーバージョンが同じバージョンのみサポートします。
+## フェッチ
+
+```bash
+bower install jquery lodash pencil
+```
 
 ## ビルド
 
-browserifyでビルドすることが前提となります。
+browserifyでビルドすることを前提としています。
 
 ## APIドキュメント
+
+http://trymore.github.io/pencil/
