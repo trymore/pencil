@@ -2,7 +2,7 @@
 Image is a wrapper of <img>.
 ###
 
-{ msie, version } = require '../models/browser'
+{ msie, versionNumber } = require '../models/browser'
 View = require './view'
 
 module.exports =
@@ -16,12 +16,13 @@ class Image extends View
     @src = @attr 'src'
 
   ###
-  Reloads resource and emit complete event.
+  画像をロードします。
+  @event
   ###
-  reload: ->
-    if msie
-      @src = "#{@src}?#{new Date().getTime()}"
+  load: ->
+    if msie and versionNumber < 9
+      src = "#{@src}?#{new Date().getTime()}"
     $ '<img>'
     .one 'load error', =>
-      @emit 'reload.complete'
-    .attr 'src', @src
+      @emit 'load.complete'
+    .attr 'src', src

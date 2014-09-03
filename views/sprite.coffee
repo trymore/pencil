@@ -109,3 +109,5 @@ class Sprite extends View
       frame = @verifyFrame frame
     @currentFrame = frame
     @updateView()
+
+console.log Sprite.X, Sprite.Y
