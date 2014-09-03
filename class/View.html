@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <script src='../javascript/application.js'></script>
+  <script src='../javascript/search.js'></script>
+  <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../extra/README.md.html' title='Pencil'>
+      Pencil
+    </a>
+    &raquo;
+    <a href='../alphabetical_index.html' title='Index'>
+      Index
+    </a>
+    &raquo;
+    <span class='title'>View</span>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        View
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>views&#47;view.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            jQuery
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Viewクラスはview-controllerの基底クラスです。
+jQueryのラッパとして動作し、jQuery.fnに実装されているメソッドを委譲しています。
+委譲されたメソッドの戻り値はjQuery.fnの戻りそのもので、
+Viewインスタンスをコンテクストとしてメソッドチェーンを行うことはできません。
+@dependsOn jquery
+@dependsOn lodash</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Direct Known Subclasses</h2>
+      <p class='children'>
+        <a href='../class/Anchor.html'>Anchor</a>
+        <a href='../class/Breakpoint.html'>Breakpoint</a>
+        <a href='../class/Checkbox.html'>Checkbox</a>
+        <a href='../class/Drawer.html'>Drawer</a>
+        <a href='../class/Image.html'>Image</a>
+        <a href='../class/MaskFactory.html'>MaskFactory</a>
+        <a href='../class/Preventable.html'>Preventable</a>
+        <a href='../class/Radio.html'>Radio</a>
+        <a href='../class/Select.html'>Select</a>
+        <a href='../class/Selectable.html'>Selectable</a>
+        <a href='../class/Slicer.html'>Slicer</a>
+        <a href='../class/Sprite.html'>Sprite</a>
+        <a href='../class/Tab.html'>Tab</a>
+        <a href='../class/TextOverflow.html'>TextOverflow</a>
+      </p>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='$window-variable'>
+    $window
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>$window</code></pre>
+    
+  </dd>
+  <dt id='$document-variable'>
+    $document
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>$document</code></pre>
+    
+  </dd>
+  <dt id='template-variable'>
+    template
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>null</code></pre>
+    <div class='docstring'>
+  <p>要素のテンプレートとなるStringです。</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+  <dt id='selector-variable'>
+    selector
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>null</code></pre>
+    <div class='docstring'>
+  <p>要素のセレクタです。</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+</dl>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#defer-dynamic'>
+        #
+(void)
+<b>defer</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#reject-dynamic'>
+        #
+(void)
+<b>reject</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#$-dynamic'>
+        #
+(void)
+<b>$</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      findのショートハンドです。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#pushStack-dynamic'>
+        #
+(void)
+<b>pushStack</b><span>(elems)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      ラッパを生成するjQueryメソッドをオーバーライドします。 ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。
+
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#end-dynamic'>
+        #
+(void)
+<b>end</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      ラッパを生成するjQueryメソッドをオーバーライドします。 ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。
+
+    </span>
+  </li>
+</ul>
+      <h2>Constructor Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='constructor-dynamic'>
+      #
+(void)
+<b>constructor</b><span>(arg0)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>セレクタか生成する要素のHTMLを渡すと、新しいViewインスタンスを返します。
+次のような優先順位で継承元(jQuery)コンストラクタをコールします。</p><ol>
+<li><code>@constructor.template</code>が設定されている場合: テンプレートから要素を生成します</li>
+<li><code>@selector</code>が設定されている場合: 第一引数をコンテクストとしてセレクタを検索します</li>
+<li>第一引数が指定されている場合: 第一引数から要素を生成・検索します。</li>
+<li>第一引数が指定されていない場合: <code>&lt;div&gt;</code>要素を生成します。</li>
+</ol>
+
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='defer-dynamic'>
+      #
+(void)
+<b>defer</b><span>()</span>
+      <br>
+    </p>
+    
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='reject-dynamic'>
+      #
+(void)
+<b>reject</b><span>()</span>
+      <br>
+    </p>
+    
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='$-dynamic'>
+      #
+(void)
+<b>$</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>findのショートハンドです。</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='pushStack-dynamic'>
+      #
+(void)
+<b>pushStack</b><span>(elems)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>ラッパを生成するjQueryメソッドをオーバーライドします。
+ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='end-dynamic'>
+      #
+(void)
+<b>end</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>ラッパを生成するjQueryメソッドをオーバーライドします。
+ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  September 03, 14 20:26:55 by
+  <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
+    Codo
+  </a>
+  2.0.9
+  &#10034;
+  Press H to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/netzpirat' target='_parent'>@netzpirat</a>
+  &#10034;
+  <a href='http://twitter.com/_inossidabile' target='_parent'>@_inossidabile</a>
+</div>
+<iframe id='search_frame'></iframe>
+<div id='fuzzySearch'>
+  <input type='text'>
+  <ol></ol>
+</div>
+<div id='help'>
+  <p>
+    Quickly fuzzy find classes, mixins, methods, file:
+  </p>
+  <ul>
+    <li>
+      <span>T</span>
+      Open fuzzy finder dialog
+    </li>
+  </ul>
+  <p>
+    Control the navigation frame:
+  </p>
+  <ul>
+    <li>
+      <span>L</span>
+      Toggle list view
+    </li>
+    <li>
+      <span>C</span>
+      Show class list
+    </li>
+    <li>
+      <span>I</span>
+      Show mixin list
+    </li>
+    <li>
+      <span>F</span>
+      Show file list
+    </li>
+    <li>
+      <span>M</span>
+      Show method list
+    </li>
+    <li>
+      <span>E</span>
+      Show extras list
+    </li>
+  </ul>
+  <p>
+    You can focus and blur the search input:
+  </p>
+  <ul>
+    <li>
+      <span>S</span>
+      Focus search input
+    </li>
+    <li>
+      <span>Esc</span>
+      Blur search input
+    </li>
+  </ul>
+</div>
+  </body>
+</html>
