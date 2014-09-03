@@ -11,61 +11,101 @@ class Sprite extends View
   @X: 1 << iota()
   @Y: 1 << iota()
 
-  direction: Sprite.Y
-
-  constructor: ->
+  constructor: ({}, @fps = 30, @direction = Sprite.Y) ->
     super
+    if @direction is @constructor.X
+      @prop = 'backgroundPositionX'
+      @size = @width()
+    else
+      @prop = 'backgroundPositionY'
+      @size = @height()
+    @currentFrame = 0
+    @setRange 0, 0
 
-  #TODO implement me
-  gotoAndStop: (frame) ->
-    @stopSprite()
+  setRange: (from, to) ->
+    @setPositions [from..to]
+
+  setPositions: (@positions) ->
+    @maxFrame = @positions.length - 1
+
+  gotoAndPlay: (frame = 0, repeat = 1) ->
+    @currentFrame = @limitFrame frame
+    @play repeat
+
+  gotoAndStop: (frame = 0) ->
+    @currentFrame = @limitFrame frame
+    @updateView()
+    @stop()
+
+  nextFrame: ->
+    @currentFrame = @verifyFrame @currentFrame + 1
+    @updateView()
+
+  prevFrame: ->
+    @currentFrame = @verifyFrame @currentFrame - 1
+    @updateView()
+
+  play: (@repeat = 1) ->
+    @currentRepeatCount = 0
+    @updateView()
+    @startTick()
+
+  pause: ->
+    @stopTick()
+
+  ###
+  @private
+  ###
+  limitFrame: (frame) ->
+    if frame < 0
+      frame = 0
+    if frame > @maxFrame
+      frame = @maxFrame
+    frame
+
+  ###
+  @private
+  ###
+  verifyFrame: (frame) ->
+    if frame < 0
+      frame = @maxFrame
+    if frame > @maxFrame
+      frame = 0
+    frame
+
+  ###
+  @private
+  ###
+  updateView: ->
+    pos = @positions[@currentFrame]
     css = {}
-    css[prop] = -size * frames[frame]
+    css[@prop] = -@size * pos
     @css css
 
   ###
-  スプライトをリピートします。
-  from int 開始フレームです
-  to int 終了フレームです
-  count int 繰り返しの回数です（リピートし続ける場合は0）
-  fps int 秒間フレーム数です
-  callback Function コールバックです
+  @private
   ###
-  sprite: (from, to, count = 1, fps = 30, callback) ->
-    if @direction is @constructor.X
-      prop = 'backgroundPositionX'
-      size = @width()
-    else
-      prop = 'backgroundPositionY'
-      size = @height()
-
-    frames = [from..to]
-    length = frames.length
-    i = 0
-
-    tick = =>
-      css = {}
-      css[prop] = -size * frames[i++]
-      @css css
-
-      if i is length
-        if --count is 0
-          clearTimeout @timerId
-          callback()
-          return
-        i = 0
-
-      requestNextTick()
-
-    requestNextTick = =>
-      clearTimeout @timerId
-      @timerId = setTimeout tick, 1000 / fps
-
-    requestNextTick()
-    setTimeout tick, 0
+  startTick: ->
+    @stopTick()
+    @data 'spriteIntervalId', setInterval @tick, 1000 / @fps
 
   ###
-  スプライトを終了します。
+  @private
   ###
-  stopSprite: ->
-    clearTimeout @timerId
+  stopTick: ->
+    clearInterval @data 'spriteIntervalId'
+
+  ###
+  @private
+  ###
+  tick: =>
+    frame = @currentFrame + 1
+    if frame > @maxFrame
+      @trigger 'sprite.lastFrame'
+      if @repeat > 0 and ++@currentRepeatCount >= @repeat
+        @stopTick()
+        @trigger 'sprite.completeRepeat'
+        return
+      frame = @verifyFrame frame
+    @currentFrame = frame
+    @updateView()
