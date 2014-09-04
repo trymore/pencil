@@ -39,8 +39,53 @@
           </td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>スプライトアニメーションを管理するクラスです。</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      同じViewに対して動き毎に別のSpriteを作ります。
+    </h4>
+    <pre><code class='coffeescript'>  run = new Sprite &#39;.foo&#39;
+  run.setRange 0, 10
+  walk = new Sprite &#39;.foo&#39;
+  walk.setRange 11, 20
+  run.play()
+  run.on Sprite.EVENT_LAST_FRAME, -&gt;
+    walk.play()</code></pre>
+  </div>
+</div>
+<div class='tags'>
+</div>
       <h2>Variables Summary</h2>
-      
+      <dl class='constants'>
+  <dt id='EVENT_LAST_FRAME-variable'>
+    EVENT_LAST_FRAME
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;sprite.lastFrame&#39;</code></pre>
+    <div class='docstring'>
+  <p>最終フレームの終了時に発火するイベントです。</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+  <dt id='EVENT_COMPLETE_REPEAT-variable'>
+    EVENT_COMPLETE_REPEAT
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;sprite.completeRepeat&#39;</code></pre>
+    <div class='docstring'>
+  <p>指定のリピート回数が完了した時に発火するイベントです。
+永久にリピートする場合は発火しません。</p>
+</div>
+<div class='tags'>
+</div>
+  </dd>
+</dl>
       <h3 class='inherited'>
         Variable inherited from
         <a href='../class/View.html'>View</a>
@@ -62,6 +107,7 @@
       </a>
     </span>
     <span class='desc'>
+      このスプライトがフレームとして表示する背景の位置インデックスの範囲を設定します。 
     </span>
   </li>
   <li>
@@ -73,6 +119,7 @@
       </a>
     </span>
     <span class='desc'>
+      このスプライトがフレームとして表示する背景の位置インデックスの配列を設定します。 
     </span>
   </li>
   <li>
@@ -84,17 +131,19 @@
       </a>
     </span>
     <span class='desc'>
+      指定されたフレームから再生します。 
     </span>
   </li>
   <li>
     <span class='signature'>
-      <a href='#gotoAndStop-dynamic'>
+      <a href='#gotoAndPause-dynamic'>
         #
 (void)
-<b>gotoAndStop</b><span>(frame = 0)</span>
+<b>gotoAndPause</b><span>(frame = 0)</span>
       </a>
     </span>
     <span class='desc'>
+      指定されたフレームで停止します。 
     </span>
   </li>
   <li>
@@ -106,6 +155,7 @@
       </a>
     </span>
     <span class='desc'>
+      次のフレームに移動します。 
     </span>
   </li>
   <li>
@@ -117,6 +167,7 @@
       </a>
     </span>
     <span class='desc'>
+      前のフレームに移動します。 
     </span>
   </li>
   <li>
@@ -128,6 +179,7 @@
       </a>
     </span>
     <span class='desc'>
+      再生します。 
     </span>
   </li>
   <li>
@@ -139,6 +191,7 @@
       </a>
     </span>
     <span class='desc'>
+      停止します。 
     </span>
   </li>
   <li>
@@ -238,7 +291,44 @@
 <b>constructor</b><span>({}, fps = 30, direction = Sprite.Y)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>スプライトインスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>selector</span>
+      <span class='type'>
+        (
+          <tt>String, HTMLElement, jQueryObject, View</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>コントロールの対象の要素です </span>
+    </li>
+    <li>
+      <span class='name'>fps</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>1秒当たりのフレーム数です。 </span>
+    </li>
+    <li>
+      <span class='name'>direction</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>背景画像が並んでいる方向です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
       <h2>Instance Method Details</h2>
@@ -250,7 +340,34 @@
 <b>setRange</b><span>(from, to)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>このスプライトがフレームとして表示する背景の位置インデックスの範囲を設定します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>from</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>開始フレームの位置インデックスです。 </span>
+    </li>
+    <li>
+      <span class='name'>to</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>最終フレームの位置インデックスです。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='setPositions-dynamic'>
@@ -259,7 +376,24 @@
 <b>setPositions</b><span>(positions)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>このスプライトがフレームとして表示する背景の位置インデックスの配列を設定します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>positions</span>
+      <span class='type'>
+        (
+          <tt>Array&lt;Integer&gt;</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>位置インデックスの配列です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='gotoAndPlay-dynamic'>
@@ -268,16 +402,60 @@
 <b>gotoAndPlay</b><span>(frame = 0, repeat = 1)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>指定されたフレームから再生します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>frame</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>再生を開始するフレームです。 </span>
+    </li>
+    <li>
+      <span class='name'>repeat</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>再生回数です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
-    <p class='signature' id='gotoAndStop-dynamic'>
+    <p class='signature' id='gotoAndPause-dynamic'>
       #
 (void)
-<b>gotoAndStop</b><span>(frame = 0)</span>
+<b>gotoAndPause</b><span>(frame = 0)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>指定されたフレームで停止します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>frame</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>表示するフレームです。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='nextFrame-dynamic'>
@@ -286,7 +464,11 @@
 <b>nextFrame</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>次のフレームに移動します。</p>
+</div>
+<div class='tags'>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='prevFrame-dynamic'>
@@ -295,7 +477,11 @@
 <b>prevFrame</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>前のフレームに移動します。</p>
+</div>
+<div class='tags'>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='play-dynamic'>
@@ -304,7 +490,24 @@
 <b>play</b><span>(repeat = 1)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>再生します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>repeat</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>再生回数です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='pause-dynamic'>
@@ -313,7 +516,11 @@
 <b>pause</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>停止します。</p>
+</div>
+<div class='tags'>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='limitFrame-dynamic'>
@@ -385,7 +592,7 @@
 </div>
     </div>
     <div id='footer'>
-  September 03, 14 20:26:55 by
+  September 04, 14 18:44:41 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

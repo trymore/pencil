@@ -7,6 +7,15 @@ iota = require('../models/iota')()
 
 ###
 スプライトアニメーションを管理するクラスです。
+
+@example 同じViewに対して動き毎に別のSpriteを作ります。
+    run = new Sprite '.foo'
+    run.setRange 0, 10
+    walk = new Sprite '.foo'
+    walk.setRange 11, 20
+    run.play()
+    run.on Sprite.EVENT_LAST_FRAME, ->
+      walk.play()
 ###
 module.exports =
 class Sprite extends View
@@ -32,6 +41,13 @@ class Sprite extends View
   ###
   @EVENT_COMPLETE_REPEAT: 'sprite.completeRepeat'
 
+  ###
+  スプライトインスタンスを生成します。
+
+  @param [String, HTMLElement, jQueryObject, View] selector コントロールの対象の要素です
+  @param [Integer] fps 1秒当たりのフレーム数です。
+  @param [Integer] direction 背景画像が並んでいる方向です。
+  ###
   constructor: ({}, @fps = 30, @direction = Sprite.Y) ->
     super
     if @direction is @constructor.X
@@ -43,34 +59,70 @@ class Sprite extends View
     @currentFrame = 0
     @setRange 0, 0
 
+  ###
+  このスプライトがフレームとして表示する背景の位置インデックスの範囲を設定します。
+
+  @param [Integer] from 開始フレームの位置インデックスです。
+  @param [Integer] to 最終フレームの位置インデックスです。
+  ###
   setRange: (from, to) ->
     @setPositions [from..to]
 
+  ###
+  このスプライトがフレームとして表示する背景の位置インデックスの配列を設定します。
+
+  @param [Array<Integer>] positions 位置インデックスの配列です。
+  ###
   setPositions: (@positions) ->
     @lastFrame = @positions.length - 1
 
+  ###
+  指定されたフレームから再生します。
+
+  @param [Integer] frame 再生を開始するフレームです。
+  @param [Integer] repeat 再生回数です。
+  ###
   gotoAndPlay: (frame = 0, repeat = 1) ->
     @currentFrame = @limitFrame frame
     @play repeat
 
-  gotoAndStop: (frame = 0) ->
+  ###
+  指定されたフレームで停止します。
+
+  @param [Integer] frame 表示するフレームです。
+  ###
+  gotoAndPause: (frame = 0) ->
     @currentFrame = @limitFrame frame
     @updateView()
     @stop()
 
+  ###
+  次のフレームに移動します。
+  ###
   nextFrame: ->
     @currentFrame = @verifyFrame @currentFrame + 1
     @updateView()
 
+  ###
+  前のフレームに移動します。
+  ###
   prevFrame: ->
     @currentFrame = @verifyFrame @currentFrame - 1
     @updateView()
 
+  ###
+  再生します。
+
+  @param [Integer] repeat 再生回数です。
+  ###
   play: (@repeat = 1) ->
     @currentRepeatCount = 0
     @updateView()
     @startTick()
 
+  ###
+  停止します。
+  ###
   pause: ->
     @stopTick()
 
