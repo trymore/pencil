@@ -65,3 +65,6 @@ gulp.task 'default', [
   # 'browserify'
   'watch'
 ]
+
+# git subtree pull --prefix doc origin gh-pages --squash
+# git subtree push --prefix doc origin gh-pages --squash
