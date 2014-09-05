@@ -19,98 +19,114 @@
       Index
     </a>
     &raquo;
-    <span class='title'>Image</span>
+    <span class='title'>Pinterest</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        Image
+        Pinterest
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>views&#47;image.coffee</td>
-        </tr>
-        <tr>
-          <td>Inherits:</td>
-          <td>
-            <a href='../class/View.html'>View</a>
-          </td>
+          <td>models&#47;sns&#47;pinterest.coffee</td>
         </tr>
       </table>
-      <h2>Variables Summary</h2>
-      
-      <h3 class='inherited'>
-        Variable inherited from
-        <a href='../class/View.html'>View</a>
-      </h3>
-      <p class='inherited'>
-        <a href='../class/View.html#$window-variable'>$window</a>
-        <a href='../class/View.html#$document-variable'>$document</a>
-        <a href='../class/View.html#template-variable'>template</a>
-        <a href='../class/View.html#selector-variable'>selector</a>
-      </p>
-      <h2>Instance Method Summary</h2>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Pinterestの提供するサービスを利用するためのクラスです。</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Class Method Summary</h2>
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#load-dynamic'>
-        #
-(void)
-<b>load</b><span>()</span>
+      <a href='#createPinItUrl-static'>
+        .
+(String)
+<b>createPinItUrl</b><span>(options)</span>
       </a>
     </span>
     <span class='desc'>
-      画像をロードします。 @event
-
+      ウェブサイトをピンする為のURLを生成します。 
     </span>
   </li>
 </ul>
-      <h2>
-        <small>Inherited Method Summary</small>
-        <h3 class='inherited'>
-          Methods inherited from
-          <a href='../class/View.html'>View</a>
-        </h3>
-        <p class='inherited'>
-          <a href='../class/View.html#defer-dynamic'>#defer</a>
-          <a href='../class/View.html#reject-dynamic'>#reject</a>
-          <a href='../class/View.html#$-dynamic'>#$</a>
-          <a href='../class/View.html#pushStack-dynamic'>#pushStack</a>
-          <a href='../class/View.html#end-dynamic'>#end</a>
-        </p>
-      </h2>
-      <h2>Constructor Details</h2>
+      <h2>Class Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='constructor-dynamic'>
-      #
-(void)
-<b>constructor</b><span>()</span>
+    <p class='signature' id='createPinItUrl-static'>
+      .
+(String)
+<b>createPinItUrl</b><span>(options)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>Creates a Image instance.</p>
+  <p>ウェブサイトをピンする為のURLを生成します。</p>
 </div>
 <div class='tags'>
-</div>
-  </div>
-</div>
-      <h2>Instance Method Details</h2>
-      <div class='methods'>
-  <div class='method_details'>
-    <p class='signature' id='load-dynamic'>
-      #
-(void)
-<b>load</b><span>()</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>画像をロードします。
-@event</p>
-</div>
-<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>オプションです。 </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (options):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>url</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>ウェブサイトのURLです。 </span>
+    </li>
+    <li>
+      <span class='name'>media</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>画像等のメディアのURLです。 </span>
+    </li>
+    <li>
+      <span class='name'>description</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>説明文です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>String</tt>
+      )
+      &mdash;
+      <span class='desc'>シェアする為のURLです。 </span>
+    </li>
+  </ul>
 </div>
   </div>
 </div>
