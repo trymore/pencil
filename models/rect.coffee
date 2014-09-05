@@ -101,14 +101,46 @@ class Rect
   deflate: (width, height) ->
     new Rect @x, @y, @width - width, @height - height
 
-
+  #TODO implement me
+  union: (rect) ->
 
 
   ###
   指定の領域内に収まる新たな領域を生成します。
+  1. x,yを収まるように設定します。
+  2. 収まらない場合はwidth,heightを設定します。
   ###
-  #TODO implement me
   fallWithin: (rect) ->
+    r = @clone()
+    left0 = r.getLeft()
+    right0 = r.getRight()
+    top0 = r.getTop()
+    bottom0 = r.getBottom()
+    left1 = rect.getLeft()
+    right1 = rect.getRight()
+    top1 = rect.getTop()
+    bottom1 = rect.getBottom()
+
+    if left0 < left1
+      r.x = left1
+      # if (over = r.getRight() - right1) > 0
+      #   r.width -= over
+    if right0 > right1
+      r.x -= right0 - right1
+    if (over = r.getRight() - right1) > 0
+      r.width -= over
+    if top0 < top1
+      r.y = top1
+      # if (over = r.getBottom() - bottom1) > 0
+      #   r.height -= over
+    if bottom0 > bottom1
+      r.y -= bottom0 - bottom1
+    if (over = r.getBottom() - bottom1) > 0
+      r.height -= over
+
+    r
+
+
 
   ###
   この領域に指定座標が含まれる新たな領域を生成します。
@@ -119,20 +151,20 @@ class Rect
   contain: (x, y) ->
     if x? and x.x? and x.y?
       {x, y} = x
-    rect = @clone()
-    right = rect.getRight()
-    if x < rect.x
-      rect.x = x
-      rect.width = right - rect.x
+    r = @clone()
+    right = r.getRight()
+    if x < r.x
+      r.x = x
+      r.width = right - r.x
     else if x > right
-      rect.width = x - rect.x
-    bottom = rect.getBottom()
-    if y < rect.y
-      rect.y = y
-      rect.height = bottom - rect.y
+      r.width = x - r.x
+    bottom = r.getBottom()
+    if y < r.y
+      r.y = y
+      r.height = bottom - r.y
     else if y > bottom
-      rect.height = y - rect.y
-    rect
+      r.height = y - r.y
+    r
 
   ceil: ->
     left = floor @getLeft()
