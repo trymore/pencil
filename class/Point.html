@@ -33,6 +33,13 @@
           <td>models&#47;point.coffee</td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>ポイントクラスです。
+二次元の直交座標系を扱います。</p>
+</div>
+<div class='tags'>
+</div>
       <h2>Variables Summary</h2>
       <dl class='constants'>
   <dt id='sub-variable'>
@@ -87,6 +94,41 @@
     <span class='desc'>
     </span>
   </li>
+  <li>
+    <span class='signature'>
+      <a href='#parseArguments-static'>
+        .
+(void)
+<b>parseArguments</b><span>(args)</span>
+      </a>
+    </span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createWithPosition-static'>
+        .
+(void)
+<b>createWithPosition</b><span>({left, top})</span>
+      </a>
+    </span>
+    <span class='desc'>
+      <code>left</code>,<code>top</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createWithClient-static'>
+        .
+(void)
+<b>createWithClient</b><span>({clientX, clientY})</span>
+      </a>
+    </span>
+    <span class='desc'>
+      <code>clientX</code>,<code>clientY</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。 
+    </span>
+  </li>
 </ul>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
@@ -94,11 +136,12 @@
     <span class='signature'>
       <a href='#clone-dynamic'>
         #
-(void)
+(Point)
 <b>clone</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      複製します。 
     </span>
   </li>
   <li>
@@ -175,6 +218,119 @@
     </p>
     
   </div>
+  <div class='method_details'>
+    <p class='signature' id='parseArguments-static'>
+      .
+(void)
+<b>parseArguments</b><span>(args)</span>
+      <br>
+    </p>
+    
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createWithPosition-static'>
+      .
+(void)
+<b>createWithPosition</b><span>({left, top})</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p><code>left</code>,<code>top</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>position</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>座標オブジェクトです。 </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (position):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>left</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x座標です。 </span>
+    </li>
+    <li>
+      <span class='name'>top</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y座標です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createWithClient-static'>
+      .
+(void)
+<b>createWithClient</b><span>({clientX, clientY})</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p><code>clientX</code>,<code>clientY</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>position</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>座標オブジェクトです。 </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (position):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>clientX</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x座標です。 </span>
+    </li>
+    <li>
+      <span class='name'>clientY</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y座標です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
 </div>
       <h2>Constructor Details</h2>
       <div class='methods'>
@@ -193,11 +349,26 @@
   <div class='method_details'>
     <p class='signature' id='clone-dynamic'>
       #
-(void)
+(Point)
 <b>clone</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>複製します。</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>複製された<code>Point</code>インスタンスです。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='distance-dynamic'>
@@ -238,7 +409,7 @@
 </div>
     </div>
     <div id='footer'>
-  September 05, 14 21:44:48 by
+  September 05, 14 22:41:37 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
