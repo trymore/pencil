@@ -68,17 +68,6 @@ class View extends jQuery
     # jQueryオブジェクトのdataに'view'としてインスタンスを登録します
     @data 'view', @
 
-    @dfds = []
-
-  defer: ->
-    dfd = @constructor.Deferred()
-    @dfds.push dfd
-    dfd
-  reject: ->
-    for dfd in @dfds
-      dfd.reject()
-    @dfds = []
-
   ###
   findのショートハンドです。
   ###
@@ -86,6 +75,7 @@ class View extends jQuery
   # addListener: -> jQuery.fn.on.apply @, arguments
 
   ###
+  @private
   ラッパを生成するjQueryメソッドをオーバーライドします。
   ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。
   ###
@@ -96,6 +86,7 @@ class View extends jQuery
     ret
 
   ###
+  @private
   ラッパを生成するjQueryメソッドをオーバーライドします。
   ここではViewインスタンスを生成するのではなく、jQueryオブジェクトを生成します。
   ###
