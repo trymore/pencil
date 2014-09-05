@@ -16,7 +16,7 @@ class QueryString
         "#{key}#{eq}#{encodeURIComponent val ? ''}"
     queries.join sep
 
-  @parse: (str, sep = '&', eq = '=', { maxKeys = 1000 }) ->
+  @parse: (str, sep = '&', eq = '=', { maxKeys: 1000 }) ->
     obj = {}
     for kv, i in str.split sep when maxKeys is 0 or i < maxKeys
       [key, val] = kv.split eq
