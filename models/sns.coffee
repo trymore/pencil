@@ -1,4 +1,5 @@
 ###
+@deprecated Use models/sns/*.coffee
 SNS creates a URL for service provided by SNS.
 ###
 
