@@ -1,18 +1,20 @@
 gulp = require 'gulp'
-# bower = require 'gulp-bower'
-# sequence = require 'run-sequence'
-# gulpif = require 'gulp-if'
-# debug = require 'gulp-debug'
-# plumber = require 'gulp-plumber'
-# cached = require 'gulp-cached'
-# notify = require 'gulp-notify'
-# browserify = require 'gulp-browserify'
-# uglify = require 'gulp-uglify'
-# replaceExt = require 'gulp-ext-replace'
-# rename = require 'gulp-rename'
-{ readFileSync } = require 'fs'
+mocha = require 'gulp-mocha'
 bump = require 'gulp-bump'
 git = require 'gulp-git'
+{ readFileSync } = require 'fs'
+
+gulp.task 'watch', ->
+  gulp.watch [
+    'views/**'
+    'models/**'
+    'test/**'
+  ], [ 'mocha' ]
+
+gulp.task 'mocha', ->
+  gulp
+  .src 'test/**/*.coffee', read: false
+  .pipe mocha reporter: 'nyan'
 
 gulp.task 'publish', ->
   gulp
@@ -39,30 +41,7 @@ gulp.task 'publish', ->
       #         return
       #       notify "Released #{version}"
 
-
-
-# gulp.task 'bower', ->
-#   bower()
-
-# gulp.task 'browserify', ->
-#   gulp
-#   .src 'src/**/exports.coffee', read: false
-#   .pipe plumber errorHandler: notify.onError '<%= error.message %>'
-#   .pipe browserify
-#     standalone: true
-#     ignoreMissing: true
-#     transform: [ 'coffeeify', 'debowerify' ]
-#     extensions: [ '.coffee', '.js' ]
-#   .pipe cached 'browserify'
-#   .pipe rename main
-#   .pipe gulp.dest '.'
-
-# gulp.task 'watch', ->
-  # gulp.watch 'src/**/*.coffee', [ 'browserify' ]
-
 gulp.task 'default', [
-  # 'bower'
-  # 'browserify'
   'watch'
 ]
 

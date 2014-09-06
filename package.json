@@ -1,7 +1,10 @@
 {
   "devDependencies": {
+    "chai": "^1.9.1",
+    "coffee-script": "^1.8.0",
     "gulp": "^3.8.7",
     "gulp-bump": "^0.1.11",
-    "gulp-git": "^0.5.0"
+    "gulp-git": "^0.5.0",
+    "gulp-mocha": "^1.0.0"
   }
 }
