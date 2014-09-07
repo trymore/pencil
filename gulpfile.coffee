@@ -25,10 +25,29 @@ gulp.task 'watch', ->
 #   .src 'test/**/*.coffee', read: false
 #   .pipe mocha reporter: 'nyan'
 
-gulp.task 'browserify', ->
+gulp.task 'browserify-lib', ->
   bundler = watchify browserify
     cache: {}, packageCache: {}
-    entries: ['./test/runner/test.coffee']
+    entries: ['./pencil.coffee']
+    extensions: ['.coffee']
+    builtins: []
+    standalone: 'pencil'
+    debug: true
+  bundle = ->
+    bundler
+    .bundle()
+    .on 'error', ->
+      console.log arguments
+    .pipe source 'pencil.js'
+    .pipe gulp.dest './'
+    .on 'end', ->
+      gulp.start 'browserify-test'
+  bundler.on 'update', bundle
+
+gulp.task 'browserify-test', ->
+  bundler = watchify browserify
+    cache: {}, packageCache: {}
+    entries: ['./test/runner/runner.coffee']
     extensions: ['.coffee']
     builtins: []
     debug: true
@@ -37,16 +56,15 @@ gulp.task 'browserify', ->
     .bundle()
     .on 'error', ->
       console.log arguments
-    .pipe source 'test.js'
+    .pipe source 'runner.js'
     .pipe gulp.dest './test/runner'
     .on 'end', ->
       gulp.start 'mocha-phantomjs'
   bundler.on 'update', bundle
-  bundle()
 
 gulp.task 'mocha-phantomjs', ->
   gulp
-  .src 'test/runner/test.html'
+  .src 'test/runner/index.html'
   .pipe mochaPhantomJS()
 
 gulp.task 'publish', ->
@@ -75,7 +93,8 @@ gulp.task 'publish', ->
       #       notify "Released #{version}"
 
 gulp.task 'default', [
-  'browserify'
+  'browserify-lib'
+  'browserify-test'
   'watch'
 ]
 

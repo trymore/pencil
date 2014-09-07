@@ -2,8 +2,6 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
-    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/lodash/dist/lodash.min.js"></script>
     <script src="../../node_modules/mocha/mocha.js"></script>
     <script src="../../node_modules/chai/chai.js"></script>
     <script>
@@ -11,7 +9,10 @@
       mocha.reporter('html');
       expect = chai.expect;
     </script>
-    <script src="./test.js"></script>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/lodash/dist/lodash.min.js"></script>
+    <script src="../../pencil.js" data-cover></script>
+    <script src="./runner.js"></script>
   </head>
   <body>
     <div id="mocha"></div>
