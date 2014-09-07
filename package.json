@@ -1,10 +1,44 @@
 {
+  "name": "pencil",
+  "version": "1.0.0",
+  "description": "jQuery view",
+  "main": "views/view.coffee",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
   "devDependencies": {
     "chai": "^1.9.1",
     "coffee-script": "^1.8.0",
+    "coveralls": "^2.11.1",
     "gulp": "^3.8.7",
     "gulp-bump": "^0.1.11",
     "gulp-git": "^0.5.0",
-    "gulp-mocha": "^1.0.0"
+    "gulp-mocha": "^1.0.0",
+    "istanbul": "^0.3.2",
+    "mocha-lcov-reporter": "0.0.1"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register",
+    "istanbul": "coffee -c models test views && istanbul cover _mocha --report lcovonly -- -R spec && rm -rf ./coverage ./models/*.js ./models/**/*.js ./test/*.js ./test/**/*.js ./views/*.js ./views/**/*.js",
+    "coveralls": "coffee -c models test views && istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage ./models/*.js ./models/**/*.js ./test/*.js ./test/**/*.js ./views/*.js ./views/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trymore/pencil.git"
+  },
+  "keywords": [
+    "jQuery",
+    "view"
+  ],
+  "author": "Daisuke Mino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trymore/pencil/issues"
+  },
+  "homepage": "https://github.com/trymore/pencil",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "mocha": "^1.21.4"
   }
 }
