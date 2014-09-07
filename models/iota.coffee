@@ -22,8 +22,8 @@ class Iota
   ###
   @return Function コールする毎に0からインクリメントされた整数を返す関数を返します。
   ###
-  @iota: ->
+  @factory: ->
     index = 0
     -> index++
 
-module.exports = Iota.iota
+module.exports = Iota.factory
