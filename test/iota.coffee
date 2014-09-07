@@ -1,5 +1,6 @@
 {expect} = chai
-factory = require '../models/iota'
+# factory = require '../models/iota'
+factory = pencil.models.iota
 
 describe 'Iota', ->
   describe '.', ->

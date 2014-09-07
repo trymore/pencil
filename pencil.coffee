@@ -1,2 +1,39 @@
-module.exports =
-  iota: require './models/iota'
+module.exports = 
+  models:
+    animate: require "./models/animate"
+    "backgrouns-position": require "./models/backgrouns-position"
+    browser: require "./models/browser"
+    easing: require "./models/easing"
+    flow: require "./models/flow"
+    "image-data-helper": require "./models/image-data-helper"
+    iota: require "./models/iota"
+    location: require "./models/location"
+    os: require "./models/os"
+    point: require "./models/point"
+    "query-string": require "./models/query-string"
+    rect: require "./models/rect"
+    snaphelper: require "./models/snaphelper"
+    sns:
+      facebook: require "./models/sns/facebook"
+      "google-plus": require "./models/sns/google-plus"
+      hatena: require "./models/sns/hatena"
+      line: require "./models/sns/line"
+      pinterest: require "./models/sns/pinterest"
+      twitter: require "./models/sns/twitter"
+
+  views:
+    anchor: require "./views/anchor"
+    breakpoint: require "./views/breakpoint"
+    checkbox: require "./views/checkbox"
+    drawer: require "./views/drawer"
+    image: require "./views/image"
+    "mask-factory": require "./views/mask-factory"
+    preventable: require "./views/preventable"
+    radio: require "./views/radio"
+    select: require "./views/select"
+    selectable: require "./views/selectable"
+    slicer: require "./views/slicer"
+    sprite: require "./views/sprite"
+    tab: require "./views/tab"
+    "text-overflow": require "./views/text-overflow"
+    view: require "./views/view"

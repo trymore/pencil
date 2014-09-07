@@ -1,6 +1,8 @@
 gulp = require 'gulp'
-# mocha = require 'gulp-mocha'
-
+gutil = require 'gulp-util'
+{relative, dirname, basename, extname, join} = require 'path'
+CSON = require 'cson'
+{writeFile} = require 'fs'
 browserify = require 'browserify'
 watchify     = require 'watchify'
 # bundleLogger = require '../util/bundleLogger'
@@ -13,17 +15,33 @@ git = require 'gulp-git'
 { readFileSync } = require 'fs'
 
 gulp.task 'watch', ->
-  # gulp.watch [
-  #   'views/**'
-  #   'models/**'
-  #   'test/**'
-  # # ], [ 'mocha' ]
-  # ], [ 'browserify' ]
+  gulp.watch [
+    'models/**'
+    'views/**'
+  ], [ 'exports' ]
 
-# gulp.task 'mocha', ->
-#   gulp
-#   .src 'test/**/*.coffee', read: false
-#   .pipe mocha reporter: 'nyan'
+gulp.task 'exports', ->
+  gulp.src [
+    'models/**/*.coffee'
+    'views/**/*.coffee'
+  ]
+  .pipe gutil.buffer (err, files) ->
+    exports = {}
+    for file in files
+      path = relative '.', file.path
+      path = path.replace /\.coffee$/, ''
+      ns = path.replace(/^\.\.\//, '').split('/')
+      e = exports
+      for n, i in ns
+        if i is ns.length - 1
+          e[n] = path
+        else
+          e[n] ?= {}
+          e = e[n]
+    code = CSON.stringifySync exports, null, 2
+    .replace /: "(.*?)"/g, ': require "./$1"'
+    .replace /[{}]/g, ''
+    writeFile './pencil.coffee', "module.exports = #{code}"
 
 gulp.task 'browserify-lib', ->
   bundler = watchify browserify

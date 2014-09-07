@@ -1,9 +1,10 @@
 {expect} = chai
-Point = require '../models/point'
+# Point = require '../models/point'
+Point = pencil.models.point
 
 describe 'Point', ->
   describe 'constructor', ->
-    it 'should create zero point without no parameter', ->
+    it 'should create zero Point without no parameter', ->
       {x, y} = new Point
       expect(x).equals 0
       expect(y).equals 0
@@ -23,3 +24,10 @@ describe 'Point', ->
       {x, y} = new Point new Point 5, 8
       expect(x).equals 5
       expect(y).equals 8
+
+  describe '.', ->
+    describe 'clone()', ->
+      it 'should create same value Point', ->
+        point = new Point 5, 8
+        expect(point.clone().x).equals 5
+        expect(point.clone().y).equals 8
