@@ -1,4 +1,5 @@
-{ sqrt } = Math
+{isArray, isObject} = require 'lodash'
+{sqrt} = Math
 
 
 ###
@@ -20,18 +21,25 @@ class Point
       { left, top } = left
     new Point left, top
 
-
   @parseArguments: (args) ->
-    switch args.length
+    args = switch args.length
       when 0
-        x: 0
-        y: 0
+        []
       when 1
-        args[0]
+        if isArray args[0]
+          args[0]
+        else if isObject args[0]
+          [args[0].x, args[0].y]
+        else
+          [args[0]]
       else
-        x: args[0]
-        y: args[1]
-
+        args
+    for i in [0..1]
+      args[i] = if (val = args[i])?
+        parseFloat val
+      else
+        args[i] = 0
+    args
 
 
   ###
@@ -54,7 +62,7 @@ class Point
 
 
   constructor: (x, y) ->
-    { @x, @y } = Point.parseArguments arguments
+    [@x, @y] = Point.parseArguments arguments
 
   ###
   複製します。
