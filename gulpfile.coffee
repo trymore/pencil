@@ -27,9 +27,10 @@ gulp.task 'watch', ->
 
 gulp.task 'browserify', ->
   bundler = watchify browserify
-    cache: {}, packageCache: {}, fullPaths: true,
+    cache: {}, packageCache: {}
     entries: ['./test/runner/test.coffee']
     extensions: ['.coffee']
+    builtins: []
     debug: true
   bundle = ->
     bundler
