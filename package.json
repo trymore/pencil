@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha-phantomjs test/runner/index.html",
-    "coveralls": "./node_modules/.bin/poncho -R lcov test/runner/index.html"
+    "coveralls": "./node_modules/.bin/poncho -R lcov test/runner/index.html | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
