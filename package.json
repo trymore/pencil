@@ -20,6 +20,7 @@
     "gulp-mocha": "^1.0.0",
     "gulp-mocha-phantomjs": "^0.5.0",
     "istanbul": "^0.3.2",
+    "jquery": "^2.1.1",
     "lodash": "^2.4.1",
     "mocha": "^1.21.4",
     "mocha-lcov-reporter": "0.0.1",
@@ -31,8 +32,13 @@
   },
   "browserify": {
     "transform": [
-      "coffeeify"
+      "coffeeify",
+      "browserify-shim"
     ]
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "lodash": "global:_"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha-phantomjs test/runner/test.html",

@@ -1,4 +1,4 @@
-{ expect } = require 'chai'
+{expect} = chai
 factory = require '../models/iota'
 
 describe 'Iota', ->

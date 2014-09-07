@@ -1,4 +1,4 @@
-{ expect } = require 'chai'
+{expect} = chai
 Point = require '../models/point'
 
 describe 'Point', ->
