@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "browserify": "^5.11.1",
+    "browserify-shim": "^3.7.0",
     "chai": "^1.9.1",
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
@@ -24,6 +25,7 @@
     "mocha-lcov-reporter": "0.0.1",
     "mocha-phantomjs": "^3.5.0",
     "phantomjs": "^1.9.7-15",
+    "poncho": "^0.1.1",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^1.0.2"
   },
@@ -33,7 +35,7 @@
     ]
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register",
+    "test": "./node_modules/.bin/mocha-phantomjs test/runner/test.html",
     "istanbul": "coffee -c models test views && istanbul cover _mocha --report lcovonly -- -R spec && rm -rf ./coverage ./models/*.js ./models/**/*.js ./test/*.js ./test/**/*.js ./views/*.js ./views/**/*.js",
     "coveralls": "coffee -c models test views && istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage ./models/*.js ./models/**/*.js ./test/*.js ./test/**/*.js ./views/*.js ./views/**/*.js"
   },
