@@ -24,9 +24,6 @@ browserifyでビルドすることを前提としています。
 http://trymore.github.io/pencil/
 
 
-[![Coverage Status](https://coveralls.io/repos/trymore/pencil/badge.png)](https://coveralls.io/r/trymore/pencil)
-
-
 [travis-image]: https://secure.travis-ci.org/trymore/pencil.svg?branch=master
 [travis-url]: http://travis-ci.org/trymore/pencil
 [coveralls-image]: https://img.shields.io/coveralls/trymore/pencil.svg
