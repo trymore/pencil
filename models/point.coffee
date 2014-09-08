@@ -93,3 +93,20 @@ class Point
   multiply: (n) ->
     new Point @x * n, @y * n
   mul: Point::multiply
+
+  containIn: (rect) ->
+    new Point (
+      if @x < (x = rect.getLeft())
+        x
+      else if @x > (x = rect.getRight())
+        x
+      else
+        @x
+    ), (
+      if @y < (y = rect.getTop())
+        y
+      else if @y > (y = rect.getBottom())
+        y
+      else
+        @y
+    )
