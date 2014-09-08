@@ -29,11 +29,11 @@ class Radio extends View
   ###
   constructor: ->
     super
-    @$radio = @$ 'input[type=radio]'
-    .on 'change radio.change', @update
-    if (name = @$radio.attr 'name') isnt ''
-      @$otherRadios = $ "input[type=radio][name=#{name}]"
-      .not @$radio
+    @radio = @$ 'input[type=radio]'
+    .on 'change radioChange', @update
+    if (name = @radio.attr 'name') isnt ''
+      @otherRadios = $ "input[type=radio][name=#{name}]"
+      .not @radio
     @update()
 
   ###
@@ -41,8 +41,8 @@ class Radio extends View
   ラジオボタンの状態によりクラスを付与・除去します。
   ###
   update: =>
-    if @$radio.prop 'checked'
+    if @radio.prop 'checked'
       @addClass @checked
-      @$otherRadios?.trigger 'radio.change'
+      @otherRadios?.trigger 'radioChange'
     else
       @removeClass @checked
