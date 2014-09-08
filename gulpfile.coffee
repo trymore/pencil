@@ -41,7 +41,8 @@ gulp.task 'exports', ->
     code = CSON.stringifySync exports, null, 2
     .replace /: "(.*?)"/g, ': require "./$1"'
     .replace /[{}]/g, ''
-    writeFile './pencil.coffee', "module.exports = #{code}"
+    writeFile './pencil.coffee', "module.exports = #{code}", ->
+      gulp.start 'browserify-lib'
 
 gulp.task 'browserify-lib', ->
   bundler = watchify browserify
