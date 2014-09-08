@@ -19,44 +19,23 @@
       Index
     </a>
     &raquo;
-    <span class='title'>Iota</span>
+    <span class='title'>Line</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        Iota
+        Line
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>models&#47;iota.coffee</td>
+          <td>models&#47;sns&#47;line.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>主にフラグを作る際に使用するユーティリティです。</p>
-  <div class='examples'>
-    <h3>Examples:</h3>
-    <h4>
-      10進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = iota() # 0
-  b = iota() # 1
-  c = iota() # 2
-  d = iota() # 3
-  e = iota() # 4</code></pre>
-    <h4>
-      2進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = 1 &lt;&lt; iota() # 0 (0000)
-  b = 1 &lt;&lt; iota() # 1 (0001)
-  c = 1 &lt;&lt; iota() # 2 (0010)
-  d = 1 &lt;&lt; iota() # 4 (0100)
-  e = 1 &lt;&lt; iota() # 8 (1000)</code></pre>
-  </div>
+  <p>Lineの提供するサービスを利用するためのクラスです。</p>
 </div>
 <div class='tags'>
 </div>
@@ -64,35 +43,52 @@
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#factory-static'>
+      <a href='#createChatUrl-static'>
         .
-(?)
-<b>factory</b><span>()</span>
+(String)
+<b>createChatUrl</b><span>(text)</span>
       </a>
     </span>
     <span class='desc'>
+      テキストをチャットする為のURLを生成します。 
     </span>
   </li>
 </ul>
       <h2>Class Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='factory-static'>
+    <p class='signature' id='createChatUrl-static'>
       .
-(?)
-<b>factory</b><span>()</span>
+(String)
+<b>createChatUrl</b><span>(text)</span>
       <br>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>テキストをチャットする為のURLを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>text</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>テキストです。 </span>
+    </li>
+  </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
       (
-        <tt>?</tt>
+        <tt>String</tt>
       )
       &mdash;
-      <span class='desc'>Function コールする毎に0からインクリメントされた整数を返す関数を返します。 </span>
+      <span class='desc'>チャットする為のURLです。 </span>
     </li>
   </ul>
 </div>

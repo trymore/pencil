@@ -19,44 +19,23 @@
       Index
     </a>
     &raquo;
-    <span class='title'>Iota</span>
+    <span class='title'>Facebook</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        Iota
+        Facebook
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>models&#47;iota.coffee</td>
+          <td>models&#47;sns&#47;facebook.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>主にフラグを作る際に使用するユーティリティです。</p>
-  <div class='examples'>
-    <h3>Examples:</h3>
-    <h4>
-      10進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = iota() # 0
-  b = iota() # 1
-  c = iota() # 2
-  d = iota() # 3
-  e = iota() # 4</code></pre>
-    <h4>
-      2進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = 1 &lt;&lt; iota() # 0 (0000)
-  b = 1 &lt;&lt; iota() # 1 (0001)
-  c = 1 &lt;&lt; iota() # 2 (0010)
-  d = 1 &lt;&lt; iota() # 4 (0100)
-  e = 1 &lt;&lt; iota() # 8 (1000)</code></pre>
-  </div>
+  <p>Facebookの提供するサービスを利用するためのクラスです。</p>
 </div>
 <div class='tags'>
 </div>
@@ -64,35 +43,109 @@
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#factory-static'>
+      <a href='#createShareUrl-static'>
         .
-(?)
-<b>factory</b><span>()</span>
+(String)
+<b>createShareUrl</b><span>(url)</span>
       </a>
     </span>
     <span class='desc'>
+      ウェブサイトをシェアする為のURLを生成します。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#fetchShareCount-static'>
+        .
+(void)
+<b>fetchShareCount</b><span>(url, callback)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      ウェブサイトのシェア数を取得します。 
     </span>
   </li>
 </ul>
       <h2>Class Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='factory-static'>
+    <p class='signature' id='createShareUrl-static'>
       .
-(?)
-<b>factory</b><span>()</span>
+(String)
+<b>createShareUrl</b><span>(url)</span>
       <br>
     </p>
-    <div class='tags'>
+    <div class='docstring'>
+  <p>ウェブサイトをシェアする為のURLを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>url</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>ウェブサイトのURLです。 </span>
+    </li>
+  </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
       <span class='type'></span>
       (
-        <tt>?</tt>
+        <tt>String</tt>
       )
       &mdash;
-      <span class='desc'>Function コールする毎に0からインクリメントされた整数を返す関数を返します。 </span>
+      <span class='desc'>シェアする為のURLです。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='fetchShareCount-static'>
+      .
+(void)
+<b>fetchShareCount</b><span>(url, callback)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>ウェブサイトのシェア数を取得します。</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      ウェブサイトのシェア数を取得をalertします。
+    </h4>
+    <pre><code class='coffeescript'>  Facebook.fetchCount &#39;http:&#47;&#47;example.com&#39;, (err, shares) -&gt;
+    throw err if err?
+    alert shares</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>url</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>ウェブサイトのURLです。 </span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (
+          <tt>Function</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>コールバックです。 </span>
     </li>
   </ul>
 </div>

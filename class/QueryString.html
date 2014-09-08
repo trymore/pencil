@@ -19,44 +19,23 @@
       Index
     </a>
     &raquo;
-    <span class='title'>Iota</span>
+    <span class='title'>QueryString</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         Class:
-        Iota
+        QueryString
       </h1>
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>models&#47;iota.coffee</td>
+          <td>models&#47;query-string.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>主にフラグを作る際に使用するユーティリティです。</p>
-  <div class='examples'>
-    <h3>Examples:</h3>
-    <h4>
-      10進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = iota() # 0
-  b = iota() # 1
-  c = iota() # 2
-  d = iota() # 3
-  e = iota() # 4</code></pre>
-    <h4>
-      2進数のフラグを生成する
-    </h4>
-    <pre><code class='coffeescript'>  iota = require(&#39;pencil&#47;models&#47;iota&#39;)()
-  a = 1 &lt;&lt; iota() # 0 (0000)
-  b = 1 &lt;&lt; iota() # 1 (0001)
-  c = 1 &lt;&lt; iota() # 2 (0010)
-  d = 1 &lt;&lt; iota() # 4 (0100)
-  e = 1 &lt;&lt; iota() # 8 (1000)</code></pre>
-  </div>
+  <p>クエリ文字列クラスです。</p>
 </div>
 <div class='tags'>
 </div>
@@ -64,10 +43,21 @@
       <ul class='summary'>
   <li>
     <span class='signature'>
-      <a href='#factory-static'>
+      <a href='#stringify-static'>
         .
-(?)
-<b>factory</b><span>()</span>
+(void)
+<b>stringify</b><span>(obj, sep = &#39;&amp;&#39;, eq = &#39;=&#39;)</span>
+      </a>
+    </span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#parse-static'>
+        .
+(void)
+<b>parse</b><span>(str, sep = &#39;&amp;&#39;, eq = &#39;=&#39;, opts)</span>
       </a>
     </span>
     <span class='desc'>
@@ -77,25 +67,22 @@
       <h2>Class Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='factory-static'>
+    <p class='signature' id='stringify-static'>
       .
-(?)
-<b>factory</b><span>()</span>
+(void)
+<b>stringify</b><span>(obj, sep = &#39;&amp;&#39;, eq = &#39;=&#39;)</span>
       <br>
     </p>
-    <div class='tags'>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt>?</tt>
-      )
-      &mdash;
-      <span class='desc'>Function コールする毎に0からインクリメントされた整数を返す関数を返します。 </span>
-    </li>
-  </ul>
-</div>
+    
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='parse-static'>
+      .
+(void)
+<b>parse</b><span>(str, sep = &#39;&amp;&#39;, eq = &#39;=&#39;, opts)</span>
+      <br>
+    </p>
+    
   </div>
 </div>
     </div>
