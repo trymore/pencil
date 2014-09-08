@@ -48,8 +48,7 @@ class Point
   @option position [Integer] left x座標です。
   @option position [Integer] top y座標です。
   ###
-  @createWithPosition: ({ left, top }) ->
-    new Point left, top
+  @createWithPosition: ({left, top}) -> new Point left, top
 
   ###
   `clientX`,`clientY`から成るオブジェクトから`Point`インスタンスを生成します。
@@ -57,8 +56,15 @@ class Point
   @option position [Integer] clientX x座標です。
   @option position [Integer] clientY y座標です。
   ###
-  @createWithClient: ({ clientX, clientY }) ->
-    new Point clientX, clientY
+  @createWithClient: ({clientX, clientY}) -> new Point clientX, clientY
+
+  ###
+  `pageX`,`pageY`から成るオブジェクトから`Point`インスタンスを生成します。
+  @param [Object] position 座標オブジェクトです。
+  @option position [Integer] pageX x座標です。
+  @option position [Integer] pageY y座標です。
+  ###
+  @createWithPage: ({pageX, pageY}) -> new Point pageX, pageY
 
 
   constructor: (x, y) ->
