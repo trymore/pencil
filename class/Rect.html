@@ -33,13 +33,6 @@
           <td>models&#47;rect.coffee</td>
         </tr>
       </table>
-      <h2>Overview</h2>
-      <div class='docstring'>
-  <p>範囲クラスです。
-二次元の直交座標系を扱います。</p>
-</div>
-<div class='tags'>
-</div>
       <h2>Class Method Summary</h2>
       <ul class='summary'>
   <li>
@@ -53,39 +46,6 @@
     <span class='desc'>
     </span>
   </li>
-  <li>
-    <span class='signature'>
-      <a href='#parseArguments-static'>
-        .
-(void)
-<b>parseArguments</b><span>(args)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#createWithArguments-static'>
-        .
-(void)
-<b>createWithArguments</b><span>(args)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#createWithCenter-static'>
-        .
-(void)
-<b>createWithCenter</b><span>(centerX, centerY, width, height)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
 </ul>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
@@ -93,12 +53,11 @@
     <span class='signature'>
       <a href='#clone-dynamic'>
         #
-(Rect)
+(void)
 <b>clone</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
-      複製します。 
     </span>
   </li>
   <li>
@@ -191,83 +150,13 @@
   </li>
   <li>
     <span class='signature'>
-      <a href='#containsPoint-dynamic'>
-        #
-(void)
-<b>containsPoint</b><span>(point)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#containsRect-dynamic'>
-        #
-(void)
-<b>containsRect</b><span>(rect)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#offset-dynamic'>
-        #
-(void)
-<b>offset</b><span>(x, y)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#inflate-dynamic'>
-        #
-(Rect)
-<b>inflate</b><span>(width, height)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      指定された量大きくした新たな領域を生成します。 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#deflate-dynamic'>
-        #
-(Rect)
-<b>deflate</b><span>(width, height)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      指定された量小さくした新たな領域を生成します。 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#fallWithin-dynamic'>
-        #
-(void)
-<b>fallWithin</b><span>(rect)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      TODO implement me 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
       <a href='#contain-dynamic'>
         #
-(Rect)
+(void)
 <b>contain</b><span>(x, y)</span>
       </a>
     </span>
     <span class='desc'>
-      この領域に指定座標が含まれる新たな領域を生成します。 
     </span>
   </li>
   <li>
@@ -304,33 +193,6 @@
     </p>
     
   </div>
-  <div class='method_details'>
-    <p class='signature' id='parseArguments-static'>
-      .
-(void)
-<b>parseArguments</b><span>(args)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='createWithArguments-static'>
-      .
-(void)
-<b>createWithArguments</b><span>(args)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='createWithCenter-static'>
-      .
-(void)
-<b>createWithCenter</b><span>(centerX, centerY, width, height)</span>
-      <br>
-    </p>
-    
-  </div>
 </div>
       <h2>Constructor Details</h2>
       <div class='methods'>
@@ -349,26 +211,11 @@
   <div class='method_details'>
     <p class='signature' id='clone-dynamic'>
       #
-(Rect)
+(void)
 <b>clone</b><span>()</span>
       <br>
     </p>
-    <div class='docstring'>
-  <p>複製します。</p>
-</div>
-<div class='tags'>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt><a href='../class/Rect.html'>Rect</a></tt>
-      )
-      &mdash;
-      <span class='desc'>複製された<code>Rect</code>インスタンスです。 </span>
-    </li>
-  </ul>
-</div>
+    
   </div>
   <div class='method_details'>
     <p class='signature' id='getLeft-dynamic'>
@@ -443,185 +290,13 @@
     
   </div>
   <div class='method_details'>
-    <p class='signature' id='containsPoint-dynamic'>
-      #
-(void)
-<b>containsPoint</b><span>(point)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='containsRect-dynamic'>
-      #
-(void)
-<b>containsRect</b><span>(rect)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='offset-dynamic'>
-      #
-(void)
-<b>offset</b><span>(x, y)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='inflate-dynamic'>
-      #
-(Rect)
-<b>inflate</b><span>(width, height)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>指定された量大きくした新たな領域を生成します。</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>width</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>大きくする幅です。 </span>
-    </li>
-    <li>
-      <span class='name'>height</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>大きくする高さです。 </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt><a href='../class/Rect.html'>Rect</a></tt>
-      )
-      &mdash;
-      <span class='desc'>新たな領域です。 </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='deflate-dynamic'>
-      #
-(Rect)
-<b>deflate</b><span>(width, height)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>指定された量小さくした新たな領域を生成します。</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>width</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>小さくする幅です。 </span>
-    </li>
-    <li>
-      <span class='name'>height</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>小さくする高さです。 </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt><a href='../class/Rect.html'>Rect</a></tt>
-      )
-      &mdash;
-      <span class='desc'>新たな領域です。 </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='fallWithin-dynamic'>
-      #
-(void)
-<b>fallWithin</b><span>(rect)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>TODO implement me</p>
-</div>
-<div class='tags'>
-</div>
-  </div>
-  <div class='method_details'>
     <p class='signature' id='contain-dynamic'>
       #
-(Rect)
+(void)
 <b>contain</b><span>(x, y)</span>
       <br>
     </p>
-    <div class='docstring'>
-  <p>この領域に指定座標が含まれる新たな領域を生成します。</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>x</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>x座標です。 </span>
-    </li>
-    <li>
-      <span class='name'>y</span>
-      <span class='type'>
-        (
-          <tt>Number</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>y座標です。 </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt><a href='../class/Rect.html'>Rect</a></tt>
-      )
-      &mdash;
-      <span class='desc'>新たな領域です。 </span>
-    </li>
-  </ul>
-</div>
+    
   </div>
   <div class='method_details'>
     <p class='signature' id='ceil-dynamic'>
@@ -644,7 +319,7 @@
 </div>
     </div>
     <div id='footer'>
-  September 05, 14 22:41:37 by
+  September 04, 14 18:44:41 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
