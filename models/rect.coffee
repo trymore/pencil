@@ -54,6 +54,15 @@ class Rect
     @y = y ? 0
     @width = width ? 0
     @height = height ? 0
+    @normalize()
+
+  normalize: ->
+    if @width < 0
+      @x += @width
+      @width *= -1
+    if @height < 0
+      @y += @height
+      @height *= -1
 
   ###
   複製します。
@@ -140,6 +149,8 @@ class Rect
 
     r
 
+  movableRectIn: (rect) ->
+    new Rect rect.x, rect.y, rect.width - @width, rect.height - @height
 
 
   ###
