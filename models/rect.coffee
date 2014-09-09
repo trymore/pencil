@@ -36,12 +36,12 @@ class Rect
         width: args[2] ? 0
         height: args[3] ? 0
 
-  @createWithArguments: (args) ->
+  @argumentsToRect: (args) ->
     {x, y, width, height} = Rect.parseArguments args
     new Rect x, y, width, height
 
   @createWithCenter: (centerX, centerY, width, height) ->
-    rect = Rect.createWithArguments arguments
+    rect = Rect.argumentsToRect arguments
     rect.x -= rect.width / 2
     rect.y -= rect.height / 2
     rect
