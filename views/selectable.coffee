@@ -11,9 +11,9 @@ class Selectable extends View
   constructor: ->
     super
     @selectees = @children()
-    .on 'click', @toggle
+    .on 'click', @onSelecteeClicked
 
-  toggle: (e) =>
+  onSelecteeClicked: (e) =>
     selectedIndex = @selectees.index e.currentTarget
     @selectAt selectedIndex
     @trigger 'selectable.changed', selectedIndex

@@ -13,8 +13,12 @@ class Tab extends View
   constructor: ->
     super
     @$ @selectorButtons
-    .on 'selectable.changed', @toggle
-    @$contents = @$ @selectorContents
+    .on 'selectable.changed', @onSelectableChanged
+    @contents = @$ @selectorContents
 
-  toggle: ({}, index) =>
-    @$contents.data('view').selectAt index
+  onSelectableChanged: (e, index) =>
+    e.preventDefault()
+    @toggle index
+
+  toggle: (index) =>
+    @contents.data('view').selectAt index
