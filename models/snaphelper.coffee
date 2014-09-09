@@ -1,4 +1,5 @@
-Point = require './point'
+Point = require './geom/point'
+
 
 module.exports =
 

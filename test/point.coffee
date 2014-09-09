@@ -1,6 +1,5 @@
 {expect} = chai
-# Point = require '../models/point'
-Point = pencil.models.point
+Point = pencil.models.geom.point
 
 describe 'Point', ->
   describe 'constructor', ->

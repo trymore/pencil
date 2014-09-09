@@ -9,10 +9,12 @@ module.exports =
     iota: require "./models/iota"
     location: require "./models/location"
     os: require "./models/os"
-    point: require "./models/point"
     "query-string": require "./models/query-string"
-    rect: require "./models/rect"
     snaphelper: require "./models/snaphelper"
+    geom:
+      point: require "./models/geom/point"
+      rect: require "./models/geom/rect"
+
     sns:
       facebook: require "./models/sns/facebook"
       "google-plus": require "./models/sns/google-plus"
