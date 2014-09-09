@@ -39,6 +39,13 @@
           </td>
         </tr>
       </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Imageクラスです。
+<code>&lt;img&gt;</code>要素の表示状態にかかわらず、画像をロードしサイズを取得することができます。</p>
+</div>
+<div class='tags'>
+</div>
       <h2>Variables Summary</h2>
       
       <h3 class='inherited'>
@@ -58,12 +65,60 @@
       <a href='#load-dynamic'>
         #
 (void)
-<b>load</b><span>()</span>
+<b>load</b><span>(src)</span>
       </a>
     </span>
     <span class='desc'>
-      画像をロードします。 @event
-
+      画像をロードします。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unload-dynamic'>
+        #
+(void)
+<b>unload</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      画像をアンロードします。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#startListening-dynamic'>
+        #
+(void)
+<b>startListening</b><span>()</span>
+      </a>
+    </span>
+    <span class='note private title'>Private</span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#stopListening-dynamic'>
+        #
+(void)
+<b>stopListening</b><span>()</span>
+      </a>
+    </span>
+    <span class='note private title'>Private</span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#onLoadComplete-dynamic'>
+        #
+(void)
+<b>onLoadComplete</b><span>()</span>
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='note private title'>Private</span>
+    <span class='desc'>
     </span>
   </li>
 </ul>
@@ -89,7 +144,7 @@
       <br>
     </p>
     <div class='docstring'>
-  <p>Creates a Image instance.</p>
+  <p>Imageインスタンスを生成します。</p>
 </div>
 <div class='tags'>
 </div>
@@ -101,20 +156,76 @@
     <p class='signature' id='load-dynamic'>
       #
 (void)
-<b>load</b><span>()</span>
+<b>load</b><span>(src)</span>
       <br>
     </p>
     <div class='docstring'>
-  <p>画像をロードします。
-@event</p>
+  <p>画像をロードします。</p>
 </div>
 <div class='tags'>
+  <div class='events'>
+    <h3>Events:</h3>
+    <div class='event'>
+      <p class='signature'>
+        &#39;image.complete&#39;
+      </p>
+      <div class='tags'>
+</div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unload-dynamic'>
+      #
+(void)
+<b>unload</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>画像をアンロードします。</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='startListening-dynamic'>
+      #
+(void)
+<b>startListening</b><span>()</span>
+      <span class='note private'>Private</span>
+      <br>
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='stopListening-dynamic'>
+      #
+(void)
+<b>stopListening</b><span>()</span>
+      <span class='note private'>Private</span>
+      <br>
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='onLoadComplete-dynamic'>
+      #
+(void)
+<b>onLoadComplete</b><span>()</span>
+      <span class='bound note'>Bound</span>
+      <span class='note private'>Private</span>
+      <br>
+    </p>
+    <div class='tags'>
 </div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  September 08, 14 12:28:08 by
+  September 09, 14 17:27:15 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

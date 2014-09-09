@@ -19,6 +19,10 @@ gulp.task 'watch', ->
     'models/**'
     'views/**'
   ], [ 'exports' ]
+  gulp.watch [
+    'pencil.js'
+    'test/runner/runner.js'
+  ], [ 'mocha-phantomjs' ]
 
 gulp.task 'exports', ->
   gulp.src [
@@ -51,7 +55,7 @@ gulp.task 'browserify-lib', ->
     extensions: ['.coffee']
     builtins: []
     standalone: 'pencil'
-    debug: true
+    debug: false
   bundle = ->
     bundler
     .bundle()
@@ -59,9 +63,8 @@ gulp.task 'browserify-lib', ->
       console.log arguments
     .pipe source 'pencil.js'
     .pipe gulp.dest './'
-    .on 'end', ->
-      gulp.start 'browserify-test'
   bundler.on 'update', bundle
+  bundle
 
 gulp.task 'browserify-test', ->
   bundler = watchify browserify
@@ -69,7 +72,7 @@ gulp.task 'browserify-test', ->
     entries: ['./test/runner/runner.coffee']
     extensions: ['.coffee']
     builtins: []
-    debug: true
+    debug: false
   bundle = ->
     bundler
     .bundle()
@@ -77,9 +80,8 @@ gulp.task 'browserify-test', ->
       console.log arguments
     .pipe source 'runner.js'
     .pipe gulp.dest './test/runner'
-    .on 'end', ->
-      gulp.start 'mocha-phantomjs'
   bundler.on 'update', bundle
+  bundle()
 
 gulp.task 'mocha-phantomjs', ->
   gulp

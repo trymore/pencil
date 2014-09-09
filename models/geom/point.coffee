@@ -26,7 +26,7 @@ class Point
       when 0
         []
       when 1
-        if isArguments args[0] or isArray args[0]
+        if isArguments(args[0]) or isArray(args[0])
           args[0]
         else if isObject args[0]
           [args[0].x, args[0].y]

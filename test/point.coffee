@@ -7,20 +7,26 @@ describe 'Point', ->
       {x, y} = new Point
       expect(x).equals 0
       expect(y).equals 0
-    it 'should create point with 2 numbers', ->
-      {x, y} = new Point 5, 8
-      expect(x).equals 5
-      expect(y).equals 8
-    it 'should create point with 1 array', ->
+    it 'should create point with 1 `Arguments`', ->
+      func = (x, y) ->
+        {x, y} = new Point arguments
+        expect(x).equals 5
+        expect(y).equals 8
+      func 5, 8
+    it 'should create point with 1 `Array`', ->
       {x, y} = new Point [5, 8]
       expect(x).equals 5
       expect(y).equals 8
-    it 'should create point with 1 object', ->
+    it 'should create point with 1 `Object`', ->
       {x, y} = new Point {x: 5, y: 8}
       expect(x).equals 5
       expect(y).equals 8
-    it 'should create point with 1 Point', ->
+    it 'should create point with 1 `Point`', ->
       {x, y} = new Point new Point 5, 8
+      expect(x).equals 5
+      expect(y).equals 8
+    it 'should create point with 2 `Number`s', ->
+      {x, y} = new Point 5, 8
       expect(x).equals 5
       expect(y).equals 8
 
