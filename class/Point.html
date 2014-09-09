@@ -30,7 +30,7 @@
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>models&#47;point.coffee</td>
+          <td>models&#47;geom&#47;point.coffee</td>
         </tr>
       </table>
       <h2>Overview</h2>
@@ -48,7 +48,17 @@
   </dt>
   <dd>
     <pre><code class='coffeescript'>Point</code></pre>
-    
+    <div class='docstring'>
+  <p>Point#subtractのショートハンドです。</p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/Point.html#subtract-dynamic'>Point#subtract</a>
+    </li>
+  </ul>
+</div>
   </dd>
   <dt id='mul-variable'>
     mul
@@ -56,7 +66,17 @@
   </dt>
   <dd>
     <pre><code class='coffeescript'>Point</code></pre>
-    
+    <div class='docstring'>
+  <p>Point#multiplyのショートハンドです。</p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/Point.html#multiply-dynamic'>Point#multiply</a>
+    </li>
+  </ul>
+</div>
   </dd>
 </dl>
       <h2>Class Method Summary</h2>
@@ -96,10 +116,10 @@
   </li>
   <li>
     <span class='signature'>
-      <a href='#parseArguments-static'>
+      <a href='#argumentsToArray-static'>
         .
 (void)
-<b>parseArguments</b><span>(args)</span>
+<b>argumentsToArray</b><span>(args)</span>
       </a>
     </span>
     <span class='desc'>
@@ -129,6 +149,18 @@
       <code>clientX</code>,<code>clientY</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。 
     </span>
   </li>
+  <li>
+    <span class='signature'>
+      <a href='#createWithPage-static'>
+        .
+(void)
+<b>createWithPage</b><span>({pageX, pageY})</span>
+      </a>
+    </span>
+    <span class='desc'>
+      <code>pageX</code>,<code>pageY</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。 
+    </span>
+  </li>
 </ul>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
@@ -148,44 +180,98 @@
     <span class='signature'>
       <a href='#distance-dynamic'>
         #
-(void)
+(Number)
 <b>distance</b><span>()</span>
       </a>
     </span>
     <span class='desc'>
+      原点からの距離を求めます。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#angle-dynamic'>
+        #
+(Number)
+<b>angle</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      x軸正の向きからの偏角を求めます。 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#subtract-dynamic'>
         #
-(void)
+(Point)
 <b>subtract</b><span>(x, y)</span>
       </a>
     </span>
     <span class='desc'>
+      減算します。 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#add-dynamic'>
         #
-(void)
+(Point)
 <b>add</b><span>(x, y)</span>
       </a>
     </span>
     <span class='desc'>
+      加算します。 
     </span>
   </li>
   <li>
     <span class='signature'>
       <a href='#multiply-dynamic'>
         #
-(void)
+(Point)
 <b>multiply</b><span>(n)</span>
       </a>
     </span>
     <span class='desc'>
+      各要素に乗算します。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#dotProduct-dynamic'>
+        #
+(Number)
+<b>dotProduct</b><span>(point)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      ベクトルの内積を求めます。 a ・ b = |a||b|cos(θ)
+
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#crossProduct-dynamic'>
+        #
+(Number)
+<b>crossProduct</b><span>(point)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      ベクトルの外積を求めます。 a x b = |a||b|sin(θ)
+
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#containIn-dynamic'>
+        #
+(Point)
+<b>containIn</b><span>(rect)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      指定領域内に収まる新しい<code>Point</code>を返します。 
     </span>
   </li>
 </ul>
@@ -219,10 +305,10 @@
     
   </div>
   <div class='method_details'>
-    <p class='signature' id='parseArguments-static'>
+    <p class='signature' id='argumentsToArray-static'>
       .
 (void)
-<b>parseArguments</b><span>(args)</span>
+<b>argumentsToArray</b><span>(args)</span>
       <br>
     </p>
     
@@ -331,6 +417,58 @@
   </ul>
 </div>
   </div>
+  <div class='method_details'>
+    <p class='signature' id='createWithPage-static'>
+      .
+(void)
+<b>createWithPage</b><span>({pageX, pageY})</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p><code>pageX</code>,<code>pageY</code>から成るオブジェクトから<code>Point</code>インスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>position</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>座標オブジェクトです。 </span>
+    </li>
+  </ul>
+  <h3>
+    Options Hash:
+    (position):
+  </h3>
+  <ul class='options'>
+    <li>
+      <span class='name'>pageX</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x座標です。 </span>
+    </li>
+    <li>
+      <span class='name'>pageY</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y座標です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
 </div>
       <h2>Constructor Details</h2>
       <div class='methods'>
@@ -373,43 +511,279 @@
   <div class='method_details'>
     <p class='signature' id='distance-dynamic'>
       #
-(void)
+(Number)
 <b>distance</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>原点からの距離を求めます。</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Number</tt>
+      )
+      &mdash;
+      <span class='desc'>距離です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='angle-dynamic'>
+      #
+(Number)
+<b>angle</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>x軸正の向きからの偏角を求めます。</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Number</tt>
+      )
+      &mdash;
+      <span class='desc'>角度です。(rad) </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='subtract-dynamic'>
       #
-(void)
+(Point)
 <b>subtract</b><span>(x, y)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>減算します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>point</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Point.html'>Point</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>減算する<code>Point</code>です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>計算結果の新しい<code>Point</code>です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='add-dynamic'>
       #
-(void)
+(Point)
 <b>add</b><span>(x, y)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>加算します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>point</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Point.html'>Point</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>加算する<code>Point</code>です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>計算結果の新しい<code>Point</code>です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
   <div class='method_details'>
     <p class='signature' id='multiply-dynamic'>
       #
-(void)
+(Point)
 <b>multiply</b><span>(n)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>各要素に乗算します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>n</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>乗算する数です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>計算結果の新しい<code>Point</code>です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='dotProduct-dynamic'>
+      #
+(Number)
+<b>dotProduct</b><span>(point)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>ベクトルの内積を求めます。
+a ・ b = |a||b|cos(θ)</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>point</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Point.html'>Point</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>内積をする<code>Point</code>です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Number</tt>
+      )
+      &mdash;
+      <span class='desc'>内積の結果です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='crossProduct-dynamic'>
+      #
+(Number)
+<b>crossProduct</b><span>(point)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>ベクトルの外積を求めます。
+a x b = |a||b|sin(θ)</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>point</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Point.html'>Point</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>外積をする<code>Point</code>です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Number</tt>
+      )
+      &mdash;
+      <span class='desc'>外積の結果です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='containIn-dynamic'>
+      #
+(Point)
+<b>containIn</b><span>(rect)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>指定領域内に収まる新しい<code>Point</code>を返します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>rect</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Rect.html'>Rect</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'><code>Point</code>を収める領域です。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>領域内に収まる新しい<code>Point</code>です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  September 08, 14 12:28:08 by
+  September 09, 14 17:27:15 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
