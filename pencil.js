@@ -2558,12 +2558,12 @@ module.exports = Selectable = (function(_super) {
   __extends(Selectable, _super);
 
   function Selectable() {
-    this.toggle = __bind(this.toggle, this);
+    this.onSelecteeClicked = __bind(this.onSelecteeClicked, this);
     Selectable.__super__.constructor.apply(this, arguments);
-    this.selectees = this.children().on('click', this.toggle);
+    this.selectees = this.children().on('click', this.onSelecteeClicked);
   }
 
-  Selectable.prototype.toggle = function(e) {
+  Selectable.prototype.onSelecteeClicked = function(e) {
     var selectedIndex;
     selectedIndex = this.selectees.index(e.currentTarget);
     this.selectAt(selectedIndex);
@@ -3027,14 +3027,19 @@ module.exports = Tab = (function(_super) {
 
   function Tab() {
     this.toggle = __bind(this.toggle, this);
+    this.onSelectableChanged = __bind(this.onSelectableChanged, this);
     Tab.__super__.constructor.apply(this, arguments);
-    this.$(this.selectorButtons).on('selectable.changed', this.toggle);
-    this.$contents = this.$(this.selectorContents);
+    this.$(this.selectorButtons).on('selectable.changed', this.onSelectableChanged);
+    this.contents = this.$(this.selectorContents);
   }
 
-  Tab.prototype.toggle = function(_arg, index) {
-    _arg;
-    return this.$contents.data('view').selectAt(index);
+  Tab.prototype.onSelectableChanged = function(e, index) {
+    e.preventDefault();
+    return this.toggle(index);
+  };
+
+  Tab.prototype.toggle = function(index) {
+    return this.contents.data('view').selectAt(index);
   };
 
   return Tab;
