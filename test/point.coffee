@@ -36,3 +36,6 @@ describe 'Point', ->
         point = new Point 5, 8
         expect(point.clone().x).equals 5
         expect(point.clone().y).equals 8
+      it 'should create different instance', ->
+        point = new Point 5, 8
+        expect(point.clone()).not.to.equal point

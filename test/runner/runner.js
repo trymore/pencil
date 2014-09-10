@@ -96,11 +96,16 @@ describe('Point', function() {
   });
   return describe('.', function() {
     return describe('clone()', function() {
-      return it('should create same value Point', function() {
+      it('should create same value Point', function() {
         var point;
         point = new Point(5, 8);
         expect(point.clone().x).equals(5);
         return expect(point.clone().y).equals(8);
+      });
+      return it('should create different instance', function() {
+        var point;
+        point = new Point(5, 8);
+        return expect(point.clone()).not.to.equal(point);
       });
     });
   });
