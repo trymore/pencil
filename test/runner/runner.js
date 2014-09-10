@@ -42,11 +42,13 @@ describe('Iota', function() {
 
 
 },{}],3:[function(require,module,exports){
-var Point, expect;
+var Point, expect, sqrt;
 
 expect = chai.expect;
 
 Point = pencil.models.geom.point;
+
+sqrt = Math.sqrt;
 
 describe('Point', function() {
   describe('constructor', function() {
@@ -95,12 +97,25 @@ describe('Point', function() {
     });
   });
   return describe('.', function() {
-    return describe('clone()', function() {
-      return it('should create same value Point', function() {
+    describe('clone()', function() {
+      it('should create same value Point', function() {
         var point;
         point = new Point(5, 8);
         expect(point.clone().x).equals(5);
         return expect(point.clone().y).equals(8);
+      });
+      return it('should create different instance', function() {
+        var point;
+        point = new Point(5, 8);
+        return expect(point.clone()).not.to.equal(point);
+      });
+    });
+    return describe('distance()', function() {
+      return it('should calculate distance from (0, 0)', function() {
+        expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.1);
+        expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.1);
+        expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.1);
+        return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.1);
       });
     });
   });

@@ -1,5 +1,7 @@
 {expect} = chai
 Point = pencil.models.geom.point
+{sqrt} = Math
+
 
 describe 'Point', ->
   describe 'constructor', ->
@@ -36,3 +38,13 @@ describe 'Point', ->
         point = new Point 5, 8
         expect(point.clone().x).equals 5
         expect(point.clone().y).equals 8
+      it 'should create different instance', ->
+        point = new Point 5, 8
+        expect(point.clone()).not.to.equal point
+
+    describe 'distance()', ->
+      it 'should calculate distance from (0, 0)', ->
+        expect(new Point(5, 3).distance()).closeTo sqrt(34), 0.1
+        expect(new Point(5, -3).distance()).closeTo sqrt(34), 0.1
+        expect(new Point(-5, 3).distance()).closeTo sqrt(34), 0.1
+        expect(new Point(-5, -3).distance()).closeTo sqrt(34), 0.1
