@@ -87,7 +87,7 @@ class Point
   x軸正の向きからの偏角を求めます。
   @return [Number] 角度です。(rad)
   ###
-  angle: -> atan2 y, x
+  angle: -> atan2 @y, @x
 
   ###
   減算します。

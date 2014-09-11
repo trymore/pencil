@@ -42,13 +42,13 @@ describe('Iota', function() {
 
 
 },{}],3:[function(require,module,exports){
-var Point, expect, sqrt;
+var PI, Point, expect, sqrt;
 
 expect = chai.expect;
 
 Point = pencil.models.geom.point;
 
-sqrt = Math.sqrt;
+PI = Math.PI, sqrt = Math.sqrt;
 
 describe('Point', function() {
   describe('constructor', function() {
@@ -96,7 +96,7 @@ describe('Point', function() {
       return expect(y).equals(8);
     });
   });
-  return describe('.', function() {
+  return describe('#', function() {
     describe('clone()', function() {
       it('should create same value Point', function() {
         var point;
@@ -110,12 +110,17 @@ describe('Point', function() {
         return expect(point.clone()).not.to.equal(point);
       });
     });
-    return describe('distance()', function() {
+    describe('distance()', function() {
       return it('should calculate distance from (0, 0)', function() {
-        expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.1);
-        expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.1);
-        expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.1);
-        return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.1);
+        expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.01);
+        expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.01);
+        expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.01);
+        return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.01);
+      });
+    });
+    return describe('angle()', function() {
+      return it('should calculate angle from x-axis', function() {
+        return expect(new Point(1, sqrt(3)).angle()).closeTo(PI / 180 * 60, 0.01);
       });
     });
   });

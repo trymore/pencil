@@ -837,7 +837,7 @@ module.exports = Point = (function() {
    */
 
   Point.prototype.angle = function() {
-    return atan2(y, x);
+    return atan2(this.y, this.x);
   };
 
 
