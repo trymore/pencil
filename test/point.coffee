@@ -4,6 +4,7 @@ Point = pencil.models.geom.point
 
 
 describe 'Point', ->
+
   describe 'constructor', ->
     it 'should create zero Point without no parameter', ->
       {x, y} = new Point
@@ -32,23 +33,29 @@ describe 'Point', ->
       expect(x).equals 5
       expect(y).equals 8
 
-  describe '#', ->
-    describe 'clone()', ->
-      it 'should create same value Point', ->
-        point = new Point 5, 8
-        expect(point.clone().x).equals 5
-        expect(point.clone().y).equals 8
-      it 'should create different instance', ->
-        point = new Point 5, 8
-        expect(point.clone()).not.to.equal point
+  describe '.lerp()', ->
+    it 'should calculate linear interpolated point', ->
+      expect(Point.lerp(new Point(), new Point(5, 8), 0.2)).eql new Point 1, 1.6
+      expect(Point.lerp(new Point(), new Point(-5, 8), 0.2)).eql new Point -1, 1.6
+      expect(Point.lerp(new Point(), new Point(5, -8), 0.2)).eql new Point 1, -1.6
+      expect(Point.lerp(new Point(), new Point(-5, -8), 0.2)).eql new Point -1, -1.6
 
-    describe 'distance()', ->
-      it 'should calculate distance from (0, 0)', ->
-        expect(new Point(5, 3).distance()).closeTo sqrt(34), 0.01
-        expect(new Point(5, -3).distance()).closeTo sqrt(34), 0.01
-        expect(new Point(-5, 3).distance()).closeTo sqrt(34), 0.01
-        expect(new Point(-5, -3).distance()).closeTo sqrt(34), 0.01
+  describe '#clone()', ->
+    it 'should create same value Point', ->
+      point = new Point 5, 8
+      expect(point.clone().x).equals 5
+      expect(point.clone().y).equals 8
+    it 'should create different instance', ->
+      point = new Point 5, 8
+      expect(point.clone()).not.to.equal point
 
-    describe 'angle()', ->
-      it 'should calculate angle from x-axis', ->
-        expect(new Point(1, sqrt 3).angle()).closeTo PI / 180 * 60, 0.01
+  describe '#distance()', ->
+    it 'should calculate distance from (0, 0)', ->
+      expect(new Point(5, 3).distance()).closeTo sqrt(34), 0.01
+      expect(new Point(5, -3).distance()).closeTo sqrt(34), 0.01
+      expect(new Point(-5, 3).distance()).closeTo sqrt(34), 0.01
+      expect(new Point(-5, -3).distance()).closeTo sqrt(34), 0.01
+
+  describe '#angle()', ->
+    it 'should calculate angle from x-axis', ->
+      expect(new Point(1, sqrt 3).angle()).closeTo PI / 180 * 60, 0.01

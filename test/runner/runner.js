@@ -96,32 +96,38 @@ describe('Point', function() {
       return expect(y).equals(8);
     });
   });
-  return describe('#', function() {
-    describe('clone()', function() {
-      it('should create same value Point', function() {
-        var point;
-        point = new Point(5, 8);
-        expect(point.clone().x).equals(5);
-        return expect(point.clone().y).equals(8);
-      });
-      return it('should create different instance', function() {
-        var point;
-        point = new Point(5, 8);
-        return expect(point.clone()).not.to.equal(point);
-      });
+  describe('.lerp()', function() {
+    return it('should calculate linear interpolated point', function() {
+      expect(Point.lerp(new Point(), new Point(5, 8), 0.2)).eql(new Point(1, 1.6));
+      expect(Point.lerp(new Point(), new Point(-5, 8), 0.2)).eql(new Point(-1, 1.6));
+      expect(Point.lerp(new Point(), new Point(5, -8), 0.2)).eql(new Point(1, -1.6));
+      return expect(Point.lerp(new Point(), new Point(-5, -8), 0.2)).eql(new Point(-1, -1.6));
     });
-    describe('distance()', function() {
-      return it('should calculate distance from (0, 0)', function() {
-        expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.01);
-        expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.01);
-        expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.01);
-        return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.01);
-      });
+  });
+  describe('#clone()', function() {
+    it('should create same value Point', function() {
+      var point;
+      point = new Point(5, 8);
+      expect(point.clone().x).equals(5);
+      return expect(point.clone().y).equals(8);
     });
-    return describe('angle()', function() {
-      return it('should calculate angle from x-axis', function() {
-        return expect(new Point(1, sqrt(3)).angle()).closeTo(PI / 180 * 60, 0.01);
-      });
+    return it('should create different instance', function() {
+      var point;
+      point = new Point(5, 8);
+      return expect(point.clone()).not.to.equal(point);
+    });
+  });
+  describe('#distance()', function() {
+    return it('should calculate distance from (0, 0)', function() {
+      expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.01);
+      expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.01);
+      expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.01);
+      return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.01);
+    });
+  });
+  return describe('#angle()', function() {
+    return it('should calculate angle from x-axis', function() {
+      return expect(new Point(1, sqrt(3)).angle()).closeTo(PI / 180 * 60, 0.01);
     });
   });
 });
