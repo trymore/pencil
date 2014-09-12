@@ -98,10 +98,13 @@ describe('Point', function() {
   });
   describe('.lerp()', function() {
     return it('should calculate linear interpolated point', function() {
-      expect(Point.lerp(new Point(), new Point(5, 8), 0.2)).eql(new Point(1, 1.6));
-      expect(Point.lerp(new Point(), new Point(-5, 8), 0.2)).eql(new Point(-1, 1.6));
-      expect(Point.lerp(new Point(), new Point(5, -8), 0.2)).eql(new Point(1, -1.6));
-      return expect(Point.lerp(new Point(), new Point(-5, -8), 0.2)).eql(new Point(-1, -1.6));
+      expect(Point.lerp(new Point(2, 9), new Point(8, 8), 0.2)).eql(new Point(3.2, 8.8));
+      expect(Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2)).eql(new Point(0, 8.8));
+      expect(Point.lerp(new Point(2, 9), new Point(8, -8), 0.2)).eql(new Point(3.2, 5.6));
+      expect(Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2)).eql(new Point(0, 5.6));
+      expect(Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2)).eql(new Point(0, 8.8));
+      expect(Point.lerp(new Point(2, -9), new Point(8, 8), 0.2)).eql(new Point(3.2, -5.6));
+      return expect(Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2)).eql(new Point(0, -5.6));
     });
   });
   describe('#clone()', function() {
