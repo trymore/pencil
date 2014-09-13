@@ -72,3 +72,36 @@ describe 'Point', ->
   describe '#angle()', ->
     it 'should calculate angle from x-axis', ->
       new Point(1, sqrt 3).angle().should.closeTo PI / 180 * 60, 0.01
+
+  describe '#subtract()', ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      b = new Point 2, 3
+      a.subtract(b).should.not.equal a
+      a.subtract(b).should.not.equal b
+
+    it 'should subtract elements', ->
+      new Point(5, 8).subtract(new Point(2, 3)).should.eql new Point 3, 5
+      new Point(5, 8).subtract(new Point(-2, 3)).should.eql new Point 7, 5
+      new Point(5, 8).subtract(new Point(2, -3)).should.eql new Point 3, 11
+      new Point(5, 8).subtract(new Point(-2, -3)).should.eql new Point 7, 11
+      new Point(-5, 8).subtract(new Point(2, 3)).should.eql new Point -7, 5
+      new Point(5, -8).subtract(new Point(2, 3)).should.eql new Point 3, -11
+      new Point(-5, -8).subtract(new Point(2, 3)).should.eql new Point -7, -11
+
+  describe '#sub()', ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      b = new Point 2, 3
+      a.sub(b).should.not.equal a
+      a.sub(b).should.not.equal b
+
+    it 'should subtract elements', ->
+      new Point(5, 8).sub(new Point(2, 3)).should.eql new Point 3, 5
+      new Point(5, 8).sub(new Point(-2, 3)).should.eql new Point 7, 5
+      new Point(5, 8).sub(new Point(2, -3)).should.eql new Point 3, 11
+      new Point(5, 8).sub(new Point(-2, -3)).should.eql new Point 7, 11
+      new Point(-5, 8).sub(new Point(2, 3)).should.eql new Point -7, 5
+      new Point(5, -8).sub(new Point(2, 3)).should.eql new Point 3, -11
+      new Point(-5, -8).sub(new Point(2, 3)).should.eql new Point -7, -11
+

@@ -730,13 +730,13 @@ module.exports = Point = (function() {
     return pt2.sub(pt1).distance();
   };
 
-  Point.positionToPoint = function(left, top) {
-    var _ref1;
-    if ((left != null) && (left.left != null) && (left.top != null)) {
-      _ref1 = left, left = _ref1.left, top = _ref1.top;
-    }
-    return new Point(left, top);
-  };
+
+  /*
+  @private
+  Argumentsオブジェクトを配列として標準化します。
+  @param [Arguments] args 引数オブジェクトです。
+  @return [Array] 引数を標準化した配列です。
+   */
 
   Point.argumentsToArray = function(args) {
     var elems, i, val, _i;

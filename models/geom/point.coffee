@@ -16,11 +16,17 @@ class Point
   @distance: (pt1, pt2) ->
     pt2.sub(pt1).distance()
 
-  @positionToPoint: (left, top) ->
-    if left? and left.left? and left.top?
-      { left, top } = left
-    new Point left, top
+  # @positionToPoint: (left, top) ->
+  #   if left? and left.left? and left.top?
+  #     { left, top } = left
+  #   new Point left, top
 
+  ###
+  @private
+  Argumentsオブジェクトを配列として標準化します。
+  @param [Arguments] args 引数オブジェクトです。
+  @return [Array] 引数を標準化した配列です。
+  ###
   @argumentsToArray: (args) ->
     elems = switch args.length
       when 0
@@ -34,7 +40,6 @@ class Point
           [args[0]]
       else
         args
-
     for i in [0..1]
       elems[i] = if (val = elems[i])?
         parseFloat val
