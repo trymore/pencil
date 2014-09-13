@@ -857,7 +857,7 @@ module.exports = Point = (function() {
 
 
   /*
-  Point#subtractのショートハンドです。
+  Point#subtract のショートハンドです。
   @see Point#subtract
    */
 
@@ -891,11 +891,30 @@ module.exports = Point = (function() {
 
 
   /*
-  Point#multiplyのショートハンドです。
+  Point#multiply のショートハンドです。
   @see Point#multiply
    */
 
   Point.prototype.mul = Point.prototype.multiply;
+
+
+  /*
+  各要素を除算します。
+  @param [Number] n 除算する数です。
+  @return [Point] 除算結果の新しい`Point`です。
+   */
+
+  Point.prototype.devide = function(n) {
+    return new Point(this.x / n, this.y / n);
+  };
+
+
+  /*
+  Point#devide のショートハンドです。
+  @see Point#devide
+   */
+
+  Point.prototype.dev = Point.prototype.devide;
 
 
   /*

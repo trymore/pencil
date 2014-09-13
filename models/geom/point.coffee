@@ -105,7 +105,7 @@ class Point
     new Point @x - x, @y - y
 
   ###
-  Point#subtractのショートハンドです。
+  Point#subtract のショートハンドです。
   @see Point#subtract
   ###
   sub: Point::subtract
@@ -129,10 +129,23 @@ class Point
     new Point @x * n, @y * n
 
   ###
-  Point#multiplyのショートハンドです。
+  Point#multiply のショートハンドです。
   @see Point#multiply
   ###
   mul: Point::multiply
+
+  ###
+  各要素を除算します。
+  @param [Number] n 除算する数です。
+  @return [Point] 除算結果の新しい`Point`です。
+  ###
+  devide: (n) -> new Point @x / n, @y / n
+
+  ###
+  Point#devide のショートハンドです。
+  @see Point#devide
+  ###
+  dev: Point::devide
 
   ###
   ベクトルの内積を求めます。

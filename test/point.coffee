@@ -73,6 +73,22 @@ describe 'Point', ->
     it 'should calculate angle from x-axis', ->
       new Point(1, sqrt 3).angle().should.closeTo PI / 180 * 60, 0.01
 
+  describe '#add()',  ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      b = new Point 2, 3
+      a.add(b).should.not.equal a
+      a.add(b).should.not.equal b
+
+    it 'should add elements', ->
+      new Point(5, 8).add(new Point(2, 3)).should.eql new Point 7, 11
+      new Point(5, 8).add(new Point(-2, 3)).should.eql new Point 3, 11
+      new Point(5, 8).add(new Point(2, -3)).should.eql new Point 7, 5
+      new Point(5, 8).add(new Point(-2, -3)).should.eql new Point 3, 5
+      new Point(-5, 8).add(new Point(2, 3)).should.eql new Point -3, 11
+      new Point(5, -8).add(new Point(2, 3)).should.eql new Point 7, -5
+      new Point(-5, -8).add(new Point(2, 3)).should.eql new Point -3, -5
+
   describe '#subtract()', ->
     it 'should return new instance', ->
       a = new Point 5, 8
@@ -105,18 +121,38 @@ describe 'Point', ->
       new Point(5, -8).sub(new Point(2, 3)).should.eql new Point 3, -11
       new Point(-5, -8).sub(new Point(2, 3)).should.eql new Point -7, -11
 
-  describe '#add()',  ->
+  describe '#multiply()',  ->
     it 'should return new instance', ->
       a = new Point 5, 8
-      b = new Point 2, 3
-      a.add(b).should.not.equal a
-      a.add(b).should.not.equal b
+      a.multiply(3).should.not.equal a
 
-    it 'should add elements', ->
-      new Point(5, 8).add(new Point(2, 3)).should.eql new Point 7, 11
-      new Point(5, 8).add(new Point(-2, 3)).should.eql new Point 3, 11
-      new Point(5, 8).add(new Point(2, -3)).should.eql new Point 7, 5
-      new Point(5, 8).add(new Point(-2, -3)).should.eql new Point 3, 5
-      new Point(-5, 8).add(new Point(2, 3)).should.eql new Point -3, 11
-      new Point(5, -8).add(new Point(2, 3)).should.eql new Point 7, -5
-      new Point(-5, -8).add(new Point(2, 3)).should.eql new Point -3, -5
+    it 'should multiply elements', ->
+      new Point(5, 8).multiply(3).should.eql new Point 15, 24
+      new Point(5, 8).multiply(-3).should.eql new Point -15, -24
+
+  describe '#mul()',  ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      a.mul(3).should.not.equal a
+
+    it 'should multiply elements', ->
+      new Point(5, 8).mul(3).should.eql new Point 15, 24
+      new Point(5, 8).mul(-3).should.eql new Point -15, -24
+
+  describe '#devide()',  ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      a.devide(2).should.not.equal a
+
+    it 'should devide elements', ->
+      new Point(5, 8).devide(2).should.eql new Point 2.5, 4
+      new Point(5, 8).devide(-2).should.eql new Point -2.5, -4
+
+  describe '#dev()',  ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      a.dev(2).should.not.equal a
+
+    it 'should devide elements', ->
+      new Point(5, 8).dev(2).should.eql new Point 2.5, 4
+      new Point(5, 8).dev(-2).should.eql new Point -2.5, -4
