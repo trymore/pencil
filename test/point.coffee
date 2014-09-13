@@ -46,6 +46,12 @@ describe 'Point', ->
   describe '.distance()', ->
     it 'should calculate distance between 2 points', ->
       Point.distance(new Point(2, 3), new Point(5, 8)).should.closeTo sqrt(34), 0.01
+      Point.distance(new Point(2, 3), new Point(-5, 8)).should.closeTo sqrt(74), 0.01
+      Point.distance(new Point(2, 3), new Point(5, -8)).should.closeTo sqrt(130), 0.01
+      Point.distance(new Point(2, 3), new Point(-5, -8)).should.closeTo sqrt(170), 0.01
+      Point.distance(new Point(-2, 3), new Point(5, 8)).should.closeTo sqrt(74), 0.01
+      Point.distance(new Point(2, -3), new Point(5, 8)).should.closeTo sqrt(130), 0.01
+      Point.distance(new Point(-2, -3), new Point(5, 8)).should.closeTo sqrt(170), 0.01
 
   describe '#clone()', ->
     it 'should create same value Point', ->
