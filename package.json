@@ -18,13 +18,16 @@
     "gulp": "^3.8.7",
     "gulp-bump": "^0.1.11",
     "gulp-git": "^0.5.0",
+    "gulp-karma": "0.0.4",
     "gulp-mocha": "^1.0.0",
     "gulp-mocha-phantomjs": "^0.5.0",
     "gulp-util": "^3.0.1",
     "istanbul": "^0.3.2",
     "jquery": "^2.1.1",
     "karma": "^0.12.23",
+    "karma-chai": "^0.1.0",
     "karma-coverage": "^0.2.6",
+    "karma-coveralls": "^0.1.4",
     "karma-mocha": "^0.1.9",
     "karma-phantomjs-launcher": "^0.1.4",
     "lodash": "^2.4.1",
@@ -46,7 +49,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha-phantomjs test/runner/index.html",
-    "coveralls": "./node_modules/.bin/poncho -R lcov test/runner/index.html | ./node_modules/.bin/coveralls"
+    "karma": "./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",

@@ -8,11 +8,11 @@ watchify     = require 'watchify'
 # bundleLogger = require '../util/bundleLogger'
 # handleErrors = require '../util/handleErrors'
 source       = require 'vinyl-source-stream'
-
 mochaPhantomJS = require 'gulp-mocha-phantomjs'
 bump = require 'gulp-bump'
 git = require 'gulp-git'
 { readFileSync } = require 'fs'
+karma = require 'gulp-karma'
 
 gulp.task 'watch', ->
   gulp.watch [
@@ -22,7 +22,7 @@ gulp.task 'watch', ->
   gulp.watch [
     'pencil.js'
     'test/runner/runner.js'
-  ], [ 'mocha-phantomjs' ]
+  ], [ 'karma' ]
 
 gulp.task 'exports', ->
   gulp.src [
@@ -87,6 +87,19 @@ gulp.task 'mocha-phantomjs', ->
   gulp
   .src 'test/runner/index.html'
   .pipe mochaPhantomJS()
+
+gulp.task 'karma', ->
+  gulp
+    .src [
+      'node_modules/chai/chai.js',
+      'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/lodash/dist/lodash.min.js',
+      'pencil.js',
+      'test/runner/runner.js'
+    ]
+    .pipe karma
+      configFile: 'karma.conf.js'
+      action: 'start'
 
 gulp.task 'publish', ->
   gulp

@@ -27,3 +27,6 @@ node_modules
 # IntelliJ IDEA
 *.iml
 .idea
+
+# CI
+.coveralls.yml

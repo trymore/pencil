@@ -1,7 +1,7 @@
 module.exports = function (config) {
   config.set({
     plugins: [
-      'karma-phantomjs-launcher', 'karma-coverage', 'karma-mocha'
+      'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-mocha', 'karma-coverage', 'karma-coveralls'
     ],
     basePath: '',
     autoWatch: true,
@@ -13,9 +13,15 @@ module.exports = function (config) {
       'pencil.js',
       'test/runner/runner.js'
     ],
-    browsers: ['PhantomJS'],
-    reporters: ['progress', 'coverage'],
-    preprocessors: {'*.js': ['coverage']},
+    browsers: ['Chrome', 'PhantomJS'],
+    reporters: ['progress', 'coverage', 'coveralls'],
+    preprocessors: {
+      'pencil.js': ['coverage']
+    },
+    coverageReporter: {
+      type: 'lcov'
+    },
+    logLevel: config.LOG_INFO,
     singleRun: true
   });
 };
