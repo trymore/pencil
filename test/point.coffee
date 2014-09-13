@@ -1,4 +1,4 @@
-{expect} = chai
+chai.should()
 Point = pencil.models.geom.point
 {PI, sqrt} = Math
 
@@ -8,57 +8,61 @@ describe 'Point', ->
   describe 'constructor', ->
     it 'should create zero Point without no parameter', ->
       {x, y} = new Point
-      expect(x).equals 0
-      expect(y).equals 0
+      x.should.equals 0
+      y.should.equals 0
     it 'should create point with 1 `Arguments`', ->
       func = (x, y) ->
         {x, y} = new Point arguments
-        expect(x).equals 5
-        expect(y).equals 8
+        x.should.equals 5
+        y.should.equals 8
       func 5, 8
     it 'should create point with 1 `Array`', ->
       {x, y} = new Point [5, 8]
-      expect(x).equals 5
-      expect(y).equals 8
+      x.should.equals 5
+      y.should.equals 8
     it 'should create point with 1 `Object`', ->
       {x, y} = new Point {x: 5, y: 8}
-      expect(x).equals 5
-      expect(y).equals 8
+      x.should.equals 5
+      y.should.equals 8
     it 'should create point with 1 `Point`', ->
       {x, y} = new Point new Point 5, 8
-      expect(x).equals 5
-      expect(y).equals 8
+      x.should.equals 5
+      y.should.equals 8
     it 'should create point with 2 `Number`s', ->
       {x, y} = new Point 5, 8
-      expect(x).equals 5
-      expect(y).equals 8
+      x.should.equals 5
+      y.should.equals 8
 
   describe '.lerp()', ->
     it 'should calculate linear interpolated point', ->
-      expect(Point.lerp(new Point(2, 9), new Point(8, 8), 0.2)).eql new Point 3.2, 8.8
-      expect(Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2)).eql new Point 0, 8.8
-      expect(Point.lerp(new Point(2, 9), new Point(8, -8), 0.2)).eql new Point 3.2, 5.6
-      expect(Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2)).eql new Point 0, 5.6
-      expect(Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2)).eql new Point 0, 8.8
-      expect(Point.lerp(new Point(2, -9), new Point(8, 8), 0.2)).eql new Point 3.2, -5.6
-      expect(Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2)).eql new Point 0, -5.6
+      Point.lerp(new Point(2, 9), new Point(8, 8), 0.2).should.eql new Point 3.2, 8.8
+      Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2).should.eql new Point 0, 8.8
+      Point.lerp(new Point(2, 9), new Point(8, -8), 0.2).should.eql new Point 3.2, 5.6
+      Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2).should.eql new Point 0, 5.6
+      Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2).should.eql new Point 0, 8.8
+      Point.lerp(new Point(2, -9), new Point(8, 8), 0.2).should.eql new Point 3.2, -5.6
+      Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2).should.eql new Point 0, -5.6
+
+  describe '.distance()', ->
+    it 'should calculate distance between 2 points', ->
+      Point.distance(new Point(2, 3), new Point(5, 8)).should.closeTo sqrt(34), 0.01
 
   describe '#clone()', ->
     it 'should create same value Point', ->
       point = new Point 5, 8
-      expect(point.clone().x).equals 5
-      expect(point.clone().y).equals 8
+      point.clone().x.should.equals 5
+      point.clone().y.should.equals 8
     it 'should create different instance', ->
       point = new Point 5, 8
-      expect(point.clone()).not.to.equal point
+      point.clone().should.not.to.equal point
 
   describe '#distance()', ->
     it 'should calculate distance from (0, 0)', ->
-      expect(new Point(5, 3).distance()).closeTo sqrt(34), 0.01
-      expect(new Point(5, -3).distance()).closeTo sqrt(34), 0.01
-      expect(new Point(-5, 3).distance()).closeTo sqrt(34), 0.01
-      expect(new Point(-5, -3).distance()).closeTo sqrt(34), 0.01
+      new Point(5, 3).distance().should.closeTo sqrt(34), 0.01
+      new Point(5, -3).distance().should.closeTo sqrt(34), 0.01
+      new Point(-5, 3).distance().should.closeTo sqrt(34), 0.01
+      new Point(-5, -3).distance().should.closeTo sqrt(34), 0.01
 
   describe '#angle()', ->
     it 'should calculate angle from x-axis', ->
-      expect(new Point(1, sqrt 3).angle()).closeTo PI / 180 * 60, 0.01
+      new Point(1, sqrt 3).angle().should.closeTo PI / 180 * 60, 0.01

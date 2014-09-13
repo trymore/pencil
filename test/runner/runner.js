@@ -6,9 +6,9 @@ require('../point');
 
 
 },{"../iota":2,"../point":3}],2:[function(require,module,exports){
-var expect, factory;
+var factory;
 
-expect = chai.expect;
+chai.should();
 
 factory = pencil.models.iota;
 
@@ -16,23 +16,23 @@ describe('Iota', function() {
   return describe('.', function() {
     return describe('factory', function() {
       it('should create new Iota method', function() {
-        return expect(factory()).to.not.equal(factory());
+        return factory().should.not.equal(factory());
       });
       return describe('iota', function() {
         return it('should return incremented int', function() {
           var iota;
           iota = factory();
-          expect(iota()).equal(0);
-          expect(iota()).equal(1);
-          expect(iota()).equal(2);
-          expect(iota()).equal(3);
-          expect(iota()).equal(4);
+          iota().should.equal(0);
+          iota().should.equal(1);
+          iota().should.equal(2);
+          iota().should.equal(3);
+          iota().should.equal(4);
           iota = factory();
-          expect(iota()).equal(0);
-          expect(iota()).equal(1);
-          expect(iota()).equal(2);
-          expect(iota()).equal(3);
-          return expect(iota()).equal(4);
+          iota().should.equal(0);
+          iota().should.equal(1);
+          iota().should.equal(2);
+          iota().should.equal(3);
+          return iota().should.equal(4);
         });
       });
     });
@@ -42,9 +42,9 @@ describe('Iota', function() {
 
 
 },{}],3:[function(require,module,exports){
-var PI, Point, expect, sqrt;
+var PI, Point, sqrt;
 
-expect = chai.expect;
+chai.should();
 
 Point = pencil.models.geom.point;
 
@@ -55,24 +55,24 @@ describe('Point', function() {
     it('should create zero Point without no parameter', function() {
       var x, y, _ref;
       _ref = new Point, x = _ref.x, y = _ref.y;
-      expect(x).equals(0);
-      return expect(y).equals(0);
+      x.should.equals(0);
+      return y.should.equals(0);
     });
     it('should create point with 1 `Arguments`', function() {
       var func;
       func = function(x, y) {
         var _ref;
         _ref = new Point(arguments), x = _ref.x, y = _ref.y;
-        expect(x).equals(5);
-        return expect(y).equals(8);
+        x.should.equals(5);
+        return y.should.equals(8);
       };
       return func(5, 8);
     });
     it('should create point with 1 `Array`', function() {
       var x, y, _ref;
       _ref = new Point([5, 8]), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+      x.should.equals(5);
+      return y.should.equals(8);
     });
     it('should create point with 1 `Object`', function() {
       var x, y, _ref;
@@ -80,57 +80,62 @@ describe('Point', function() {
         x: 5,
         y: 8
       }), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+      x.should.equals(5);
+      return y.should.equals(8);
     });
     it('should create point with 1 `Point`', function() {
       var x, y, _ref;
       _ref = new Point(new Point(5, 8)), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+      x.should.equals(5);
+      return y.should.equals(8);
     });
     return it('should create point with 2 `Number`s', function() {
       var x, y, _ref;
       _ref = new Point(5, 8), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+      x.should.equals(5);
+      return y.should.equals(8);
     });
   });
   describe('.lerp()', function() {
     return it('should calculate linear interpolated point', function() {
-      expect(Point.lerp(new Point(2, 9), new Point(8, 8), 0.2)).eql(new Point(3.2, 8.8));
-      expect(Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2)).eql(new Point(0, 8.8));
-      expect(Point.lerp(new Point(2, 9), new Point(8, -8), 0.2)).eql(new Point(3.2, 5.6));
-      expect(Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2)).eql(new Point(0, 5.6));
-      expect(Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2)).eql(new Point(0, 8.8));
-      expect(Point.lerp(new Point(2, -9), new Point(8, 8), 0.2)).eql(new Point(3.2, -5.6));
-      return expect(Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2)).eql(new Point(0, -5.6));
+      Point.lerp(new Point(2, 9), new Point(8, 8), 0.2).should.eql(new Point(3.2, 8.8));
+      Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2).should.eql(new Point(0, 8.8));
+      Point.lerp(new Point(2, 9), new Point(8, -8), 0.2).should.eql(new Point(3.2, 5.6));
+      Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2).should.eql(new Point(0, 5.6));
+      Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2).should.eql(new Point(0, 8.8));
+      Point.lerp(new Point(2, -9), new Point(8, 8), 0.2).should.eql(new Point(3.2, -5.6));
+      return Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2).should.eql(new Point(0, -5.6));
+    });
+  });
+  describe('.distance()', function() {
+    return it('should calculate distance between 2 points', function() {
+      return Point.distance(new Point(2, 3), new Point(5, 8)).should.closeTo(sqrt(34), 0.01);
     });
   });
   describe('#clone()', function() {
     it('should create same value Point', function() {
       var point;
       point = new Point(5, 8);
-      expect(point.clone().x).equals(5);
-      return expect(point.clone().y).equals(8);
+      point.clone().x.should.equals(5);
+      return point.clone().y.should.equals(8);
     });
     return it('should create different instance', function() {
       var point;
       point = new Point(5, 8);
-      return expect(point.clone()).not.to.equal(point);
+      return point.clone().should.not.to.equal(point);
     });
   });
   describe('#distance()', function() {
     return it('should calculate distance from (0, 0)', function() {
-      expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.01);
-      expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.01);
-      expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.01);
-      return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.01);
+      new Point(5, 3).distance().should.closeTo(sqrt(34), 0.01);
+      new Point(5, -3).distance().should.closeTo(sqrt(34), 0.01);
+      new Point(-5, 3).distance().should.closeTo(sqrt(34), 0.01);
+      return new Point(-5, -3).distance().should.closeTo(sqrt(34), 0.01);
     });
   });
   return describe('#angle()', function() {
     return it('should calculate angle from x-axis', function() {
-      return expect(new Point(1, sqrt(3)).angle()).closeTo(PI / 180 * 60, 0.01);
+      return new Point(1, sqrt(3)).angle().should.closeTo(PI / 180 * 60, 0.01);
     });
   });
 });
