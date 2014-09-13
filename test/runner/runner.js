@@ -162,7 +162,7 @@ describe('Point', function() {
       return new Point(-5, -8).subtract(new Point(2, 3)).should.eql(new Point(-7, -11));
     });
   });
-  return describe('#sub()', function() {
+  describe('#sub()', function() {
     it('should return new instance', function() {
       var a, b;
       a = new Point(5, 8);
@@ -178,6 +178,24 @@ describe('Point', function() {
       new Point(-5, 8).sub(new Point(2, 3)).should.eql(new Point(-7, 5));
       new Point(5, -8).sub(new Point(2, 3)).should.eql(new Point(3, -11));
       return new Point(-5, -8).sub(new Point(2, 3)).should.eql(new Point(-7, -11));
+    });
+  });
+  return describe('#add()', function() {
+    it('should return new instance', function() {
+      var a, b;
+      a = new Point(5, 8);
+      b = new Point(2, 3);
+      a.add(b).should.not.equal(a);
+      return a.add(b).should.not.equal(b);
+    });
+    return it('should add elements', function() {
+      new Point(5, 8).add(new Point(2, 3)).should.eql(new Point(7, 11));
+      new Point(5, 8).add(new Point(-2, 3)).should.eql(new Point(3, 11));
+      new Point(5, 8).add(new Point(2, -3)).should.eql(new Point(7, 5));
+      new Point(5, 8).add(new Point(-2, -3)).should.eql(new Point(3, 5));
+      new Point(-5, 8).add(new Point(2, 3)).should.eql(new Point(-3, 11));
+      new Point(5, -8).add(new Point(2, 3)).should.eql(new Point(7, -5));
+      return new Point(-5, -8).add(new Point(2, 3)).should.eql(new Point(-3, -5));
     });
   });
 });

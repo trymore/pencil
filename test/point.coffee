@@ -105,3 +105,18 @@ describe 'Point', ->
       new Point(5, -8).sub(new Point(2, 3)).should.eql new Point 3, -11
       new Point(-5, -8).sub(new Point(2, 3)).should.eql new Point -7, -11
 
+  describe '#add()',  ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      b = new Point 2, 3
+      a.add(b).should.not.equal a
+      a.add(b).should.not.equal b
+
+    it 'should add elements', ->
+      new Point(5, 8).add(new Point(2, 3)).should.eql new Point 7, 11
+      new Point(5, 8).add(new Point(-2, 3)).should.eql new Point 3, 11
+      new Point(5, 8).add(new Point(2, -3)).should.eql new Point 7, 5
+      new Point(5, 8).add(new Point(-2, -3)).should.eql new Point 3, 5
+      new Point(-5, 8).add(new Point(2, 3)).should.eql new Point -3, 11
+      new Point(5, -8).add(new Point(2, 3)).should.eql new Point 7, -5
+      new Point(-5, -8).add(new Point(2, 3)).should.eql new Point -3, -5
