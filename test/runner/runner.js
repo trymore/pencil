@@ -52,25 +52,21 @@ PI = Math.PI, sqrt = Math.sqrt;
 
 describe('Point', function() {
   describe('constructor', function() {
-    it('should create zero Point without no parameter', function() {
+    it('should create zero Point with no parameter', function() {
       var x, y, _ref;
       _ref = new Point, x = _ref.x, y = _ref.y;
       x.should.equals(0);
       return y.should.equals(0);
     });
-    it('should create point with 1 `Arguments`', function() {
-      var func;
-      func = function(x, y) {
-        var _ref;
-        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
-        x.should.equals(5);
-        return y.should.equals(8);
-      };
-      return func(5, 8);
-    });
     it('should create point with 1 `Array`', function() {
       var x, y, _ref;
       _ref = new Point([5, 8]), x = _ref.x, y = _ref.y;
+      x.should.equals(5);
+      return y.should.equals(8);
+    });
+    it('should create point with 1 `Point`', function() {
+      var x, y, _ref;
+      _ref = new Point(new Point(5, 8)), x = _ref.x, y = _ref.y;
       x.should.equals(5);
       return y.should.equals(8);
     });
@@ -83,17 +79,64 @@ describe('Point', function() {
       x.should.equals(5);
       return y.should.equals(8);
     });
-    it('should create point with 1 `Point`', function() {
-      var x, y, _ref;
-      _ref = new Point(new Point(5, 8)), x = _ref.x, y = _ref.y;
-      x.should.equals(5);
-      return y.should.equals(8);
-    });
-    return it('should create point with 2 `Number`s', function() {
+    it('should create point with 2 `Number`s', function() {
       var x, y, _ref;
       _ref = new Point(5, 8), x = _ref.x, y = _ref.y;
       x.should.equals(5);
       return y.should.equals(8);
+    });
+    it('should create zero Point with 1 `Arguments` contains none', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref;
+        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
+        x.should.equals(0);
+        return y.should.equals(0);
+      };
+      return func();
+    });
+    it('should create point with 1 `Arguments` contains 1 `Array`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref;
+        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
+        x.should.equals(5);
+        return y.should.equals(8);
+      };
+      return func([5, 8]);
+    });
+    it('should create point with 1 `Arguments` contains 1 `Point`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref;
+        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
+        x.should.equals(5);
+        return y.should.equals(8);
+      };
+      return func(new Point(5, 8));
+    });
+    it('should create point with 1 `Arguments` contains 1 `Object`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref;
+        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
+        x.should.equals(5);
+        return y.should.equals(8);
+      };
+      return func({
+        x: 5,
+        y: 8
+      });
+    });
+    return it('should create point with 1 `Arguments` contains 2 `Number`s', function() {
+      var func;
+      func = function(x, y) {
+        var _ref;
+        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
+        x.should.equals(5);
+        return y.should.equals(8);
+      };
+      return func(5, 8);
     });
   });
   describe('.lerp()', function() {
@@ -245,7 +288,7 @@ describe('Point', function() {
       return new Point(5, 8).devide(-2).should.eql(new Point(-2.5, -4));
     });
   });
-  return describe('#dev()', function() {
+  describe('#dev()', function() {
     it('should return new instance', function() {
       var a;
       a = new Point(5, 8);
@@ -254,6 +297,12 @@ describe('Point', function() {
     return it('should devide elements', function() {
       new Point(5, 8).dev(2).should.eql(new Point(2.5, 4));
       return new Point(5, 8).dev(-2).should.eql(new Point(-2.5, -4));
+    });
+  });
+  return describe('#dotProduct()', function() {
+    return it('should calculate dot product', function() {
+      new Point(-12, 16).dotProduct(new Point(12, 9)).should.equal(0);
+      return new Point(-6, 8).dotProduct(new Point(5, 12)).should.equal(66);
     });
   });
 });

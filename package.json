@@ -31,11 +31,11 @@
     "karma-growl-reporter": "^0.1.1",
     "karma-mocha": "^0.1.9",
     "karma-mocha-reporter": "^0.3.1",
+    "karma-nyan-reporter": "0.0.47",
     "karma-osx-reporter": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "lodash": "^2.4.1",
     "mocha": "^1.21.4",
-    "mocha-phantomjs": "^3.5.0",
     "phantomjs": "^1.9.7-15",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^1.0.2"

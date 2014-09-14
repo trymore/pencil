@@ -6,32 +6,56 @@ Point = pencil.models.geom.point
 describe 'Point', ->
 
   describe 'constructor', ->
-    it 'should create zero Point without no parameter', ->
+    it 'should create zero Point with no parameter', ->
       {x, y} = new Point
       x.should.equals 0
       y.should.equals 0
-    it 'should create point with 1 `Arguments`', ->
-      func = (x, y) ->
-        {x, y} = new Point arguments
-        x.should.equals 5
-        y.should.equals 8
-      func 5, 8
     it 'should create point with 1 `Array`', ->
       {x, y} = new Point [5, 8]
-      x.should.equals 5
-      y.should.equals 8
-    it 'should create point with 1 `Object`', ->
-      {x, y} = new Point {x: 5, y: 8}
       x.should.equals 5
       y.should.equals 8
     it 'should create point with 1 `Point`', ->
       {x, y} = new Point new Point 5, 8
       x.should.equals 5
       y.should.equals 8
+    it 'should create point with 1 `Object`', ->
+      {x, y} = new Point {x: 5, y: 8}
+      x.should.equals 5
+      y.should.equals 8
     it 'should create point with 2 `Number`s', ->
       {x, y} = new Point 5, 8
       x.should.equals 5
       y.should.equals 8
+    it 'should create zero Point with 1 `Arguments` contains none', ->
+      func = (arr) ->
+        {x, y} = new Point arguments
+        x.should.equals 0
+        y.should.equals 0
+      func()
+    it 'should create point with 1 `Arguments` contains 1 `Array`', ->
+      func = (arr) ->
+        {x, y} = new Point arguments
+        x.should.equals 5
+        y.should.equals 8
+      func [5, 8]
+    it 'should create point with 1 `Arguments` contains 1 `Point`', ->
+      func = (arr) ->
+        {x, y} = new Point arguments
+        x.should.equals 5
+        y.should.equals 8
+      func new Point 5, 8
+    it 'should create point with 1 `Arguments` contains 1 `Object`', ->
+      func = (arr) ->
+        {x, y} = new Point arguments
+        x.should.equals 5
+        y.should.equals 8
+      func {x: 5, y: 8}
+    it 'should create point with 1 `Arguments` contains 2 `Number`s', ->
+      func = (x, y) ->
+        {x, y} = new Point arguments
+        x.should.equals 5
+        y.should.equals 8
+      func 5, 8
 
   describe '.lerp()', ->
     it 'should calculate linear interpolated point', ->
@@ -162,3 +186,9 @@ describe 'Point', ->
     it 'should devide elements', ->
       new Point(5, 8).dev(2).should.eql new Point 2.5, 4
       new Point(5, 8).dev(-2).should.eql new Point -2.5, -4
+
+  describe '#dotProduct()', ->
+    it 'should calculate dot product', ->
+      new Point(-12, 16).dotProduct(new Point(12, 9)).should.equal 0
+      new Point(-6, 8).dotProduct(new Point(5, 12)).should.equal 66
+

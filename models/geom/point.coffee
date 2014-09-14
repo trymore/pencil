@@ -22,33 +22,6 @@ class Point
   #   new Point left, top
 
   ###
-  @private
-  Argumentsオブジェクトを配列として標準化します。
-  @param [Arguments] args 引数オブジェクトです。
-  @return [Array] 引数を標準化した配列です。
-  ###
-  @argumentsToArray: (args) ->
-    elems = switch args.length
-      when 0
-        []
-      when 1
-        if isArguments(args[0]) or isArray(args[0])
-          args[0]
-        else if isObject args[0]
-          [args[0].x, args[0].y]
-        else
-          [args[0]]
-      else
-        args
-    for i in [0..1]
-      elems[i] = if (val = elems[i])?
-        parseFloat val
-      else
-        0
-    elems
-
-
-  ###
   `left`,`top`から成るオブジェクトから`Point`インスタンスを生成します。
   @param [Object] position 座標オブジェクトです。
   @option position [Integer] left x座標です。
@@ -72,9 +45,43 @@ class Point
   ###
   @createWithPage: ({pageX, pageY}) -> new Point pageX, pageY
 
+  ###
+  `Point`インスタンスを生成します。
+  @param [Number] x xの値です。
+  @param [Number] y yの値です。
 
+  @param [Array<Number>] elems x, yからなる配列です。
+
+  @param [Point] point `Point`インスタンスです。
+
+  @param [Object] obj x, yからなるオブジェクトです。
+  @param obj [Number] x xの値です。
+  @param obj [Number] y yの値です。
+  ###
   constructor: (x, y) ->
-    [@x, @y] = Point.argumentsToArray arguments
+    parse = (args) ->
+      switch args.length
+        when 0
+          []
+        when 1
+          obj = args[0]
+          if isArguments obj
+            parse obj
+          else if isArray obj
+            obj
+          else if (obj instanceof Point) or isObject(obj)
+            [obj.x, obj.y]
+          else
+            args
+        else
+          args
+    elems = parse arguments
+    for i in [0..1]
+      elems[i] = if (val = elems[i])?
+        parseFloat val
+      else
+        0
+    [@x, @y] = elems
 
   ###
   複製します。
@@ -154,10 +161,13 @@ class Point
   @return [Number] 内積の結果です。
   ###
   dotProduct: (point) ->
+    # a = @
+    # b = new Point arguments
+    # theta = a.sub(b).angle()
+    # a.distance() * b.distance() * cos theta
     a = @
     b = new Point arguments
-    theta = a.sub(b).angle()
-    a.distance() * b.distance() * cos theta
+    a.x * b.x + a.y * b.y
 
   ###
   ベクトルの外積を求めます。
@@ -165,11 +175,11 @@ class Point
   @param [Point] point 外積をする`Point`です。
   @return [Number] 外積の結果です。
   ###
-  crossProduct: (point) ->
-    a = @
-    b = new Point arguments
-    theta = a.sub(b).angle()
-    a.distance() * b.distance() * sin theta
+  # crossProduct: (point) ->
+  #   a = @
+  #   b = new Point arguments
+  #   theta = b.sub(a).angle()
+  #   a.distance() * b.distance() * sin theta
 
   ###
   指定領域内に収まる新しい`Point`を返します。

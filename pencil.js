@@ -732,39 +732,6 @@ module.exports = Point = (function() {
 
 
   /*
-  @private
-  Argumentsオブジェクトを配列として標準化します。
-  @param [Arguments] args 引数オブジェクトです。
-  @return [Array] 引数を標準化した配列です。
-   */
-
-  Point.argumentsToArray = function(args) {
-    var elems, i, val, _i;
-    elems = (function() {
-      switch (args.length) {
-        case 0:
-          return [];
-        case 1:
-          if (isArguments(args[0]) || isArray(args[0])) {
-            return args[0];
-          } else if (isObject(args[0])) {
-            return [args[0].x, args[0].y];
-          } else {
-            return [args[0]];
-          }
-          break;
-        default:
-          return args;
-      }
-    })();
-    for (i = _i = 0; _i <= 1; i = ++_i) {
-      elems[i] = (val = elems[i]) != null ? parseFloat(val) : 0;
-    }
-    return elems;
-  };
-
-
-  /*
   `left`,`top`から成るオブジェクトから`Point`インスタンスを生成します。
   @param [Object] position 座標オブジェクトです。
   @option position [Integer] left x座標です。
@@ -805,9 +772,49 @@ module.exports = Point = (function() {
     return new Point(pageX, pageY);
   };
 
+
+  /*
+  `Point`インスタンスを生成します。
+  @param [Number] x xの値です。
+  @param [Number] y yの値です。
+  
+  @param [Array<Number>] elems x, yからなる配列です。
+  
+  @param [Point] point `Point`インスタンスです。
+  
+  @param [Object] obj x, yからなるオブジェクトです。
+  @param obj [Number] x xの値です。
+  @param obj [Number] y yの値です。
+   */
+
   function Point(x, y) {
-    var _ref1;
-    _ref1 = Point.argumentsToArray(arguments), this.x = _ref1[0], this.y = _ref1[1];
+    var elems, i, parse, val, _i;
+    parse = function(args) {
+      var obj;
+      switch (args.length) {
+        case 0:
+          return [];
+        case 1:
+          obj = args[0];
+          if (isArguments(obj)) {
+            return parse(obj);
+          } else if (isArray(obj)) {
+            return obj;
+          } else if ((obj instanceof Point) || isObject(obj)) {
+            return [obj.x, obj.y];
+          } else {
+            return args;
+          }
+          break;
+        default:
+          return args;
+      }
+    };
+    elems = parse(arguments);
+    for (i = _i = 0; _i <= 1; i = ++_i) {
+      elems[i] = (val = elems[i]) != null ? parseFloat(val) : 0;
+    }
+    this.x = elems[0], this.y = elems[1];
   }
 
 
@@ -925,11 +932,10 @@ module.exports = Point = (function() {
    */
 
   Point.prototype.dotProduct = function(point) {
-    var a, b, theta;
+    var a, b;
     a = this;
     b = new Point(arguments);
-    theta = a.sub(b).angle();
-    return a.distance() * b.distance() * cos(theta);
+    return a.x * b.x + a.y * b.y;
   };
 
 
@@ -939,14 +945,6 @@ module.exports = Point = (function() {
   @param [Point] point 外積をする`Point`です。
   @return [Number] 外積の結果です。
    */
-
-  Point.prototype.crossProduct = function(point) {
-    var a, b, theta;
-    a = this;
-    b = new Point(arguments);
-    theta = a.sub(b).angle();
-    return a.distance() * b.distance() * sin(theta);
-  };
 
 
   /*
