@@ -5,7 +5,7 @@ module.exports = (config) ->
       # 'karma-chrome-launcher'
       'karma-mocha'
       'karma-chai'
-      'karma-nyan-reporter'
+      'karma-spec-reporter'
       'karma-coverage'
       'karma-growl-reporter'
       # 'karma-osx-reporter'
@@ -27,7 +27,7 @@ module.exports = (config) ->
       'PhantomJS'
     ]
     reporters: [
-      'nyan'
+      'spec'
       # 'progress'
       'coverage'
       'growl'
