@@ -2,9 +2,10 @@ module.exports = (config) ->
   config.set
     plugins: [
       'karma-phantomjs-launcher'
-      'karma-chrome-launcher'
+      # 'karma-chrome-launcher'
       'karma-mocha'
-      'karma-mocha-reporter'
+      'karma-chai'
+      'karma-nyan-reporter'
       'karma-coverage'
       'karma-growl-reporter'
       # 'karma-osx-reporter'
@@ -13,9 +14,10 @@ module.exports = (config) ->
     autoWatch: true
     frameworks: [
       'mocha'
+      'chai'
     ]
     files: [
-      'node_modules/chai/chai.js'
+      # 'node_modules/chai/chai.js'
       'node_modules/jquery/dist/jquery.min.js'
       'node_modules/lodash/dist/lodash.min.js'
       'pencil.js'
@@ -25,8 +27,8 @@ module.exports = (config) ->
       'PhantomJS'
     ]
     reporters: [
-      'mocha'
-      'progress'
+      'nyan'
+      # 'progress'
       'coverage'
       'growl'
       # 'osx'

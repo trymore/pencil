@@ -8,10 +8,10 @@ watchify     = require 'watchify'
 # bundleLogger = require '../util/bundleLogger'
 # handleErrors = require '../util/handleErrors'
 source       = require 'vinyl-source-stream'
-mochaPhantomJS = require 'gulp-mocha-phantomjs'
+# mochaPhantomJS = require 'gulp-mocha-phantomjs'
 bump = require 'gulp-bump'
 git = require 'gulp-git'
-{ readFileSync } = require 'fs'
+{readFileSync} = require 'fs'
 karma = require 'gulp-karma'
 
 gulp.task 'watch', ->
@@ -58,11 +58,11 @@ gulp.task 'browserify-lib', ->
     debug: false
   bundle = ->
     bundler
-    .bundle()
-    .on 'error', ->
-      console.log arguments
-    .pipe source 'pencil.js'
-    .pipe gulp.dest './'
+      .bundle()
+      .on 'error', ->
+        console.log arguments
+      .pipe source 'pencil.js'
+      .pipe gulp.dest './'
   bundler.on 'update', bundle
   bundle
 
@@ -75,31 +75,31 @@ gulp.task 'browserify-test', ->
     debug: false
   bundle = ->
     bundler
-    .bundle()
-    .on 'error', ->
-      console.log arguments
-    .pipe source 'runner.js'
-    .pipe gulp.dest './test/runner'
+      .bundle()
+      .on 'error', ->
+        console.log arguments
+      .pipe source 'runner.js'
+      .pipe gulp.dest './test/runner'
   bundler.on 'update', bundle
   bundle()
 
-gulp.task 'mocha-phantomjs', ->
-  gulp
-  .src 'test/runner/index.html'
-  .pipe mochaPhantomJS()
+# gulp.task 'mocha-phantomjs', ->
+#   gulp
+#   .src 'test/runner/index.html'
+#   .pipe mochaPhantomJS()
 
 gulp.task 'karma', ->
   gulp
     .src [
-      'node_modules/chai/chai.js',
+      # 'node_modules/chai/chai.js',
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/lodash/dist/lodash.min.js',
       'pencil.js',
       'test/runner/runner.js'
     ]
     .pipe karma
-      # configFile: 'karma.conf.js'
       action: 'start'
+      configFile: 'karma.conf.coffee'
 
 gulp.task 'publish', ->
   gulp
