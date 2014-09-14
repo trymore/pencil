@@ -37,4 +37,7 @@ module.exports = (config) ->
       ]
     coverageReporter:
       type: 'lcov'
+      dir: 'coverage'
+      subdir: (browser) ->
+        browser.toLowerCase().split(/[ /-]/)[0]
     singleRun: true
