@@ -1,5 +1,5 @@
 chai.should()
-Point = pencil.models.geom.point
+{point: Point, rect: Rect} = pencil.models.geom
 {PI, sqrt} = Math
 
 
@@ -192,3 +192,18 @@ describe 'Point', ->
       new Point(-12, 16).dotProduct(new Point(12, 9)).should.equal 0
       new Point(-6, 8).dotProduct(new Point(5, 12)).should.equal 66
 
+  describe '#containIn', ->
+    it 'should return new instance', ->
+      a = new Point 5, 8
+      a.containIn(new Rect 0, 0, 100, 400).should.not.equal a
+
+    it 'should calculate contained point in rect', ->
+      rect = new Rect 3, 4, 10, 20
+      new Point(-1, -5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 3, 4
+      new Point(-1, 5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 3, 5
+      new Point(-1, 30).containIn(new Rect 3, 4, 10, 20).should.eql new Point 3, 24
+      new Point(8, -5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 8, 4
+      new Point(8, 5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 8, 5
+      new Point(8, 30).containIn(new Rect 3, 4, 10, 20).should.eql new Point 8, 24
+      new Point(40, -5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 13, 4
+      new Point(40, 5).containIn(new Rect 3, 4, 10, 20).should.eql new Point 13, 5
