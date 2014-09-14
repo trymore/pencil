@@ -118,6 +118,20 @@ describe('Point', function() {
       return Point.distance(new Point(-2, -3), new Point(5, 8)).should.closeTo(sqrt(170), 0.01);
     });
   });
+  describe('.createWithPosition()', function() {
+    it('should create a Point instance', function() {
+      return Point.createWithPosition({
+        left: 5,
+        top: 8
+      }).should.be.an["instanceof"](Point);
+    });
+    return it('should create an instance with position object', function() {
+      return Point.createWithPosition({
+        left: 5,
+        top: 8
+      }).should.eql(new Point(5, 8));
+    });
+  });
   describe('#clone()', function() {
     it('should create same value Point', function() {
       var point;

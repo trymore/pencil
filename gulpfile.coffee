@@ -98,7 +98,7 @@ gulp.task 'karma', ->
       'test/runner/runner.js'
     ]
     .pipe karma
-      configFile: 'karma.conf.js'
+      # configFile: 'karma.conf.js'
       action: 'start'
 
 gulp.task 'publish', ->
