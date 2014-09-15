@@ -829,6 +829,16 @@ module.exports = Point = (function() {
 
 
   /*
+  配列化します。
+  @return [Array<Number>] x, yからなる配列です。
+   */
+
+  Point.prototype.toArray = function() {
+    return [this.x, this.y];
+  };
+
+
+  /*
   原点からの距離を求めます。
   @return [Number] 距離です。
    */
@@ -966,9 +976,12 @@ module.exports = Point = (function() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],8:[function(require,module,exports){
-var Point, Rect, ceil, floor;
+(function (global){
+var Point, Rect, ceil, floor, isArguments, isArray, isNumber, isObject, isString, _ref;
 
 Point = require('./point');
+
+_ref = (typeof window !== "undefined" ? window._ : typeof global !== "undefined" ? global._ : null), isNumber = _ref.isNumber, isString = _ref.isString, isArray = _ref.isArray, isObject = _ref.isObject, isArguments = _ref.isArguments;
 
 floor = Math.floor, ceil = Math.ceil;
 
@@ -984,7 +997,7 @@ module.exports = Rect = (function() {
   };
 
   Rect.parseArguments = function(args) {
-    var _ref, _ref1, _ref2, _ref3;
+    var _ref1, _ref2, _ref3, _ref4;
     switch (args.length) {
       case 0:
         return {
@@ -1011,17 +1024,17 @@ module.exports = Rect = (function() {
         };
       default:
         return {
-          x: (_ref = args[0]) != null ? _ref : 0,
-          y: (_ref1 = args[1]) != null ? _ref1 : 0,
-          width: (_ref2 = args[2]) != null ? _ref2 : 0,
-          height: (_ref3 = args[3]) != null ? _ref3 : 0
+          x: (_ref1 = args[0]) != null ? _ref1 : 0,
+          y: (_ref2 = args[1]) != null ? _ref2 : 0,
+          width: (_ref3 = args[2]) != null ? _ref3 : 0,
+          height: (_ref4 = args[3]) != null ? _ref4 : 0
         };
     }
   };
 
   Rect.argumentsToRect = function(args) {
-    var height, width, x, y, _ref;
-    _ref = Rect.parseArguments(args), x = _ref.x, y = _ref.y, width = _ref.width, height = _ref.height;
+    var height, width, x, y, _ref1;
+    _ref1 = Rect.parseArguments(args), x = _ref1.x, y = _ref1.y, width = _ref1.width, height = _ref1.height;
     return new Rect(x, y, width, height);
   };
 
@@ -1034,14 +1047,49 @@ module.exports = Rect = (function() {
   };
 
   function Rect(x, y, width, height) {
-    var _ref;
-    if ((x != null) && (x.x != null) && (x.y != null) && (x.width != null) && (x.height != null)) {
-      _ref = x, x = _ref.x, y = _ref.y, width = _ref.width, height = _ref.height;
+    var elems, i, isElem, parse, _i;
+    isElem = function(elem) {
+      return isNumber(elem) || isString(elem);
+    };
+    parse = function(args) {
+      var arg;
+      switch (args.length) {
+        case 0:
+          return [];
+        case 1:
+          arg = args[0];
+          if (isArguments(arg)) {
+            return parse(arg);
+          } else if (isArray(arg)) {
+            return arg;
+          } else if ((arg instanceof Rect) || isObject(arg)) {
+            return [arg.x, arg.y, arg.width, arg.height];
+          } else {
+            throw new TypeError('Rect constructor requires `Rect`, `Object` or `Array`');
+          }
+          break;
+        case 2:
+          return new Point(args[0]).toArray().concat(new Point(args[1]).toArray());
+        case 3:
+          if (!isElem(args[0])) {
+            return new Point(args[0]).toArray().push(args[1], args[2]);
+          } else if (!isElem(args[2])) {
+            return [args[0], args[1]].concat(new Point(args[2]).toArray());
+          } else {
+            throw new TypeError('Rect constructor requires (origin: Point, width: Number|String, height: Number|String) or (x: Number|String, y: Number|String, size: Point)');
+          }
+          break;
+        case 4:
+          return args;
+        default:
+          throw new TypeError('Rect constructor requires 0 to 4 parameters');
+      }
+    };
+    elems = parse(arguments);
+    for (i = _i = 0; _i < 4; i = ++_i) {
+      elems[i] = elems[i] != null ? parseFloat(elems[i]) : 0;
     }
-    this.x = x != null ? x : 0;
-    this.y = y != null ? y : 0;
-    this.width = width != null ? width : 0;
-    this.height = height != null ? height : 0;
+    this.x = elems[0], this.y = elems[1], this.width = elems[2], this.height = elems[3];
     this.normalize();
   }
 
@@ -1099,14 +1147,14 @@ module.exports = Rect = (function() {
   };
 
   Rect.prototype.containsPoint = function(point) {
-    var x, y, _ref;
-    _ref = Point.parseArguments(arguments), x = _ref.x, y = _ref.y;
+    var x, y, _ref1;
+    _ref1 = Point.parseArguments(arguments), x = _ref1.x, y = _ref1.y;
     return (this.getLeft() <= x && x <= this.getRight()) && (this.getTop() <= y && y <= this.getBottom());
   };
 
   Rect.prototype.containsRect = function(rect) {
-    var height, width, x, y, _ref;
-    _ref = Rect.parseArguments(arguments), x = _ref.x, y = _ref.y, width = _ref.width, height = _ref.height;
+    var height, width, x, y, _ref1;
+    _ref1 = Rect.parseArguments(arguments), x = _ref1.x, y = _ref1.y, width = _ref1.width, height = _ref1.height;
     rect = new Rect(x, y, width, height);
     return this.getLeft() <= rect.getLeft() && rect.getRight() <= this.getRight() && this.getTop() <= rect.getTop() && rect.getBottom() <= this.getBottom();
   };
@@ -1193,9 +1241,9 @@ module.exports = Rect = (function() {
    */
 
   Rect.prototype.contain = function(x, y) {
-    var bottom, r, right, _ref;
+    var bottom, r, right, _ref1;
     if ((x != null) && (x.x != null) && (x.y != null)) {
-      _ref = x, x = _ref.x, y = _ref.y;
+      _ref1 = x, x = _ref1.x, y = _ref1.y;
     }
     r = this.clone();
     right = r.getRight();
@@ -1239,6 +1287,7 @@ module.exports = Rect = (function() {
 
 
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./point":7}],9:[function(require,module,exports){
 var ImageDataUtil, iota;
 

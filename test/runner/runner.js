@@ -3,9 +3,11 @@ require('../iota');
 
 require('../point');
 
+require('../rect');
 
 
-},{"../iota":2,"../point":3}],2:[function(require,module,exports){
+
+},{"../iota":2,"../point":3,"../rect":4}],2:[function(require,module,exports){
 var factory;
 
 chai.should();
@@ -52,89 +54,89 @@ PI = Math.PI, sqrt = Math.sqrt;
 
 describe('Point', function() {
   describe('constructor', function() {
-    it('should create zero Point with no parameter', function() {
+    it('should create a zero `Point` with no parameter', function() {
       var x, y, _ref1;
       _ref1 = new Point, x = _ref1.x, y = _ref1.y;
-      x.should.equals(0);
-      return y.should.equals(0);
+      x.should.equal(0);
+      return y.should.equal(0);
     });
-    it('should create point with 1 `Array`', function() {
+    it('should create a `Point` with 1 `Array`', function() {
       var x, y, _ref1;
       _ref1 = new Point([5, 8]), x = _ref1.x, y = _ref1.y;
-      x.should.equals(5);
-      return y.should.equals(8);
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 1 `Point`', function() {
+    it('should create a `Point` with 1 `Point`', function() {
       var x, y, _ref1;
       _ref1 = new Point(new Point(5, 8)), x = _ref1.x, y = _ref1.y;
-      x.should.equals(5);
-      return y.should.equals(8);
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 1 `Object`', function() {
+    it('should create a `Point` with 1 `Object`', function() {
       var x, y, _ref1;
       _ref1 = new Point({
         x: 5,
         y: 8
       }), x = _ref1.x, y = _ref1.y;
-      x.should.equals(5);
-      return y.should.equals(8);
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 2 `Number`s', function() {
+    it('should create a `Point` with 2 `Number`s', function() {
       var x, y, _ref1;
       _ref1 = new Point(5, 8), x = _ref1.x, y = _ref1.y;
-      x.should.equals(5);
-      return y.should.equals(8);
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create zero Point with 1 `Arguments` contains none', function() {
+    it('should create a zero `Point` with 1 `Arguments` contains none', function() {
       var func;
       func = function(arr) {
         var x, y, _ref1;
         _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
-        x.should.equals(0);
-        return y.should.equals(0);
+        x.should.equal(0);
+        return y.should.equal(0);
       };
       return func();
     });
-    it('should create point with 1 `Arguments` contains 1 `Array`', function() {
+    it('should create a `Point` with 1 `Arguments` contains 1 `Array`', function() {
       var func;
       func = function(arr) {
         var x, y, _ref1;
         _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
-        x.should.equals(5);
-        return y.should.equals(8);
+        x.should.equal(5);
+        return y.should.equal(8);
       };
       return func([5, 8]);
     });
-    it('should create point with 1 `Arguments` contains 1 `Point`', function() {
+    it('should create a `Point` with 1 `Arguments` contains 1 `Point`', function() {
       var func;
       func = function(arr) {
         var x, y, _ref1;
         _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
-        x.should.equals(5);
-        return y.should.equals(8);
+        x.should.equal(5);
+        return y.should.equal(8);
       };
       return func(new Point(5, 8));
     });
-    it('should create point with 1 `Arguments` contains 1 `Object`', function() {
+    it('should create a `Point` with 1 `Arguments` contains 1 `Object`', function() {
       var func;
       func = function(arr) {
         var x, y, _ref1;
         _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
-        x.should.equals(5);
-        return y.should.equals(8);
+        x.should.equal(5);
+        return y.should.equal(8);
       };
       return func({
         x: 5,
         y: 8
       });
     });
-    return it('should create point with 1 `Arguments` contains 2 `Number`s', function() {
+    return it('should create a `Point` with 1 `Arguments` contains 2 `Number`s', function() {
       var func;
       func = function(x, y) {
         var _ref1;
         _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
-        x.should.equals(5);
-        return y.should.equals(8);
+        x.should.equal(5);
+        return y.should.equal(8);
       };
       return func(5, 8);
     });
@@ -179,8 +181,8 @@ describe('Point', function() {
     it('should create same value Point', function() {
       var point;
       point = new Point(5, 8);
-      point.clone().x.should.equals(5);
-      return point.clone().y.should.equals(8);
+      point.clone().x.should.equal(5);
+      return point.clone().y.should.equal(8);
     });
     return it('should create different instance', function() {
       var point;
@@ -322,6 +324,66 @@ describe('Point', function() {
       new Point(8, 30).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(8, 24));
       new Point(40, -5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(13, 4));
       return new Point(40, 5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(13, 5));
+    });
+  });
+});
+
+
+
+},{}],4:[function(require,module,exports){
+var Point, Rect, _ref;
+
+chai.should();
+
+_ref = pencil.models.geom, Rect = _ref.rect, Point = _ref.point;
+
+describe('Rect', function() {
+  return describe('constructor', function() {
+    it('should create a zero `Rect` with no parameter', function() {
+      return new Rect().should.include({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+      });
+    });
+    it('should create a `Rect` with 1 `Array`', function() {
+      var height, width, x, y, _ref1;
+      return _ref1 = new Rect([2, 7, 10, 20]).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      }), x = _ref1.x, y = _ref1.y, width = _ref1.width, height = _ref1.height, _ref1;
+    });
+    it('should create a `Rect` with 1 `Rect`', function() {
+      return new Rect(new Rect(2, 7, 10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 1 `Object`', function() {
+      return new Rect({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      }).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    return it('should create a `Rect` with 4 `Number`s', function() {
+      return new Rect(2, 7, 10, 20).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
     });
   });
 });

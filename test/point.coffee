@@ -6,55 +6,55 @@ chai.should()
 describe 'Point', ->
 
   describe 'constructor', ->
-    it 'should create zero Point with no parameter', ->
+    it 'should create a zero `Point` with no parameter', ->
       {x, y} = new Point
-      x.should.equals 0
-      y.should.equals 0
-    it 'should create point with 1 `Array`', ->
+      x.should.equal 0
+      y.should.equal 0
+    it 'should create a `Point` with 1 `Array`', ->
       {x, y} = new Point [5, 8]
-      x.should.equals 5
-      y.should.equals 8
-    it 'should create point with 1 `Point`', ->
+      x.should.equal 5
+      y.should.equal 8
+    it 'should create a `Point` with 1 `Point`', ->
       {x, y} = new Point new Point 5, 8
-      x.should.equals 5
-      y.should.equals 8
-    it 'should create point with 1 `Object`', ->
+      x.should.equal 5
+      y.should.equal 8
+    it 'should create a `Point` with 1 `Object`', ->
       {x, y} = new Point {x: 5, y: 8}
-      x.should.equals 5
-      y.should.equals 8
-    it 'should create point with 2 `Number`s', ->
+      x.should.equal 5
+      y.should.equal 8
+    it 'should create a `Point` with 2 `Number`s', ->
       {x, y} = new Point 5, 8
-      x.should.equals 5
-      y.should.equals 8
-    it 'should create zero Point with 1 `Arguments` contains none', ->
+      x.should.equal 5
+      y.should.equal 8
+    it 'should create a zero `Point` with 1 `Arguments` contains none', ->
       func = (arr) ->
         {x, y} = new Point arguments
-        x.should.equals 0
-        y.should.equals 0
+        x.should.equal 0
+        y.should.equal 0
       func()
-    it 'should create point with 1 `Arguments` contains 1 `Array`', ->
+    it 'should create a `Point` with 1 `Arguments` contains 1 `Array`', ->
       func = (arr) ->
         {x, y} = new Point arguments
-        x.should.equals 5
-        y.should.equals 8
+        x.should.equal 5
+        y.should.equal 8
       func [5, 8]
-    it 'should create point with 1 `Arguments` contains 1 `Point`', ->
+    it 'should create a `Point` with 1 `Arguments` contains 1 `Point`', ->
       func = (arr) ->
         {x, y} = new Point arguments
-        x.should.equals 5
-        y.should.equals 8
+        x.should.equal 5
+        y.should.equal 8
       func new Point 5, 8
-    it 'should create point with 1 `Arguments` contains 1 `Object`', ->
+    it 'should create a `Point` with 1 `Arguments` contains 1 `Object`', ->
       func = (arr) ->
         {x, y} = new Point arguments
-        x.should.equals 5
-        y.should.equals 8
+        x.should.equal 5
+        y.should.equal 8
       func {x: 5, y: 8}
-    it 'should create point with 1 `Arguments` contains 2 `Number`s', ->
+    it 'should create a `Point` with 1 `Arguments` contains 2 `Number`s', ->
       func = (x, y) ->
         {x, y} = new Point arguments
-        x.should.equals 5
-        y.should.equals 8
+        x.should.equal 5
+        y.should.equal 8
       func 5, 8
 
   describe '.lerp()', ->
@@ -86,8 +86,8 @@ describe 'Point', ->
   describe '#clone()', ->
     it 'should create same value Point', ->
       point = new Point 5, 8
-      point.clone().x.should.equals 5
-      point.clone().y.should.equals 8
+      point.clone().x.should.equal 5
+      point.clone().y.should.equal 8
     it 'should create different instance', ->
       point = new Point 5, 8
       point.clone().should.not.to.equal point

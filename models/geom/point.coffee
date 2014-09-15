@@ -90,6 +90,12 @@ class Point
   clone: -> new Point @x, @y
 
   ###
+  配列化します。
+  @return [Array<Number>] x, yからなる配列です。
+  ###
+  toArray: -> [@x, @y]
+
+  ###
   原点からの距離を求めます。
   @return [Number] 距離です。
   ###
