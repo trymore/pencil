@@ -1072,7 +1072,7 @@ module.exports = Rect = (function() {
           return new Point(args[0]).toArray().concat(new Point(args[1]).toArray());
         case 3:
           if (!isElem(args[0])) {
-            return new Point(args[0]).toArray().push(args[1], args[2]);
+            return new Point(args[0]).toArray().concat([args[1], args[2]]);
           } else if (!isElem(args[2])) {
             return [args[0], args[1]].concat(new Point(args[2]).toArray());
           } else {

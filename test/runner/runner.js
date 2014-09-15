@@ -377,6 +377,30 @@ describe('Rect', function() {
         height: 20
       });
     });
+    it('should create a `Rect` with 2 `Point`s', function() {
+      return new Rect(new Point(2, 7), new Point(10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 1 `Point` and 2 `Number`s', function() {
+      return new Rect(new Point(2, 7), 10, 20).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 2 `Number`s and 1 `Point`', function() {
+      return new Rect(2, 7, new Point(10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
     return it('should create a `Rect` with 4 `Number`s', function() {
       return new Rect(2, 7, 10, 20).should.include({
         x: 2,

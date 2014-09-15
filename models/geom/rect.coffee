@@ -68,7 +68,7 @@ class Rect
           new Point(args[0]).toArray().concat new Point(args[1]).toArray()
         when 3
           if !isElem(args[0])
-            new Point(args[0]).toArray().push args[1], args[2]
+            new Point(args[0]).toArray().concat [args[1], args[2]]
           else if !isElem(args[2])
             [args[0], args[1]].concat new Point(args[2]).toArray()
           else
