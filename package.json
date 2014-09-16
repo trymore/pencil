@@ -52,7 +52,7 @@
   },
   "scripts": {
     "test": "./node_modules/karma/bin/karma start",
-    "coveralls": "cat ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "cat ./coverage/phantomjs/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
