@@ -3,15 +3,17 @@ Selectable class.
 ###
 
 View = require './view'
-
+$ = require 'jquery'
 
 module.exports =
 class Selectable extends View
 
+  selectorExclude: '.js-selectableExclude'
+
   constructor: ->
     super
-    @selectees = @children()
-    .on 'click', @onSelecteeClicked
+    @selectees = @children().not(@selectorExclude)
+      .on 'click', @onSelecteeClicked
 
   onSelecteeClicked: (e) =>
     selectedIndex = @selectees.index e.currentTarget

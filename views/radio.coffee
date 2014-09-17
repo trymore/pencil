@@ -1,6 +1,4 @@
 View = require './view'
-$ = require 'jquery'
-
 
 ###
 `<input type="radio">`をスタイリングするためのラッパです。
@@ -31,8 +29,9 @@ class Radio extends View
     super
     @radio = @$ 'input[type=radio]'
     .on 'change radioChange', @update
+    @form = @radio.closest 'form'
     if (name = @radio.attr 'name') isnt ''
-      @otherRadios = $ "input[type=radio][name=#{name}]"
+      @otherRadios = @form.find "input[type=radio][name=#{name}]"
       .not @radio
     @update()
 

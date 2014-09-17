@@ -2422,15 +2422,12 @@ module.exports = Preventable = (function(_super) {
 
 
 },{"./view":35}],28:[function(require,module,exports){
-(function (global){
-var $, Radio, View,
+var Radio, View,
   __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 View = require('./view');
-
-$ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
 
 
 /*
@@ -2468,8 +2465,9 @@ module.exports = Radio = (function(_super) {
     var name;
     Radio.__super__.constructor.apply(this, arguments);
     this.radio = this.$('input[type=radio]').on('change radioChange', this.update);
+    this.form = this.radio.closest('form');
     if ((name = this.radio.attr('name')) !== '') {
-      this.otherRadios = $("input[type=radio][name=" + name + "]").not(this.radio);
+      this.otherRadios = this.form.find("input[type=radio][name=" + name + "]").not(this.radio);
     }
     this.update();
   }
@@ -2496,7 +2494,6 @@ module.exports = Radio = (function(_super) {
 
 
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./view":35}],29:[function(require,module,exports){
 
 /*
