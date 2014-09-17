@@ -1,4 +1,4 @@
-# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Codeship Status for trymore/pencil][codeship-image]][codeship-url]
 
 > jQueryプラグインでは**ありません**。
 
@@ -28,3 +28,5 @@ http://trymore.github.io/pencil/
 [travis-url]: http://travis-ci.org/trymore/pencil
 [coveralls-image]: https://img.shields.io/coveralls/trymore/pencil.svg
 [coveralls-url]: https://coveralls.io/r/trymore/pencil
+[codeship-image]: https://www.codeship.io/projects/8189ac90-fdec-0131-3861-7ac8d6a30f22/status
+[codeship-url]: https://www.codeship.io/projects/29480
