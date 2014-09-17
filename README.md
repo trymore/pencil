@@ -1,4 +1,4 @@
-# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Codeship Status for trymore/pencil][codeship-image]][codeship-url]
+# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![dependencies][dependencies-image]][dependencies-url] [![dev dependencies][dev-dependencies-image]][dev-dependencies-url] [![Codeship Status for trymore/pencil][codeship-image]][codeship-url]
 
 > jQueryプラグインでは**ありません**。
 
@@ -30,3 +30,7 @@ http://trymore.github.io/pencil/
 [coveralls-url]: https://coveralls.io/r/trymore/pencil
 [codeship-image]: https://www.codeship.io/projects/8189ac90-fdec-0131-3861-7ac8d6a30f22/status
 [codeship-url]: https://www.codeship.io/projects/29480
+[dependencies-image]: https://david-dm.org/trymore/pencil.png
+[dependencies-url]: https://david-dm.org/trymore/pencil
+[dev-dependencies-image]: https://david-dm.org/trymore/pencil/dev-status.png
+[dev-dependencies-url]: https://david-dm.org/trymore/pencil#info=devDependencies
