@@ -3,12 +3,14 @@ require('../iota');
 
 require('../point');
 
+require('../rect');
 
 
-},{"../iota":2,"../point":3}],2:[function(require,module,exports){
-var expect, factory;
 
-expect = chai.expect;
+},{"../iota":2,"../point":3,"../rect":4}],2:[function(require,module,exports){
+var factory;
+
+chai.should();
 
 factory = pencil.models.iota;
 
@@ -16,23 +18,23 @@ describe('Iota', function() {
   return describe('.', function() {
     return describe('factory', function() {
       it('should create new Iota method', function() {
-        return expect(factory()).to.not.equal(factory());
+        return factory().should.not.equal(factory());
       });
       return describe('iota', function() {
         return it('should return incremented int', function() {
           var iota;
           iota = factory();
-          expect(iota()).equal(0);
-          expect(iota()).equal(1);
-          expect(iota()).equal(2);
-          expect(iota()).equal(3);
-          expect(iota()).equal(4);
+          iota().should.equal(0);
+          iota().should.equal(1);
+          iota().should.equal(2);
+          iota().should.equal(3);
+          iota().should.equal(4);
           iota = factory();
-          expect(iota()).equal(0);
-          expect(iota()).equal(1);
-          expect(iota()).equal(2);
-          expect(iota()).equal(3);
-          return expect(iota()).equal(4);
+          iota().should.equal(0);
+          iota().should.equal(1);
+          iota().should.equal(2);
+          iota().should.equal(3);
+          return iota().should.equal(4);
         });
       });
     });
@@ -42,95 +44,370 @@ describe('Iota', function() {
 
 
 },{}],3:[function(require,module,exports){
-var PI, Point, expect, sqrt;
+var PI, Point, Rect, sqrt, _ref;
 
-expect = chai.expect;
+chai.should();
 
-Point = pencil.models.geom.point;
+_ref = pencil.models.geom, Point = _ref.point, Rect = _ref.rect;
 
 PI = Math.PI, sqrt = Math.sqrt;
 
 describe('Point', function() {
   describe('constructor', function() {
-    it('should create zero Point without no parameter', function() {
-      var x, y, _ref;
-      _ref = new Point, x = _ref.x, y = _ref.y;
-      expect(x).equals(0);
-      return expect(y).equals(0);
+    it('should create a zero `Point` with no parameter', function() {
+      var x, y, _ref1;
+      _ref1 = new Point, x = _ref1.x, y = _ref1.y;
+      x.should.equal(0);
+      return y.should.equal(0);
     });
-    it('should create point with 1 `Arguments`', function() {
-      var func;
-      func = function(x, y) {
-        var _ref;
-        _ref = new Point(arguments), x = _ref.x, y = _ref.y;
-        expect(x).equals(5);
-        return expect(y).equals(8);
-      };
-      return func(5, 8);
+    it('should create a `Point` with 1 `Array`', function() {
+      var x, y, _ref1;
+      _ref1 = new Point([5, 8]), x = _ref1.x, y = _ref1.y;
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 1 `Array`', function() {
-      var x, y, _ref;
-      _ref = new Point([5, 8]), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+    it('should create a `Point` with 1 `Point`', function() {
+      var x, y, _ref1;
+      _ref1 = new Point(new Point(5, 8)), x = _ref1.x, y = _ref1.y;
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 1 `Object`', function() {
-      var x, y, _ref;
-      _ref = new Point({
+    it('should create a `Point` with 1 `Object`', function() {
+      var x, y, _ref1;
+      _ref1 = new Point({
         x: 5,
         y: 8
-      }), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+      }), x = _ref1.x, y = _ref1.y;
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    it('should create point with 1 `Point`', function() {
-      var x, y, _ref;
-      _ref = new Point(new Point(5, 8)), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+    it('should create a `Point` with 2 `Number`s', function() {
+      var x, y, _ref1;
+      _ref1 = new Point(5, 8), x = _ref1.x, y = _ref1.y;
+      x.should.equal(5);
+      return y.should.equal(8);
     });
-    return it('should create point with 2 `Number`s', function() {
-      var x, y, _ref;
-      _ref = new Point(5, 8), x = _ref.x, y = _ref.y;
-      expect(x).equals(5);
-      return expect(y).equals(8);
+    it('should create a zero `Point` with 1 `Arguments` contains none', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref1;
+        _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
+        x.should.equal(0);
+        return y.should.equal(0);
+      };
+      return func();
+    });
+    it('should create a `Point` with 1 `Arguments` contains 1 `Array`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref1;
+        _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
+        x.should.equal(5);
+        return y.should.equal(8);
+      };
+      return func([5, 8]);
+    });
+    it('should create a `Point` with 1 `Arguments` contains 1 `Point`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref1;
+        _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
+        x.should.equal(5);
+        return y.should.equal(8);
+      };
+      return func(new Point(5, 8));
+    });
+    it('should create a `Point` with 1 `Arguments` contains 1 `Object`', function() {
+      var func;
+      func = function(arr) {
+        var x, y, _ref1;
+        _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
+        x.should.equal(5);
+        return y.should.equal(8);
+      };
+      return func({
+        x: 5,
+        y: 8
+      });
+    });
+    return it('should create a `Point` with 1 `Arguments` contains 2 `Number`s', function() {
+      var func;
+      func = function(x, y) {
+        var _ref1;
+        _ref1 = new Point(arguments), x = _ref1.x, y = _ref1.y;
+        x.should.equal(5);
+        return y.should.equal(8);
+      };
+      return func(5, 8);
     });
   });
   describe('.lerp()', function() {
     return it('should calculate linear interpolated point', function() {
-      expect(Point.lerp(new Point(2, 9), new Point(8, 8), 0.2)).eql(new Point(3.2, 8.8));
-      expect(Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2)).eql(new Point(0, 8.8));
-      expect(Point.lerp(new Point(2, 9), new Point(8, -8), 0.2)).eql(new Point(3.2, 5.6));
-      expect(Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2)).eql(new Point(0, 5.6));
-      expect(Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2)).eql(new Point(0, 8.8));
-      expect(Point.lerp(new Point(2, -9), new Point(8, 8), 0.2)).eql(new Point(3.2, -5.6));
-      return expect(Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2)).eql(new Point(0, -5.6));
+      Point.lerp(new Point(2, 9), new Point(8, 8), 0.2).should.eql(new Point(3.2, 8.8));
+      Point.lerp(new Point(2, 9), new Point(-8, 8), 0.2).should.eql(new Point(0, 8.8));
+      Point.lerp(new Point(2, 9), new Point(8, -8), 0.2).should.eql(new Point(3.2, 5.6));
+      Point.lerp(new Point(2, 9), new Point(-8, -8), 0.2).should.eql(new Point(0, 5.6));
+      Point.lerp(new Point(-2, 9), new Point(8, 8), 0.2).should.eql(new Point(0, 8.8));
+      Point.lerp(new Point(2, -9), new Point(8, 8), 0.2).should.eql(new Point(3.2, -5.6));
+      return Point.lerp(new Point(-2, -9), new Point(8, 8), 0.2).should.eql(new Point(0, -5.6));
+    });
+  });
+  describe('.distance()', function() {
+    return it('should calculate distance between 2 points', function() {
+      Point.distance(new Point(2, 3), new Point(5, 8)).should.closeTo(sqrt(34), 0.01);
+      Point.distance(new Point(2, 3), new Point(-5, 8)).should.closeTo(sqrt(74), 0.01);
+      Point.distance(new Point(2, 3), new Point(5, -8)).should.closeTo(sqrt(130), 0.01);
+      Point.distance(new Point(2, 3), new Point(-5, -8)).should.closeTo(sqrt(170), 0.01);
+      Point.distance(new Point(-2, 3), new Point(5, 8)).should.closeTo(sqrt(74), 0.01);
+      Point.distance(new Point(2, -3), new Point(5, 8)).should.closeTo(sqrt(130), 0.01);
+      return Point.distance(new Point(-2, -3), new Point(5, 8)).should.closeTo(sqrt(170), 0.01);
+    });
+  });
+  describe('.createWithPosition()', function() {
+    it('should create a Point instance', function() {
+      return Point.createWithPosition({
+        left: 5,
+        top: 8
+      }).should.be.an["instanceof"](Point);
+    });
+    return it('should create an instance with position object', function() {
+      return Point.createWithPosition({
+        left: 5,
+        top: 8
+      }).should.eql(new Point(5, 8));
     });
   });
   describe('#clone()', function() {
     it('should create same value Point', function() {
       var point;
       point = new Point(5, 8);
-      expect(point.clone().x).equals(5);
-      return expect(point.clone().y).equals(8);
+      point.clone().x.should.equal(5);
+      return point.clone().y.should.equal(8);
     });
     return it('should create different instance', function() {
       var point;
       point = new Point(5, 8);
-      return expect(point.clone()).not.to.equal(point);
+      return point.clone().should.not.to.equal(point);
     });
   });
   describe('#distance()', function() {
     return it('should calculate distance from (0, 0)', function() {
-      expect(new Point(5, 3).distance()).closeTo(sqrt(34), 0.01);
-      expect(new Point(5, -3).distance()).closeTo(sqrt(34), 0.01);
-      expect(new Point(-5, 3).distance()).closeTo(sqrt(34), 0.01);
-      return expect(new Point(-5, -3).distance()).closeTo(sqrt(34), 0.01);
+      new Point(5, 3).distance().should.closeTo(sqrt(34), 0.01);
+      new Point(5, -3).distance().should.closeTo(sqrt(34), 0.01);
+      new Point(-5, 3).distance().should.closeTo(sqrt(34), 0.01);
+      return new Point(-5, -3).distance().should.closeTo(sqrt(34), 0.01);
     });
   });
-  return describe('#angle()', function() {
+  describe('#angle()', function() {
     return it('should calculate angle from x-axis', function() {
-      return expect(new Point(1, sqrt(3)).angle()).closeTo(PI / 180 * 60, 0.01);
+      return new Point(1, sqrt(3)).angle().should.closeTo(PI / 180 * 60, 0.01);
+    });
+  });
+  describe('#add()', function() {
+    it('should return new instance', function() {
+      var a, b;
+      a = new Point(5, 8);
+      b = new Point(2, 3);
+      a.add(b).should.not.equal(a);
+      return a.add(b).should.not.equal(b);
+    });
+    return it('should add elements', function() {
+      new Point(5, 8).add(new Point(2, 3)).should.eql(new Point(7, 11));
+      new Point(5, 8).add(new Point(-2, 3)).should.eql(new Point(3, 11));
+      new Point(5, 8).add(new Point(2, -3)).should.eql(new Point(7, 5));
+      new Point(5, 8).add(new Point(-2, -3)).should.eql(new Point(3, 5));
+      new Point(-5, 8).add(new Point(2, 3)).should.eql(new Point(-3, 11));
+      new Point(5, -8).add(new Point(2, 3)).should.eql(new Point(7, -5));
+      return new Point(-5, -8).add(new Point(2, 3)).should.eql(new Point(-3, -5));
+    });
+  });
+  describe('#subtract()', function() {
+    it('should return new instance', function() {
+      var a, b;
+      a = new Point(5, 8);
+      b = new Point(2, 3);
+      a.subtract(b).should.not.equal(a);
+      return a.subtract(b).should.not.equal(b);
+    });
+    return it('should subtract elements', function() {
+      new Point(5, 8).subtract(new Point(2, 3)).should.eql(new Point(3, 5));
+      new Point(5, 8).subtract(new Point(-2, 3)).should.eql(new Point(7, 5));
+      new Point(5, 8).subtract(new Point(2, -3)).should.eql(new Point(3, 11));
+      new Point(5, 8).subtract(new Point(-2, -3)).should.eql(new Point(7, 11));
+      new Point(-5, 8).subtract(new Point(2, 3)).should.eql(new Point(-7, 5));
+      new Point(5, -8).subtract(new Point(2, 3)).should.eql(new Point(3, -11));
+      return new Point(-5, -8).subtract(new Point(2, 3)).should.eql(new Point(-7, -11));
+    });
+  });
+  describe('#sub()', function() {
+    it('should return new instance', function() {
+      var a, b;
+      a = new Point(5, 8);
+      b = new Point(2, 3);
+      a.sub(b).should.not.equal(a);
+      return a.sub(b).should.not.equal(b);
+    });
+    return it('should subtract elements', function() {
+      new Point(5, 8).sub(new Point(2, 3)).should.eql(new Point(3, 5));
+      new Point(5, 8).sub(new Point(-2, 3)).should.eql(new Point(7, 5));
+      new Point(5, 8).sub(new Point(2, -3)).should.eql(new Point(3, 11));
+      new Point(5, 8).sub(new Point(-2, -3)).should.eql(new Point(7, 11));
+      new Point(-5, 8).sub(new Point(2, 3)).should.eql(new Point(-7, 5));
+      new Point(5, -8).sub(new Point(2, 3)).should.eql(new Point(3, -11));
+      return new Point(-5, -8).sub(new Point(2, 3)).should.eql(new Point(-7, -11));
+    });
+  });
+  describe('#multiply()', function() {
+    it('should return new instance', function() {
+      var a;
+      a = new Point(5, 8);
+      return a.multiply(3).should.not.equal(a);
+    });
+    return it('should multiply elements', function() {
+      new Point(5, 8).multiply(3).should.eql(new Point(15, 24));
+      return new Point(5, 8).multiply(-3).should.eql(new Point(-15, -24));
+    });
+  });
+  describe('#mul()', function() {
+    it('should return new instance', function() {
+      var a;
+      a = new Point(5, 8);
+      return a.mul(3).should.not.equal(a);
+    });
+    return it('should multiply elements', function() {
+      new Point(5, 8).mul(3).should.eql(new Point(15, 24));
+      return new Point(5, 8).mul(-3).should.eql(new Point(-15, -24));
+    });
+  });
+  describe('#devide()', function() {
+    it('should return new instance', function() {
+      var a;
+      a = new Point(5, 8);
+      return a.devide(2).should.not.equal(a);
+    });
+    return it('should devide elements', function() {
+      new Point(5, 8).devide(2).should.eql(new Point(2.5, 4));
+      return new Point(5, 8).devide(-2).should.eql(new Point(-2.5, -4));
+    });
+  });
+  describe('#dev()', function() {
+    it('should return new instance', function() {
+      var a;
+      a = new Point(5, 8);
+      return a.dev(2).should.not.equal(a);
+    });
+    return it('should devide elements', function() {
+      new Point(5, 8).dev(2).should.eql(new Point(2.5, 4));
+      return new Point(5, 8).dev(-2).should.eql(new Point(-2.5, -4));
+    });
+  });
+  describe('#dotProduct()', function() {
+    return it('should calculate dot product', function() {
+      new Point(-12, 16).dotProduct(new Point(12, 9)).should.equal(0);
+      return new Point(-6, 8).dotProduct(new Point(5, 12)).should.equal(66);
+    });
+  });
+  return describe('#containIn', function() {
+    it('should return new instance', function() {
+      var a;
+      a = new Point(5, 8);
+      return a.containIn(new Rect(0, 0, 100, 400)).should.not.equal(a);
+    });
+    return it('should calculate contained point in rect', function() {
+      var rect;
+      rect = new Rect(3, 4, 10, 20);
+      new Point(-1, -5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(3, 4));
+      new Point(-1, 5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(3, 5));
+      new Point(-1, 30).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(3, 24));
+      new Point(8, -5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(8, 4));
+      new Point(8, 5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(8, 5));
+      new Point(8, 30).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(8, 24));
+      new Point(40, -5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(13, 4));
+      return new Point(40, 5).containIn(new Rect(3, 4, 10, 20)).should.eql(new Point(13, 5));
+    });
+  });
+});
+
+
+
+},{}],4:[function(require,module,exports){
+var Point, Rect, _ref;
+
+chai.should();
+
+_ref = pencil.models.geom, Rect = _ref.rect, Point = _ref.point;
+
+describe('Rect', function() {
+  return describe('constructor', function() {
+    it('should create a zero `Rect` with no parameter', function() {
+      return new Rect().should.include({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+      });
+    });
+    it('should create a `Rect` with 1 `Array`', function() {
+      var height, width, x, y, _ref1;
+      return _ref1 = new Rect([2, 7, 10, 20]).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      }), x = _ref1.x, y = _ref1.y, width = _ref1.width, height = _ref1.height, _ref1;
+    });
+    it('should create a `Rect` with 1 `Rect`', function() {
+      return new Rect(new Rect(2, 7, 10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 1 `Object`', function() {
+      return new Rect({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      }).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 2 `Point`s', function() {
+      return new Rect(new Point(2, 7), new Point(10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 1 `Point` and 2 `Number`s', function() {
+      return new Rect(new Point(2, 7), 10, 20).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    it('should create a `Rect` with 2 `Number`s and 1 `Point`', function() {
+      return new Rect(2, 7, new Point(10, 20)).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
+    });
+    return it('should create a `Rect` with 4 `Number`s', function() {
+      return new Rect(2, 7, 10, 20).should.include({
+        x: 2,
+        y: 7,
+        width: 10,
+        height: 20
+      });
     });
   });
 });

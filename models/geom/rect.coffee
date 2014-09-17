@@ -1,4 +1,5 @@
 Point = require './point'
+{isNumber, isString, isArray, isObject, isArguments} = require 'lodash'
 {floor, ceil} = Math
 
 
@@ -48,12 +49,38 @@ class Rect
 
 
   constructor: (x, y, width, height) ->
-    if x? and x.x? and x.y? and x.width? and x.height?
-      {x, y, width, height} = x
-    @x = x ? 0
-    @y = y ? 0
-    @width = width ? 0
-    @height = height ? 0
+    isElem = (elem) -> isNumber(elem) or isString(elem)
+    parse = (args) ->
+      switch args.length
+        when 0
+          []
+        when 1
+          arg = args[0]
+          if isArguments arg
+            parse arg
+          else if isArray arg
+            arg
+          else if (arg instanceof Rect) or isObject arg
+            [arg.x, arg.y, arg.width, arg.height]
+          else
+            throw new TypeError 'Rect constructor requires `Rect`, `Object` or `Array`'
+        when 2
+          new Point(args[0]).toArray().concat new Point(args[1]).toArray()
+        when 3
+          if !isElem(args[0])
+            new Point(args[0]).toArray().concat [args[1], args[2]]
+          else if !isElem(args[2])
+            [args[0], args[1]].concat new Point(args[2]).toArray()
+          else
+            throw new TypeError 'Rect constructor requires (origin: Point, width: Number|String, height: Number|String) or (x: Number|String, y: Number|String, size: Point)'
+        when 4
+          args
+        else
+          throw new TypeError 'Rect constructor requires 0 to 4 parameters'
+    elems = parse arguments
+    for i in [0...4]
+      elems[i] = if elems[i]? then parseFloat(elems[i]) else 0
+    [@x, @y, @width, @height] = elems
     @normalize()
 
   normalize: ->
