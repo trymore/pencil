@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - 0.10
 after_success:
-  - cat ./coverage/phantomjs/lcov.info && npm run coveralls
+  - npm run coveralls
