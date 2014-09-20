@@ -30,8 +30,8 @@ module.exports = (config) ->
 
     logLevel: 'LOG_DEBUG'
 
-    singleRun: false
-    autoWatch: true
+    singleRun: true
+    autoWatch: false
 
     browserify:
       files: [
