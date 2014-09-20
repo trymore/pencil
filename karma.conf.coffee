@@ -46,7 +46,7 @@ module.exports = (config) ->
 
     coverageReporter:
       reporters: [
-        type: 'lconv'
+        type: 'lcov'
         dir: 'coverage'
         subdir: subdir
       ,
