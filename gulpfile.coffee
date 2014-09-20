@@ -92,11 +92,9 @@ gulp.task 'browserify-test', ->
 gulp.task 'karma', ->
   gulp
     .src [
-      # 'node_modules/chai/chai.js',
       'node_modules/jquery/dist/jquery.min.js',
       'node_modules/lodash/dist/lodash.min.js',
-      'pencil.js',
-      'test/runner/runner.js'
+      'test/**/*.coffee'
     ]
     .pipe karma
       action: 'start'
