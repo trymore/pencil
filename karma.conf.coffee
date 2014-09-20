@@ -1,4 +1,6 @@
 istanbul = require 'browserify-istanbul'
+subdir = (browser) ->
+  browser.toLowerCase().split(/[ /-]/)[0]
 
 module.exports = (config) ->
   config.set
@@ -43,7 +45,10 @@ module.exports = (config) ->
       # noParse: ['jquery', 'lodash']
 
     coverageReporter:
-      type: 'lcovonly'
-      dir: 'coverage'
-      subdir: (browser) ->
-        browser.toLowerCase().split(/[ /-]/)[0]
+      reporters: [
+        type: 'lconv'
+        dir: 'coverage'
+        subdir: subdir
+      ,
+        type: 'text'
+      ]
