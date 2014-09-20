@@ -1,6 +1,5 @@
-chai.should()
-# factory = require '../models/iota'
-factory = pencil.models.iota
+# chai.should()
+factory = require '../models/iota'
 
 describe 'Iota', ->
   describe '.', ->

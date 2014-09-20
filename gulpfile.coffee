@@ -15,10 +15,10 @@ git = require 'gulp-git'
 karma = require 'gulp-karma'
 
 gulp.task 'watch', ->
-  gulp.watch [
-    'models/**'
-    'views/**'
-  ], [ 'exports' ]
+  # gulp.watch [
+  #   'models/**'
+  #   'views/**'
+  # ], [ 'exports' ]
   gulp.watch [
     'pencil.js'
     'test/runner/runner.js'
@@ -43,15 +43,15 @@ gulp.task 'exports', ->
           e[n] ?= {}
           e = e[n]
     code = CSON.stringifySync exports, null, 2
-    .replace /: "(.*?)"/g, ': require "./$1"'
+    .replace /: "(.*?)"/g, ': require "../$1"'
     .replace /[{}]/g, ''
-    writeFile './pencil.coffee', "module.exports = #{code}", ->
+    writeFile './test/pencil.coffee', "module.exports = #{code}", ->
       gulp.start 'browserify-lib'
 
 gulp.task 'browserify-lib', ->
   bundler = watchify browserify
     cache: {}, packageCache: {}
-    entries: ['./pencil.coffee']
+    entries: ['./test/pencil.coffee']
     extensions: ['.coffee']
     builtins: []
     standalone: 'pencil'
@@ -127,10 +127,13 @@ gulp.task 'publish', ->
       #       notify "Released #{version}"
 
 gulp.task 'default', [
-  'browserify-lib'
-  'browserify-test'
+  # 'exports'
+  # 'browserify-test'
+  'karma'
   'watch'
 ]
 
+# mkdir doc
 # git subtree pull --prefix doc origin gh-pages --squash
+# codo models views
 # git subtree push --prefix doc origin gh-pages --squash

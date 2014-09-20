@@ -47,7 +47,13 @@ class Rect
     rect.y -= rect.height / 2
     rect
 
-
+  ###
+  `Rect`のインスタンスを生成します。
+  @param [Number] x 範囲の起点となるx座標です。
+  @param [Number] y 範囲の起点となるy座標です。
+  @param [Number] width 範囲のx座標方向の大きさです。
+  @param [Number] height 範囲のx座標方向の大きさです。
+  ###
   constructor: (x, y, width, height) ->
     isElem = (elem) -> isNumber(elem) or isString(elem)
     parse = (args) ->

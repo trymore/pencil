@@ -1,5 +1,6 @@
-chai.should()
-{point: Point, rect: Rect} = pencil.models.geom
+# chai.should()
+Point = require '../models/geom/point'
+Rect = require '../models/geom/rect'
 {PI, sqrt} = Math
 
 
