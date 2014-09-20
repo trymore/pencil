@@ -20,8 +20,9 @@ gulp.task 'watch', ->
   #   'views/**'
   # ], [ 'exports' ]
   gulp.watch [
-    'pencil.js'
-    'test/runner/runner.js'
+    'views/**/*.coffee'
+    'models/**/*.coffee'
+    'test/**/*.coffee'
   ], [ 'karma' ]
 
 gulp.task 'exports', ->

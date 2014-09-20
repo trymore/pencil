@@ -12,8 +12,6 @@ module.exports = (config) ->
     files: [
       'node_modules/jquery/dist/jquery.min.js'
       'node_modules/lodash/dist/lodash.min.js'
-      # 'models/**/*.coffee'
-      # 'views/**/*.coffee'
       'test/**/*.coffee'
     ]
 
@@ -25,7 +23,6 @@ module.exports = (config) ->
 
     preprocessors:
       'test/**/*.coffee': ['browserify']
-      # "/**/*.browserify": "browserify"
 
     browsers: [
       'PhantomJS'
@@ -33,13 +30,11 @@ module.exports = (config) ->
 
     logLevel: 'LOG_DEBUG'
 
-    singleRun: true
-    autoWatch: false
+    singleRun: false
+    autoWatch: true
 
     browserify:
       files: [
-        # 'models/**/*.coffee'
-        # 'views/**/*.coffee'
         'test/**/*.coffee'
       ]
       extensions: ['.coffee']
@@ -48,9 +43,6 @@ module.exports = (config) ->
       # noParse: ['jquery', 'lodash']
 
     coverageReporter:
-      # instrumenter:
-      #   'models/**/*.coffee': 'istanbul'
-    # coverageReporter:
       type: 'lcovonly'
       dir: 'coverage'
       subdir: (browser) ->
