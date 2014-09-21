@@ -8,12 +8,13 @@ module.exports =
 class QueryString
 
   @stringify: (obj, sep = '&', eq = '=') ->
-    queries = for key, val of obj
+    queries = []
+    for key, val of obj
       if isArray val
         for v in val
-          "#{key}#{eq}#{encodeURIComponent v ? ''}"
+          queries.push "#{key}#{eq}#{encodeURIComponent v ? ''}"
       else
-        "#{key}#{eq}#{encodeURIComponent val ? ''}"
+        queries.push "#{key}#{eq}#{encodeURIComponent val ? ''}"
     queries.join sep
 
   @parse: (str, sep = '&', eq = '=', opts) ->
