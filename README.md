@@ -19,12 +19,8 @@ bower install jquery lodash pencil
 
 browserifyでビルドすることを前提としています。
 
-## APIドキュメント
 
-http://trymore.github.io/pencil/
-
-
-[travis-image]: http://img.shields.io/travis/joyent/node.svg?style=flat-square
+[travis-image]: http://img.shields.io/travis/trymore/pencil.svg?style=flat-square
 [travis-url]: http://travis-ci.org/trymore/pencil
 [coveralls-image]: https://img.shields.io/coveralls/trymore/pencil.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/trymore/pencil
