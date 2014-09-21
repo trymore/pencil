@@ -1,4 +1,6 @@
-# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![dependencies][dependencies-image]][dependencies-url] [![dev dependencies][dev-dependencies-image]][dev-dependencies-url] [![API Document][api-document-image]][api-document-url]
+# pencil
+
+[![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![dependencies][dependencies-image]][dependencies-url] [![dev dependencies][dev-dependencies-image]][dev-dependencies-url] [![API Document][api-document-image]][api-document-url]
 
 > jQueryプラグインでは**ありません**。
 
