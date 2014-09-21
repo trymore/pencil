@@ -34,7 +34,7 @@ module.exports = (config) ->
 
     singleRun: true
     autoWatch: false
-    captureTimeout: 120000
+    browserNoActivityTimeout: 120000
 
     browserify:
       files: [
