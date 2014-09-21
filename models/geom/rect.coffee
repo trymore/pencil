@@ -10,7 +10,10 @@ Point = require './point'
 module.exports =
 class Rect
 
-  @createWithCorner: (left, right, top, bottom) -> new Rect left, top, right - left, bottom - top
+  @createWithCorner: (leftTop, rightBottom) ->
+    {x: left, y: top} = new Point leftTop
+    {x: right, y: bottom} = new Point rightBottom
+    new Rect left, top, right - left, bottom - top
 
   @parseArguments: (args) ->
     switch args.length
@@ -96,6 +99,7 @@ class Rect
     if @height < 0
       @y += @height
       @height *= -1
+    return
 
   ###
   複製します。
@@ -113,7 +117,7 @@ class Rect
   getRightBottom: -> new Point @getRight(), @getBottom()
 
   containsPoint: (point) ->
-    {x, y} = Point.parseArguments arguments
+    {x, y} = new Point arguments
     @getLeft() <= x <= @getRight() and @getTop() <= y <= @getBottom()
 
   containsRect: (rect) ->
@@ -211,15 +215,7 @@ class Rect
     r
 
   ceil: ->
-    left = floor @getLeft()
-    right = ceil @getRight()
-    top = floor @getTop()
-    bottom = ceil @getBottom()
-    Rect.createWithCorner left, right, top, bottom
+    Rect.createWithCorner @getLeftTop().floor(), @getRightBottom().ceil()
 
   floor: ->
-    left = ceil @getLeft()
-    right = floor @getRight()
-    top = ceil @getTop()
-    bottom = floor @getBottom()
-    Rect.createWithCorner left, right, top, bottom
+    Rect.createWithCorner @getLeftTop().ceil(), @getRightBottom().floor()
