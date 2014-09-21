@@ -1,4 +1,4 @@
-# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![dependencies][dependencies-image]][dependencies-url] [![dev dependencies][dev-dependencies-image]][dev-dependencies-url]
+# pencil [![Build status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![dependencies][dependencies-image]][dependencies-url] [![dev dependencies][dev-dependencies-image]][dev-dependencies-url] [![API Document][api-document-image]][api-document-url]
 
 > jQueryプラグインでは**ありません**。
 
@@ -24,11 +24,13 @@ browserifyでビルドすることを前提としています。
 http://trymore.github.io/pencil/
 
 
-[travis-image]: https://secure.travis-ci.org/trymore/pencil.svg?branch=master
+[travis-image]: http://img.shields.io/travis/joyent/node.svg?style=flat-square
 [travis-url]: http://travis-ci.org/trymore/pencil
-[coveralls-image]: https://img.shields.io/coveralls/trymore/pencil.svg
+[coveralls-image]: https://img.shields.io/coveralls/trymore/pencil.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/trymore/pencil
-[dependencies-image]: https://david-dm.org/trymore/pencil.png
+[dependencies-image]: http://img.shields.io/david/trymore/pencil.svg?style=flat-square
 [dependencies-url]: https://david-dm.org/trymore/pencil
-[dev-dependencies-image]: https://david-dm.org/trymore/pencil/dev-status.png
+[dev-dependencies-image]: http://img.shields.io/david/dev/trymore/pencil.svg?style=flat-square
 [dev-dependencies-url]: https://david-dm.org/trymore/pencil#info=devDependencies
+[api-document-url]: http://coffeedoc.info/github/trymore/pencil/
+[api-document-image]: http://img.shields.io/badge/API-Documentation-ff69b4.svg?style=flat-square
