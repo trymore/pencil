@@ -1,4 +1,4 @@
-{ isArray } = require 'lodash'
+{isArray, assign} = require 'lodash'
 
 
 ###
@@ -17,12 +17,13 @@ class QueryString
         queries.push "#{key}#{eq}#{encodeURIComponent val ? ''}"
     queries.join sep
 
-  @parse: (str, sep = '&', eq = '=', opts) ->
-    opts = assign opts, maxKeys: 1000
+  @parse: (str, sep = '&', eq = '=', opts = {}) ->
+    opts = assign maxKeys: 1000, opts
     {maxKeys} = opts
     obj = {}
     for kv, i in str.split sep when maxKeys is 0 or i < maxKeys
       [key, val] = kv.split eq
+      val = decodeURIComponent val
       if obj[key]?
         if isArray obj[key]
           obj[key].push val
