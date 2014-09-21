@@ -30,7 +30,7 @@ module.exports = (config) ->
       'PhantomJS'
     ]
 
-    logLevel: 'LOG_DEBUG'
+    # logLevel: 'LOG_DEBUG'
 
     singleRun: true
     autoWatch: false
@@ -41,14 +41,16 @@ module.exports = (config) ->
       ]
       extensions: ['.coffee']
       transform: ['coffeeify', istanbul]
-      debug: true
+      # debug: true
       # noParse: ['jquery', 'lodash']
 
     coverageReporter:
       reporters: [
+      #   type: 'text'
+      #   dir: 'coverage'
+      #   subdir: subdir
+      # ,
         type: 'lcov'
         dir: 'coverage'
         subdir: subdir
-      ,
-        type: 'text'
       ]
