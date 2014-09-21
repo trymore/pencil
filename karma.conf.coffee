@@ -30,7 +30,7 @@ module.exports = (config) ->
       'PhantomJS'
     ]
 
-    # logLevel: 'LOG_DEBUG'
+    logLevel: 'LOG_DEBUG'
 
     singleRun: true
     autoWatch: false
