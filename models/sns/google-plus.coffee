@@ -1,11 +1,10 @@
-{ stringify } = require '../query-string'
-
+{stringify} = require '../query-string'
 
 ###
 Google+の提供するサービスを利用するためのクラスです。
 ###
 module.exports =
-class Twitter
+class GooglePlus
 
   ###
   ウェブサイトをシェアする為のURLを生成します。
