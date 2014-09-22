@@ -1,5 +1,5 @@
 $ = require 'jquery'
-require('../models/backgrouns-position').jquerize $
+require('../models/background-position').jquerize $
 View = require './view'
 iota = require('../models/iota')()
 { Deferred } = require 'jquery'
