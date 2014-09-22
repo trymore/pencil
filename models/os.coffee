@@ -2,42 +2,57 @@
 OS parses user agent and determines the OS type and version.
 ###
 
-UA = window.navigator.userAgent.toLowerCase()
 R_I_PHONE = /\((iphone).*?os ([\d_]+).*?\)/
 R_I_POD = /\((ipod).*?os ([\d_]+).*?\)/
 R_I_PAD = /\((ipad).*?os ([\d_]+).*?\)/
 R_ANDROID = /\(.*?(android) ([\d\.]+).*?\)/
 R_MAC = /\(.*?(mac) os\s+([^)]+).*([\d_\.]+)?.*?\)/
-R_LINUX = /\(.*?(linux) (\w+)v\)/
-R_WINDOWS = /\(.*?(windows) (\w+).*?\)/
+R_LINUX = /\(.*?(linux).*\)/
+R_WINDOWS = /\(.*?(windows).*?([\d_\.]+).*?\)/
 
-[ {}, name, version, exactVersion ] = R_I_PHONE.exec(UA) or
-                                      R_I_POD.exec(UA) or
-                                      R_I_PAD.exec(UA) or
-                                      R_ANDROID.exec(UA) or
-                                      R_MAC.exec(UA) or
-                                      R_WINDOWS.exec(UA) or
-                                      R_LINUX.exec(UA) or
-                                      []
+class OS
 
-os = {}
-if name?
-  os[name] = true
-  if name is 'mac' and exactVersion?
-    version = exactVersion
-  os.version = version.split('_').join('.')
-if os.iphone or os.ipod or os.ipad
-  os.ios = true
-if os.ios or os.android
-  os.mobile = true
-if os.version?
-  number = if os.version is 'x'
-    10
-  else
-    parseInt os.version, 10
-  os.versionNumber = if isNaN number
-    -1
-  else
-    number
+  @create: (ua) ->
+    @cache ?= {}
+    if @cache[ua]?
+      @cache[ua]
+    else
+      @cache[ua] = new OS ua
 
-module.exports = os
+  constructor: (ua = window.navigator.userAgent) ->
+    ua = ua.toLowerCase()
+
+    [ {}, name, version, exactVersion ] =
+      R_I_PHONE.exec(ua) or
+      R_I_POD.exec(ua) or
+      R_I_PAD.exec(ua) or
+      R_ANDROID.exec(ua) or
+      R_MAC.exec(ua) or
+      R_WINDOWS.exec(ua) or
+      R_LINUX.exec(ua) or
+      []
+
+    if name?
+      @[name] = true
+      if name is 'mac' and exactVersion?
+        version = exactVersion
+      @version = version.split('_').join('.')
+    if @iphone or @ipod or @ipad
+      @ios = true
+    if @ios or @android
+      @mobile = true
+    if @version?
+      number = if @version is 'x'
+        10
+      else
+        parseInt @version, 10
+      @versionNumber = if isNaN number
+        -1
+      else
+        number
+
+  jquerize: ->
+
+module.exports = (ua) ->
+  OS.create ua
+
