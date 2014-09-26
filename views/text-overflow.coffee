@@ -43,12 +43,15 @@ class TextOverflow extends View
     # 文字数を1文字から増やしながら要素の高さを取得します。
     # 高さが増えると行数カウンタをインクリメントします。
     # 行数カウンタが指定行数を超えるまで試行します。
-    while ++i < len && rows <= @rows
+    while ++i <= len && rows <= @rows
       @text @defaultText.substr 0, i
       h = @height()
       if !height? or h > height
         height = h
         rows++
+
+    # 指定行以下なら何もしない
+    return if rows <= @rows
 
     # 末尾に代替文字を付け文字数を減らしながら要素の高さを取得します。
     # 高さが減ると行数カウンタをデクリメントします。
