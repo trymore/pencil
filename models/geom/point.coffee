@@ -135,11 +135,11 @@ class Point
 
   ###
   各要素に乗算します。
-  @param [Number] n 乗算する数です。
+  @param [Number] x x要素に乗算する数です。
+  @param [Number] y y要素に乗算する数です。指定しない場合はxの値となります。
   @return [Point] 計算結果の新しい`Point`です。
   ###
-  multiply: (n) ->
-    new Point @x * n, @y * n
+  multiply: (x, y = x) -> new Point @x * x, @y * y
 
   ###
   Point#multiply のショートハンドです。
@@ -149,10 +149,11 @@ class Point
 
   ###
   各要素を除算します。
-  @param [Number] n 除算する数です。
+  @param [Number] x x要素に除算する数です。
+  @param [Number] y y要素に除算する数です。指定しない場合はxの値となります。
   @return [Point] 除算結果の新しい`Point`です。
   ###
-  devide: (n) -> new Point @x / n, @y / n
+  devide: (x, y = x) -> new Point @x / x, @y / y
 
   ###
   Point#devide のショートハンドです。
