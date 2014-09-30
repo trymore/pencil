@@ -95,6 +95,8 @@ class Point
   ###
   toArray: -> [@x, @y]
 
+  toPosition: -> {left: @x, top: @y}
+
   ###
   原点からの距離を求めます。
   @return [Number] 距離です。
