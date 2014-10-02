@@ -44,6 +44,7 @@
     "watchify": "^1.0.2"
   },
   "scripts": {
+    "develop": "./node_modules/karma/bin/karma start --auto-watch --no-single-run",
     "test": "./node_modules/karma/bin/karma start",
     "coveralls": "cat ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "codo": "codo models views"
