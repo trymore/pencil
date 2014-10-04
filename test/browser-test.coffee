@@ -1,23 +1,23 @@
-browser = require '../models/browser'
+Browser = require '../models/browser'
 
 describe 'Browser', ->
 
-  describe '.safari', ->
+  it 'should can create without new keyword', ->
+    {version, versionNumber} = Browser()
+    version.should.a 'string'
+    versionNumber.should.a 'number'
 
-    it 'should be true', ->
-      browser.safari.should.be.true
+  it 'should can create without parameter', ->
+    {version, versionNumber} = new Browser
+    version.should.a 'string'
+    versionNumber.should.a 'number'
 
-  describe '.webkit', ->
+  it 'should determine Chrome', ->
+    {chrome, webkit, version, versionNumber} = new Browser "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36"
+    chrome.should.be.true
+    webkit.should.be.true
+    version.should.equal '37.0.2062.124'
+    versionNumber.should.equal 37
 
-    it 'should be true', ->
-      browser.webkit.should.be.true
+  # it 'should determine Safari', ->
 
-  describe '.version', ->
-
-    it 'should be `String`', ->
-      browser.version.should.be.a 'string'
-
-  describe '.versionNumber', ->
-
-    it 'should be `Number`', ->
-      browser.versionNumber.should.be.a 'number'
