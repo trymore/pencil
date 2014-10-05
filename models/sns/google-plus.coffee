@@ -1,5 +1,7 @@
 {stringify} = require '../query-string'
 
+UA = window.navigator.userAgent
+
 ###
 Google+の提供するサービスを利用するためのクラスです。
 ###
@@ -21,7 +23,7 @@ class GooglePlus
   @fetchShareCount: (url, callback) ->
     $
     .ajax
-      url: "http://query.yahooapis.com/v1/public/yql?env=http://datatables.org/alltables.env&q=#{encodeURIComponent "SELECT content FROM data.headers WHERE url='https://plusone.google.com/_/+1/fastbutton?hl=ja&url=#{url}' and ua='#{ua}'"}"
+      url: "http://query.yahooapis.com/v1/public/yql?env=http://datatables.org/alltables.env&q=#{encodeURIComponent "SELECT content FROM data.headers WHERE url='https://plusone.google.com/_/+1/fastbutton?hl=ja&url=#{url}' and ua='#{UA}'"}"
       type: 'get'
       cache: false
       dataType: 'xml'
