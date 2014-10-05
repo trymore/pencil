@@ -13,4 +13,3 @@ describe 'Facebook', ->
     it 'should fetch shared count', ->
       fetchShareCount 'http://example.com', (err, shares) ->
         console.log err, shares
-
