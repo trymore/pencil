@@ -1,16 +1,17 @@
-###
-Anchor is a wrapper of <a href="#*">.
-###
-
 View = require './view'
 $ = require 'jquery'
 
 
+###
+アンカーをスムーススクロールするViewです。
+###
 module.exports =
 class Anchor extends View
 
+  selector: 'a[href^=#]'
+
   ###
-  Creates a Anchor instance.
+  アンカーインスタンスを生成します。
   ###
   constructor: ->
     super
@@ -18,7 +19,8 @@ class Anchor extends View
     @on 'click', @onClick
 
   ###
-  Click event
+  @private
+  クリック時のコールバックです。
   ###
   onClick: (e) =>
     href = @attr 'href'
