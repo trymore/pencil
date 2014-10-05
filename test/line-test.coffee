@@ -1,6 +1,6 @@
 {createChatUrl} = require '../models/sns/line'
 
-describe 'GooglePlus', ->
+describe 'Line', ->
 
   describe '.createChatUrl()', ->
 

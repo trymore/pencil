@@ -1,5 +1,5 @@
 { stringify } = require '../query-string'
-{ mobile } = require '../../models/os'
+{ mobile } = require('../../models/os')()
 
 ###
 Lineの提供するサービスを利用するためのクラスです。
