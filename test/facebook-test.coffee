@@ -10,6 +10,6 @@ describe 'Facebook', ->
 
   describe '.fetchShareCount()', ->
 
-    it 'should fetch shared count', ->
+    it 'should fetch shared count', (done) ->
       fetchShareCount 'http://example.com', (err, shares) ->
-        console.log err, shares
+        done()
