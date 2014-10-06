@@ -33,13 +33,13 @@ class Sprite extends View
   ###
   最終フレームの終了時に発火するイベントです。
   ###
-  @EVENT_LAST_FRAME: 'sprite.lastFrame'
+  @EVENT_LAST_FRAME: 'sprite.lastframe'
 
   ###
   指定のリピート回数が完了した時に発火するイベントです。
   永久にリピートする場合は発火しません。
   ###
-  @EVENT_COMPLETE_REPEAT: 'sprite.completeRepeat'
+  @EVENT_COMPLETE_REPEAT: 'sprite.complete'
 
   ###
   スプライトインスタンスを生成します。
