@@ -37,7 +37,7 @@ class OS
 
     if name?
       @[name] = true
-      @version = version.split('_').join('.')
+      @version = version?.split('_').join('.') or ''
     if @iphone or @ipod or @ipad
       @ios = true
     if @ios or @android
