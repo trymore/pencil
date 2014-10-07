@@ -8,8 +8,6 @@ $ = require 'jquery'
 module.exports =
 class Anchor extends View
 
-  selector: 'a[href^=#]'
-
   ###
   アンカーインスタンスを生成します。
   ###
@@ -34,7 +32,7 @@ class Anchor extends View
     e.preventDefault()
 
     $ 'html,body'
-    .stop true, false
-    .animate
-      scrollTop: top
-    , 600 #, 'easeOutQuad'
+      .stop true, false
+      .animate
+        scrollTop: top
+      , 600 #, 'easeOutQuad'
