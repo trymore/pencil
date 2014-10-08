@@ -1,7 +1,7 @@
 View = require './view'
 
 ###
-行数オプションを付与したCSS3のtext-overflowエミュレーションです。
+CSS3 の text-overflow に行数オプションを付与したエミュレーション実装です。
 ###
 module.exports =
 class TextOverflow extends View
@@ -25,7 +25,14 @@ class TextOverflow extends View
     for instance in instances
       instance.update()
 
-  constructor: ({}, @rows, @replacer = '...') ->
+  ###
+  TextOverflow インスタンスを生成します。
+  TextOverflow#update() をコールします。
+  @param element [String|jQueryObject|HTMLElement] 要素です
+  @param rows [Integer] 置換処理を行う下限の行数です。この行数に収まるように置換処理が行われます。
+  @param replacer [String] 置換文字列です。
+  ###
+  constructor: ({}, @rows = 1, @replacer = '...') ->
     super
     @defaultText = @text()
     @constructor.register @
@@ -35,6 +42,10 @@ class TextOverflow extends View
     @constructor.unregister @
     super
 
+  ###
+  指定列数に収まっている場合、元の文字列を全て表示します。
+  収まっていない場合、収まるように余分な文字列を置換文字列に置き換えます。
+  ###
   update: ->
     i = 0
     len = @defaultText.length
@@ -50,7 +61,7 @@ class TextOverflow extends View
         height = h
         rows++
 
-    # 指定行以下なら何もしない
+    # 指定行以下なら何もしません。
     return if rows <= @rows
 
     # 末尾に代替文字を付け文字数を減らしながら要素の高さを取得します。
