@@ -1,29 +1,11 @@
 View = require './view'
 
+
 ###
 CSS3 の text-overflow に行数オプションを付与したエミュレーション実装です。
 ###
 module.exports =
 class TextOverflow extends View
-
-  [instances] = []
-
-  @register: (textOverflow) ->
-    unless instances?
-      instances = []
-      @$window.on 'resize', @onWindowResized
-    instances.push textOverflow
-
-  @unregister: (textOverflow) ->
-    return unless @instances
-    @instances.splice instances.indexOf(textOverflow), 1
-    if instances.length is 0
-      instances = null
-      @$window.off 'resize', @onWindowResized
-
-  @onWindowResized: ->
-    for instance in instances
-      instance.update()
 
   ###
   TextOverflow インスタンスを生成します。
@@ -35,12 +17,7 @@ class TextOverflow extends View
   constructor: ({}, @rows = 1, @replacer = '...') ->
     super
     @defaultText = @text()
-    @constructor.register @
     @update()
-
-  remove: ->
-    @constructor.unregister @
-    super
 
   ###
   指定列数に収まっている場合、元の文字列を全て表示します。
