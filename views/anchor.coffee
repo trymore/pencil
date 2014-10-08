@@ -1,5 +1,6 @@
 View = require './view'
 $ = require 'jquery'
+require('../models/easing').jquerize $
 
 
 ###
@@ -14,13 +15,13 @@ class Anchor extends View
   constructor: ->
     super
 
-    @on 'click', @onClick
+    @on 'click', @onClicked
 
   ###
   @private
   クリック時のコールバックです。
   ###
-  onClick: (e) =>
+  onClicked: (e) =>
     href = @attr 'href'
     if href is '#'
       top = 0
@@ -35,4 +36,8 @@ class Anchor extends View
       .stop true, false
       .animate
         scrollTop: top
-      , 600 #, 'easeOutQuad'
+      ,
+        duration: 600
+        easing: 'easeOutQuad'
+        complete: =>
+          @trigger 'anchor.animated'
