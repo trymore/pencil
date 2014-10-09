@@ -1,4 +1,4 @@
-{createChatUrl} = require '../models/sns/line'
+{createChatUrl} = require '../../../models/sns/line'
 
 describe 'Line', ->
 

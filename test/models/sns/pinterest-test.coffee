@@ -1,4 +1,4 @@
-{createPinItUrl} = require '../models/sns/pinterest'
+{createPinItUrl} = require '../../../models/sns/pinterest'
 
 describe 'Pinterest', ->
 

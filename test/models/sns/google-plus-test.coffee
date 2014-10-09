@@ -1,4 +1,4 @@
-{createShareUrl, fetchShareCount} = require '../models/sns/google-plus'
+{createShareUrl, fetchShareCount} = require '../../../models/sns/google-plus'
 
 describe 'GooglePlus', ->
 

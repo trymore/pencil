@@ -1,4 +1,4 @@
-{createShareUrl, fetchShareCount} = require '../models/sns/facebook'
+{createShareUrl, fetchShareCount} = require '../../../models/sns/facebook'
 
 describe 'Facebook', ->
 

@@ -1,4 +1,4 @@
-{createTweetUrl} = require '../models/sns/twitter'
+{createTweetUrl} = require '../../../models/sns/twitter'
 
 describe 'Twitter', ->
 
