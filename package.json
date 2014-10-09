@@ -8,9 +8,9 @@
     "test": "test"
   },
   "devDependencies": {
-    "browserify": "^5.11.1",
+    "browserify": "^6.0.3",
     "browserify-istanbul": "^0.1.2",
-    "browserify-shim": "^3.7.0",
+    "browserify-shim": "^3.8.0",
     "chai": "^1.9.1",
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
@@ -26,7 +26,7 @@
     "istanbul": "git://github.com/minodisk/istanbul.git#coffee",
     "jquery": "^2.1.1",
     "karma": "^0.12.23",
-    "karma-bro": "^0.7.0",
+    "karma-bro": "^0.8.0",
     "karma-chai": "^0.1.0",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-coverage": "^0.2.6",
@@ -40,8 +40,8 @@
     "lodash": "^2.4.1",
     "mocha": "^1.21.4",
     "phantomjs": "^1.9.7-15",
-    "vinyl-source-stream": "^0.1.1",
-    "watchify": "^1.0.2"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.0.0"
   },
   "scripts": {
     "develop": "./node_modules/karma/bin/karma start --auto-watch --no-single-run",

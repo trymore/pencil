@@ -30,5 +30,5 @@ browserifyでビルドすることを前提としています。
 [dependencies-url]: https://david-dm.org/trymore/pencil
 [dev-dependencies-image]: http://img.shields.io/david/dev/trymore/pencil.svg?style=flat-square
 [dev-dependencies-url]: https://david-dm.org/trymore/pencil#info=devDependencies
-[api-document-url]: http://coffeedoc.info/github/trymore/pencil/
+[api-document-url]: http://coffeedoc.info/github/trymore/pencil/master/README.md.html
 [api-document-image]: http://img.shields.io/badge/API-Documentation-ff69b4.svg?style=flat-square
