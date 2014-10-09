@@ -10,10 +10,11 @@ class GooglePlus
 
   ###
   ウェブサイトをシェアする為のURLを生成します。
-  @param [String] url ウェブサイトのURLです。
+  @param [Ojbect] options オプションです。
+  @param options [String] url ウェブサイトのURLです。
   @return [String] シェアする為のURLです。
   ###
-  @createShareUrl: (url) -> "https://plus.google.com/share?#{stringify {url}}"
+  @createShareUrl: ({url}) -> "https://plus.google.com/share?#{stringify {url}}"
 
   ###
   ウェブサイトのシェア数を取得します。

@@ -8,10 +8,11 @@ module.exports =
 
   ###
   テキストをチャットする為のURLを生成します。
-  @param [String] text テキストです。
+  @param [Ojbect] options オプションです。
+  @param options [String] text テキストです。
   @return [String] チャットする為のURLです。
   ###
-  createChatUrl: (text) ->
+  createChatUrl: ({text}) ->
     text = encodeURIComponent text
     if mobile
       "line://msg/text/#{text}"

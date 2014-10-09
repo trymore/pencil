@@ -9,10 +9,11 @@ class Facebook
 
   ###
   ウェブサイトをシェアする為のURLを生成します。
-  @param [String] url ウェブサイトのURLです。
+  @param [Ojbect] options
+  @param options [String] url ウェブサイトのURLです。
   @return [String] シェアする為のURLです。
   ###
-  @createShareUrl: (url) -> "http://www.facebook.com/share.php?#{stringify u: url}"
+  @createShareUrl: ({url}) -> "http://www.facebook.com/share.php?#{stringify u: url}"
 
   ###
   ウェブサイトのシェア数を取得します。
