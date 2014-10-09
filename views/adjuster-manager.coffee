@@ -8,7 +8,7 @@ $ = require 'jquery'
 ボックスの幅や高さを揃えるマネージャです。
 揃える対象をマークアップ形態に関わらずグルーピングすることができます。
 
-@example
+@example fooグループとbarグループでそれぞれ高さを揃えるマークアップです。
     ul
       li.js-adjuster(data-adjuster-group="foo") //- この要素と
       li.js-adjuster(data-adjuster-group="foo") //- この要素と
