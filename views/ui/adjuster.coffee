@@ -1,5 +1,5 @@
-View = require './view'
-iota = require('../models/iota')()
+View = require '../view'
+iota = require('../../models/iota')()
 $ = require 'jquery'
 {max} = Math
 
@@ -19,7 +19,6 @@ $ = require 'jquery'
       li.js-adjuster(data-adjuster-group="bar") //- この要素と
       li.js-adjuster(data-adjuster-group="bar") //- この要素の高さが揃います。
 ###
-module.exports =
 class AdjusterManager extends View
 
   @DIRECTION_NONE: iota()
@@ -68,3 +67,6 @@ class AdjusterManager extends View
       $group.each ({}, el) ->
         $el = $ el
         $el.height height
+
+
+module.exports = {AdjusterManager}
