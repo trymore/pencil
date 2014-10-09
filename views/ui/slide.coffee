@@ -1,22 +1,33 @@
 View = require '../view'
 $ = require 'jquery'
+{clone, assign} = require 'lodash'
 Point = require '../../models/geom/point'
 require('../../models/easing').jquerize $
+{parse} = require '../../models/query-string'
 
 
 module.exports =
 class Slide extends View
 
-  selectorViewport   : '.js-slide-viewport'
-  selectorContent    : '.js-slide-content'
-  selectorPrevButton : '.js-slide-prev-button'
-  selectorNextButton : '.js-slide-next-button'
-  selectorDotNav     : '.js-slide-dot-nav'
-
-  classDotNavSelected: 'is-selected'
+  selectorViewport    : '.js-slide-viewport'
+  selectorContent     : '.js-slide-content'
+  selectorPrevButton  : '.js-slide-prev-button'
+  selectorNextButton  : '.js-slide-next-button'
+  selectorDotNav      : '.js-slide-dot-nav'
+  classDotNavSelected : 'is-selected'
+  attrOptions         : 'data-slide'
+  defaultOptions:
+    autoplay: false
+    autoplayInterval: 8000
+    duration: 1000
+    easing: 'easeOutCubic'
 
   constructor: ->
     super
+
+    optionsStr = @attr @attrOptions
+    options = parse optionsStr, null, null, parseType: true
+    @options = assign clone(@defaultOptions), options
 
     @$viewport = @$ @selectorViewport
       .css
@@ -44,7 +55,9 @@ class Slide extends View
     @setupContentItems()
     @setupContent length
     @setupDotNav length
-    @moveTo 0
+    @updateTo 0
+
+    @startAutoplay()
 
   setupContentItems: ->
 
@@ -75,6 +88,9 @@ class Slide extends View
   updateTo: (index) ->
     item = @$contentItems.eq index
     point = Point.createWithPosition item.position()
+
+    @currentIndex = index
+
     @$content
       .stop true, false
       .css left: -point.x
@@ -86,20 +102,30 @@ class Slide extends View
 
     currentItem = @$contentItems.eq index
     point = Point.createWithPosition currentItem.position()
+
+    @updateDotNav()
+    @stopAutoplay()
     @$content
       .stop true, false
       .animate
         left: -point.x
       ,
-        duration: 800
-        easing: 'easeOutQuad'
-        complete: =>
-          @onMoveToComplete()
+        duration: @options.duration
+        easing: @options.easing
+        complete: @onMoveToComplete
 
-    @updateDotNav()
-
-  onMoveToComplete: ->
+  onMoveToComplete: => @startAutoplay()
 
   updateDotNav: ->
     @$dotNav.children().removeClass @classDotNavSelected
       .eq(@currentIndex).addClass @classDotNavSelected
+
+  stopAutoplay: ->
+    clearTimeout @autoplayTimeoutId
+
+  startAutoplay: ->
+    return unless @options.autoplay
+    @stopAutoplay()
+    @autoplayTimeoutId = setTimeout =>
+      @next()
+    , @options.autoplayInterval

@@ -22,6 +22,17 @@ class SlideRepeat extends Slide
     index %= @contentItemsLength
     index
 
+  updateTo: (index) ->
+    $currentItem = @$content.children().eq @contentItemsLength + index
+    to = Point.createWithPosition $currentItem.position()
+
+    @currentIndex = index
+
+    @$content
+      .stop true, false
+      .css
+        left: to.mul(-1).x
+
   moveTo: (index) ->
     return if index is @currentIndex
 
@@ -34,6 +45,8 @@ class SlideRepeat extends Slide
     current = Point.createWithPosition(@$content.position()).mul -1
     from = @verifyPoint current, to, delta
 
+    @updateDotNav()
+    @stopAutoplay()
     @$content
       .stop true, false
       .css
@@ -41,13 +54,9 @@ class SlideRepeat extends Slide
       .animate
         left: to.mul(-1).x
       ,
-        duration: 800
-        easing: 'easeOutQuad'
-
-    @updateDotNav()
-
-  onMoveToComplete: ->
-    @updateTo @currentIndex
+        duration: @options.duration
+        easing: @options.easing
+        complete: @onMoveToComplete
 
   verifyPoint: (current, to, delta) ->
     current = current.clone()
