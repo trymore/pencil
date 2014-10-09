@@ -26,8 +26,11 @@ class Slide extends View
     super
 
     optionsStr = @attr @attrOptions
-    options = parse optionsStr, null, null, parseType: true
-    @options = assign clone(@defaultOptions), options
+    if optionsStr?
+      options = parse optionsStr, null, null, parseType: true
+      @options = assign clone(@defaultOptions), options
+    else
+      @options = clone @defaultOptions
 
     @$viewport = @$ @selectorViewport
       .css
@@ -90,7 +93,7 @@ class Slide extends View
     point = Point.createWithPosition item.position()
 
     @currentIndex = index
-
+    @updateDotNav()
     @$content
       .stop true, false
       .css left: -point.x

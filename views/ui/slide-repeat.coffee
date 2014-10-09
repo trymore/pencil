@@ -27,7 +27,7 @@ class SlideRepeat extends Slide
     to = Point.createWithPosition $currentItem.position()
 
     @currentIndex = index
-
+    @updateDotNav()
     @$content
       .stop true, false
       .css
