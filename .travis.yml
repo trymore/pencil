@@ -1,5 +1,12 @@
 language: node_js
 node_js:
   - 0.10
+env:
+  - secure: gbD6PSs5eBbZU0jcQtOTkcgAFukl3+CPl8LggTGK1oNETAn85VYprSVBwhGIk9ruyQJpInBCulAcsIyi9cnFQDS6KadvHNnV28cu2Nfoqiiiac+zlXzmkMuguwsjfv4Qwxu4bqa3piyn4nQuafONoDUUWgAmOa3NqNfSVpBknaw=
 after_success:
   - npm run coveralls
+  - npm run codo
+  - cd doc
+  - git add -A
+  - git commit -m 'Update'
+  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/trymore/pencil.git gh-pages 2> /dev/null'
