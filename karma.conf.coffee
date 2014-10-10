@@ -32,8 +32,8 @@ module.exports = (config) ->
 
     logLevel: 'LOG_DEBUG'
 
-    singleRun: true
-    autoWatch: false
+    singleRun: false
+    autoWatch: true
     browserNoActivityTimeout: 120000
 
     browserify:
