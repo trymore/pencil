@@ -1,7 +1,7 @@
 module.exports =
 
   jquerize: ($) ->
-    return if $.jquerized?['background-size']
+    return if $.jquerized?['background-position']
 
     replacer =
       left: '0px'
@@ -26,4 +26,4 @@ module.exports =
           $.style elem, prop, now
 
     $.jquerized ?= {}
-    $.jquerized['background-size'] = true
+    $.jquerized['background-position'] = true
