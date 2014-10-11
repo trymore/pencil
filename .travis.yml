@@ -12,7 +12,9 @@ after_success:
   - npm run coveralls
   - git clone https://github.com/trymore/pencil.git doc
   - cd doc
-  - git checkout -b gh-pages
+  - pwd
+  - ll
+  - git checkout gh-pages
   - cd ..
   - npm run codo
   - cd doc
