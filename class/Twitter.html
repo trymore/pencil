@@ -30,157 +30,87 @@
       <table class='box'>
         <tr>
           <td>Defined in:</td>
-          <td>models&#47;sns&#47;twitter.coffee</td>
+          <td>views&#47;ui&#47;twitter.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../class/View.html'>View</a>
+          </td>
         </tr>
       </table>
-      <h2>Overview</h2>
-      <div class='docstring'>
-  <p>Twitterの提供するサービスを利用するためのクラスです。</p>
-</div>
-<div class='tags'>
-</div>
-      <h2>Class Method Summary</h2>
-      <ul class='summary'>
-  <li>
-    <span class='signature'>
-      <a href='#createTweetUrl-static'>
-        .
-(String)
-<b>createTweetUrl</b><span>({text, url, hashtags})</span>
-      </a>
-    </span>
-    <span class='desc'>
-      ウェブサイトをツイートする為のURLを生成します。 
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#fetchTweetCount-static'>
-        .
-(void)
-<b>fetchTweetCount</b><span>(url, callback)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      ウェブサイトのツイート数を取得します。 
-    </span>
-  </li>
-</ul>
-      <h2>Class Method Details</h2>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='attrText-variable'>
+    attrText
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;data-twitter-text&#39;</code></pre>
+    
+  </dd>
+  <dt id='attrUrl-variable'>
+    attrUrl
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;data-twitter-url&#39;</code></pre>
+    
+  </dd>
+  <dt id='attrHashTags-variable'>
+    attrHashTags
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;data-twitter-hashtags&#39;</code></pre>
+    
+  </dd>
+  <dt id='attrDest-variable'>
+    attrDest
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>&#39;href&#39;</code></pre>
+    
+  </dd>
+</dl>
+      <h3 class='inherited'>
+        Variable inherited from
+        <a href='../class/View.html'>View</a>
+      </h3>
+      <p class='inherited'>
+        <a href='../class/View.html#$window-variable'>$window</a>
+        <a href='../class/View.html#$document-variable'>$document</a>
+        <a href='../class/View.html#template-variable'>template</a>
+        <a href='../class/View.html#selector-variable'>selector</a>
+      </p>
+      <h2>
+        <small>Inherited Method Summary</small>
+        <h3 class='inherited'>
+          Methods inherited from
+          <a href='../class/View.html'>View</a>
+        </h3>
+        <p class='inherited'>
+          <a href='../class/View.html#$-dynamic'>#$</a>
+          <a href='../class/View.html#pushStack-dynamic'>#pushStack</a>
+          <a href='../class/View.html#end-dynamic'>#end</a>
+        </p>
+      </h2>
+      <h2>Constructor Details</h2>
       <div class='methods'>
   <div class='method_details'>
-    <p class='signature' id='createTweetUrl-static'>
-      .
-(String)
-<b>createTweetUrl</b><span>({text, url, hashtags})</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>ウェブサイトをツイートする為のURLを生成します。</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>options</span>
-      <span class='type'>
-        (
-          <tt>Object</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>オプションです。 </span>
-    </li>
-  </ul>
-  <h3>
-    Options Hash:
-    (options):
-  </h3>
-  <ul class='options'>
-    <li>
-      <span class='name'>text</span>
-      <span class='type'>
-        (
-          <tt>String</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>説明文です。 </span>
-    </li>
-    <li>
-      <span class='name'>url</span>
-      <span class='type'>
-        (
-          <tt>String</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>ウェブサイトのURLです。 </span>
-    </li>
-    <li>
-      <span class='name'>hashtags</span>
-      <span class='type'>
-        (
-          <tt>String</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>ハッシュタグです。 </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt>String</tt>
-      )
-      &mdash;
-      <span class='desc'>ツイートする為のURLです。 </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='fetchTweetCount-static'>
-      .
+    <p class='signature' id='constructor-dynamic'>
+      #
 (void)
-<b>fetchTweetCount</b><span>(url, callback)</span>
+<b>constructor</b><span>()</span>
       <br>
     </p>
-    <div class='docstring'>
-  <p>ウェブサイトのツイート数を取得します。</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>url</span>
-      <span class='type'>
-        (
-          <tt>String</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>ウェブサイトのURLです。 </span>
-    </li>
-    <li>
-      <span class='name'>callback</span>
-      <span class='type'>
-        (
-          <tt>Function</tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>コールバックです。 </span>
-    </li>
-  </ul>
-</div>
+    
   </div>
 </div>
     </div>
     <div id='footer'>
-  September 09, 14 17:27:15 by
+  October 11, 14 10:20:42 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

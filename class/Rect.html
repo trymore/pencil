@@ -47,7 +47,7 @@
       <a href='#createWithCorner-static'>
         .
 (void)
-<b>createWithCorner</b><span>(left, right, top, bottom)</span>
+<b>createWithCorner</b><span>(leftTop, rightBottom)</span>
       </a>
     </span>
     <span class='desc'>
@@ -334,7 +334,7 @@
     <p class='signature' id='createWithCorner-static'>
       .
 (void)
-<b>createWithCorner</b><span>(left, right, top, bottom)</span>
+<b>createWithCorner</b><span>(leftTop, rightBottom)</span>
       <br>
     </p>
     
@@ -376,7 +376,54 @@
 <b>constructor</b><span>(x, y, width, height)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p><code>Rect</code>のインスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>x</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>範囲の起点となるx座標です。 </span>
+    </li>
+    <li>
+      <span class='name'>y</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>範囲の起点となるy座標です。 </span>
+    </li>
+    <li>
+      <span class='name'>width</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>範囲のx座標方向の大きさです。 </span>
+    </li>
+    <li>
+      <span class='name'>height</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>範囲のx座標方向の大きさです。 </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
       <h2>Instance Method Details</h2>
@@ -714,7 +761,7 @@
 </div>
     </div>
     <div id='footer'>
-  September 09, 14 17:27:15 by
+  October 11, 14 10:20:42 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

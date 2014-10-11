@@ -41,7 +41,7 @@
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>行数オプションを付与したCSS3のtext-overflowエミュレーションです。</p>
+  <p>CSS3 の text-overflow に行数オプションを付与したエミュレーション実装です。</p>
 </div>
 <div class='tags'>
 </div>
@@ -57,55 +57,8 @@
         <a href='../class/View.html#template-variable'>template</a>
         <a href='../class/View.html#selector-variable'>selector</a>
       </p>
-      <h2>Class Method Summary</h2>
-      <ul class='summary'>
-  <li>
-    <span class='signature'>
-      <a href='#register-static'>
-        .
-(void)
-<b>register</b><span>(textOverflow)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#unregister-static'>
-        .
-(void)
-<b>unregister</b><span>(textOverflow)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#onWindowResized-static'>
-        .
-(void)
-<b>onWindowResized</b><span>()</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-</ul>
       <h2>Instance Method Summary</h2>
       <ul class='summary'>
-  <li>
-    <span class='signature'>
-      <a href='#remove-dynamic'>
-        #
-(void)
-<b>remove</b><span>()</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
   <li>
     <span class='signature'>
       <a href='#update-dynamic'>
@@ -115,6 +68,8 @@
       </a>
     </span>
     <span class='desc'>
+      指定列数に収まっている場合、元の文字列を全て表示します。 収まっていない場合、収まるように余分な文字列を置換文字列に置き換えます。
+
     </span>
   </li>
 </ul>
@@ -130,59 +85,58 @@
           <a href='../class/View.html#end-dynamic'>#end</a>
         </p>
       </h2>
-      <h2>Class Method Details</h2>
-      <div class='methods'>
-  <div class='method_details'>
-    <p class='signature' id='register-static'>
-      .
-(void)
-<b>register</b><span>(textOverflow)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='unregister-static'>
-      .
-(void)
-<b>unregister</b><span>(textOverflow)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='onWindowResized-static'>
-      .
-(void)
-<b>onWindowResized</b><span>()</span>
-      <br>
-    </p>
-    
-  </div>
-</div>
       <h2>Constructor Details</h2>
       <div class='methods'>
   <div class='method_details'>
     <p class='signature' id='constructor-dynamic'>
       #
 (void)
-<b>constructor</b><span>({}, rows, replacer = &#39;...&#39;)</span>
+<b>constructor</b><span>({}, rows = 1, replacer = &#39;...&#39;)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>TextOverflow インスタンスを生成します。
+TextOverflow#update() をコールします。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>element</span>
+      <span class='type'>
+        (
+          <tt>String|jQueryObject|HTMLElement</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>要素です </span>
+    </li>
+    <li>
+      <span class='name'>rows</span>
+      <span class='type'>
+        (
+          <tt>Integer</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>置換処理を行う下限の行数です。この行数に収まるように置換処理が行われます。 </span>
+    </li>
+    <li>
+      <span class='name'>replacer</span>
+      <span class='type'>
+        (
+          <tt>String</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>置換文字列です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
       <h2>Instance Method Details</h2>
       <div class='methods'>
-  <div class='method_details'>
-    <p class='signature' id='remove-dynamic'>
-      #
-(void)
-<b>remove</b><span>()</span>
-      <br>
-    </p>
-    
-  </div>
   <div class='method_details'>
     <p class='signature' id='update-dynamic'>
       #
@@ -190,12 +144,17 @@
 <b>update</b><span>()</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p>指定列数に収まっている場合、元の文字列を全て表示します。
+収まっていない場合、収まるように余分な文字列を置換文字列に置き換えます。</p>
+</div>
+<div class='tags'>
+</div>
   </div>
 </div>
     </div>
     <div id='footer'>
-  September 09, 14 17:27:15 by
+  October 11, 14 10:20:42 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

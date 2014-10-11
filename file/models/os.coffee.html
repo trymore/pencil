@@ -34,6 +34,16 @@
           <td>Defined in:</td>
           <td>models</td>
         </tr>
+        <tr>
+          <td>
+            Classes:
+          </td>
+          <td>
+            <a href='../../class/OS.html'>
+              OS
+            </a>
+          </td>
+        </tr>
       </table>
       <h2>Variables Summary</h2>
       <dl class='constants'>
@@ -43,7 +53,11 @@
   </dt>
   <dd>
     <pre><code class='coffeescript'>&#47;\((iphone).*?os ([\d_]+).*?\)&#47;</code></pre>
-    
+    <div class='docstring'>
+  <p>OS parses user agent and determines the OS type and version.</p>
+</div>
+<div class='tags'>
+</div>
   </dd>
   <dt id='R_I_POD-variable'>
     R_I_POD
@@ -74,7 +88,7 @@
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>&#47;\(.*?(mac) os x ([\d_\.]+).*?\)&#47;</code></pre>
+    <pre><code class='coffeescript'>&#47;\(.*?(mac) os .*?([\d_\.]+).*?\)&#47;</code></pre>
     
   </dd>
   <dt id='R_LINUX-variable'>
@@ -82,7 +96,7 @@
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>&#47;\(.*?(linux) (\w+)v\)&#47;</code></pre>
+    <pre><code class='coffeescript'>&#47;\(.*?(linux).*\)&#47;</code></pre>
     
   </dd>
   <dt id='R_WINDOWS-variable'>
@@ -90,29 +104,13 @@
     =
   </dt>
   <dd>
-    <pre><code class='coffeescript'>&#47;\(.*?(windows) (\w+).*?\)&#47;</code></pre>
-    
-  </dd>
-  <dt id='os-variable'>
-    os
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'>{}</code></pre>
-    
-  </dd>
-  <dt id='module.exports-variable'>
-    module.exports
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'>os</code></pre>
+    <pre><code class='coffeescript'>&#47;\(.*?(windows).*?([\d_\.]+).*?\)&#47;</code></pre>
     
   </dd>
 </dl>
     </div>
     <div id='footer'>
-  September 09, 14 17:27:15 by
+  October 11, 14 10:20:42 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

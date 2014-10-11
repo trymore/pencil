@@ -49,7 +49,7 @@
   <dd>
     <pre><code class='coffeescript'>Point</code></pre>
     <div class='docstring'>
-  <p>Point#subtractのショートハンドです。</p>
+  <p>Point#subtract のショートハンドです。</p>
 </div>
 <div class='tags'>
   <h3>See also:</h3>
@@ -67,13 +67,31 @@
   <dd>
     <pre><code class='coffeescript'>Point</code></pre>
     <div class='docstring'>
-  <p>Point#multiplyのショートハンドです。</p>
+  <p>Point#multiply のショートハンドです。</p>
 </div>
 <div class='tags'>
   <h3>See also:</h3>
   <ul class='see'>
     <li>
       <a href='../class/Point.html#multiply-dynamic'>Point#multiply</a>
+    </li>
+  </ul>
+</div>
+  </dd>
+  <dt id='dev-variable'>
+    dev
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>Point</code></pre>
+    <div class='docstring'>
+  <p>Point#devide のショートハンドです。</p>
+</div>
+<div class='tags'>
+  <h3>See also:</h3>
+  <ul class='see'>
+    <li>
+      <a href='../class/Point.html#devide-dynamic'>Point#devide</a>
     </li>
   </ul>
 </div>
@@ -98,28 +116,6 @@
         .
 (void)
 <b>distance</b><span>(pt1, pt2)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#positionToPoint-static'>
-        .
-(void)
-<b>positionToPoint</b><span>(left, top)</span>
-      </a>
-    </span>
-    <span class='desc'>
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#argumentsToArray-static'>
-        .
-(void)
-<b>argumentsToArray</b><span>(args)</span>
       </a>
     </span>
     <span class='desc'>
@@ -178,6 +174,29 @@
   </li>
   <li>
     <span class='signature'>
+      <a href='#toArray-dynamic'>
+        #
+(Array&lt;Number&gt;)
+<b>toArray</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+      配列化します。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#toPosition-dynamic'>
+        #
+(void)
+<b>toPosition</b><span>()</span>
+      </a>
+    </span>
+    <span class='desc'>
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
       <a href='#distance-dynamic'>
         #
 (Number)
@@ -229,11 +248,23 @@
       <a href='#multiply-dynamic'>
         #
 (Point)
-<b>multiply</b><span>(n)</span>
+<b>multiply</b><span>(x, y = x)</span>
       </a>
     </span>
     <span class='desc'>
       各要素に乗算します。 
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#devide-dynamic'>
+        #
+(Point)
+<b>devide</b><span>(x, y = x)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      各要素を除算します。 
     </span>
   </li>
   <li>
@@ -246,19 +277,6 @@
     </span>
     <span class='desc'>
       ベクトルの内積を求めます。 a ・ b = |a||b|cos(θ)
-
-    </span>
-  </li>
-  <li>
-    <span class='signature'>
-      <a href='#crossProduct-dynamic'>
-        #
-(Number)
-<b>crossProduct</b><span>(point)</span>
-      </a>
-    </span>
-    <span class='desc'>
-      ベクトルの外積を求めます。 a x b = |a||b|sin(θ)
 
     </span>
   </li>
@@ -291,24 +309,6 @@
       .
 (void)
 <b>distance</b><span>(pt1, pt2)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='positionToPoint-static'>
-      .
-(void)
-<b>positionToPoint</b><span>(left, top)</span>
-      <br>
-    </p>
-    
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='argumentsToArray-static'>
-      .
-(void)
-<b>argumentsToArray</b><span>(args)</span>
       <br>
     </p>
     
@@ -479,7 +479,84 @@
 <b>constructor</b><span>(x, y)</span>
       <br>
     </p>
-    
+    <div class='docstring'>
+  <p><code>Point</code>インスタンスを生成します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>x</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>xの値です。 </span>
+    </li>
+    <li>
+      <span class='name'>y</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>yの値です。 </span>
+    </li>
+    <li>
+      <span class='name'>elems</span>
+      <span class='type'>
+        (
+          <tt>Array&lt;Number&gt;</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x, yからなる配列です。 </span>
+    </li>
+    <li>
+      <span class='name'>point</span>
+      <span class='type'>
+        (
+          <tt><a href='../class/Point.html'>Point</a></tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'><code>Point</code>インスタンスです。 </span>
+    </li>
+    <li>
+      <span class='name'>obj</span>
+      <span class='type'>
+        (
+          <tt>Object</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x, yからなるオブジェクトです。 </span>
+    </li>
+    <li>
+      <span class='name'>obj</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x xの値です。 </span>
+    </li>
+    <li>
+      <span class='name'>obj</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y yの値です。 </span>
+    </li>
+  </ul>
+</div>
   </div>
 </div>
       <h2>Instance Method Details</h2>
@@ -507,6 +584,39 @@
     </li>
   </ul>
 </div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='toArray-dynamic'>
+      #
+(Array&lt;Number&gt;)
+<b>toArray</b><span>()</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>配列化します。</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt>Array&lt;Number&gt;</tt>
+      )
+      &mdash;
+      <span class='desc'>x, yからなる配列です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='toPosition-dynamic'>
+      #
+(void)
+<b>toPosition</b><span>()</span>
+      <br>
+    </p>
+    
   </div>
   <div class='method_details'>
     <p class='signature' id='distance-dynamic'>
@@ -634,7 +744,7 @@
     <p class='signature' id='multiply-dynamic'>
       #
 (Point)
-<b>multiply</b><span>(n)</span>
+<b>multiply</b><span>(x, y = x)</span>
       <br>
     </p>
     <div class='docstring'>
@@ -644,14 +754,24 @@
   <h3>Parameters:</h3>
   <ul class='param'>
     <li>
-      <span class='name'>n</span>
+      <span class='name'>x</span>
       <span class='type'>
         (
           <tt>Number</tt>
         )
       </span>
       &mdash;
-      <span class='desc'>乗算する数です。 </span>
+      <span class='desc'>x要素に乗算する数です。 </span>
+    </li>
+    <li>
+      <span class='name'>y</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y要素に乗算する数です。指定しない場合はxの値となります。 </span>
     </li>
   </ul>
   <h3>Returns:</h3>
@@ -663,6 +783,53 @@
       )
       &mdash;
       <span class='desc'>計算結果の新しい<code>Point</code>です。 </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='devide-dynamic'>
+      #
+(Point)
+<b>devide</b><span>(x, y = x)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>各要素を除算します。</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>x</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>x要素に除算する数です。 </span>
+    </li>
+    <li>
+      <span class='name'>y</span>
+      <span class='type'>
+        (
+          <tt>Number</tt>
+        )
+      </span>
+      &mdash;
+      <span class='desc'>y要素に除算する数です。指定しない場合はxの値となります。 </span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (
+        <tt><a href='../class/Point.html'>Point</a></tt>
+      )
+      &mdash;
+      <span class='desc'>除算結果の新しい<code>Point</code>です。 </span>
     </li>
   </ul>
 </div>
@@ -701,44 +868,6 @@ a ・ b = |a||b|cos(θ)</p>
       )
       &mdash;
       <span class='desc'>内積の結果です。 </span>
-    </li>
-  </ul>
-</div>
-  </div>
-  <div class='method_details'>
-    <p class='signature' id='crossProduct-dynamic'>
-      #
-(Number)
-<b>crossProduct</b><span>(point)</span>
-      <br>
-    </p>
-    <div class='docstring'>
-  <p>ベクトルの外積を求めます。
-a x b = |a||b|sin(θ)</p>
-</div>
-<div class='tags'>
-  <h3>Parameters:</h3>
-  <ul class='param'>
-    <li>
-      <span class='name'>point</span>
-      <span class='type'>
-        (
-          <tt><a href='../class/Point.html'>Point</a></tt>
-        )
-      </span>
-      &mdash;
-      <span class='desc'>外積をする<code>Point</code>です。 </span>
-    </li>
-  </ul>
-  <h3>Returns:</h3>
-  <ul class='return'>
-    <li>
-      <span class='type'></span>
-      (
-        <tt>Number</tt>
-      )
-      &mdash;
-      <span class='desc'>外積の結果です。 </span>
     </li>
   </ul>
 </div>
@@ -783,7 +912,7 @@ a x b = |a||b|sin(θ)</p>
 </div>
     </div>
     <div id='footer'>
-  September 09, 14 17:27:15 by
+  October 11, 14 10:20:42 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
