@@ -2,11 +2,20 @@ language: node_js
 node_js:
   - 0.10
 env:
+  - global:
+    - GIT_COMMITTER_NAME=minodisk
+    - GIT_COMMITTER_EMAIL=daisuke.mino@gmail.com
+    - GIT_AUTHOR_NAME=minodisk
+    - GIT_AUTHOR_EMAIL=daisuke.mino@gmail.com
   - secure: gbD6PSs5eBbZU0jcQtOTkcgAFukl3+CPl8LggTGK1oNETAn85VYprSVBwhGIk9ruyQJpInBCulAcsIyi9cnFQDS6KadvHNnV28cu2Nfoqiiiac+zlXzmkMuguwsjfv4Qwxu4bqa3piyn4nQuafONoDUUWgAmOa3NqNfSVpBknaw=
 after_success:
   - npm run coveralls
+  - git clone https://github.com/trymore/pencil.git doc
+  - pushd doc
+  - git checkout -b gh-pages
+  - popd
   - npm run codo
-  - cd doc
+  - pushd doc
   - git add -A
   - git commit -m 'Generate documents.'
-  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/trymore/pencil.git gh-pages 2> /dev/null'
+  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/trymore/pencil.git 2> /dev/null'
