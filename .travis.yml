@@ -15,4 +15,4 @@ after_success:
   - cd doc
   - git add -A
   - git commit -m 'Generate documents.'
-  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push https://$GH_TOKEN@github.com/trymore/pencil.git 2> /dev/null'
+  - git push https://$GH_TOKEN@github.com/trymore/pencil.git
