@@ -15,4 +15,4 @@ after_success:
   - cd doc
   - git add -A
   - git commit -m 'Generate documents.'
-  - git push https://$GH_TOKEN@github.com/trymore/pencil.git
+  - 'git push https://$GH_TOKEN@github.com/trymore/pencil.git'
