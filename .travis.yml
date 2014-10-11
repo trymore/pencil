@@ -10,14 +10,9 @@ env:
     - secure: gbD6PSs5eBbZU0jcQtOTkcgAFukl3+CPl8LggTGK1oNETAn85VYprSVBwhGIk9ruyQJpInBCulAcsIyi9cnFQDS6KadvHNnV28cu2Nfoqiiiac+zlXzmkMuguwsjfv4Qwxu4bqa3piyn4nQuafONoDUUWgAmOa3NqNfSVpBknaw=
 after_success:
   - npm run coveralls
-  - git clone https://github.com/trymore/pencil.git doc
-  - cd doc
-  - pwd
-  - ll
-  - git checkout gh-pages
-  - cd ..
+  - git clone -b gh-pages https://github.com/trymore/pencil.git doc
   - npm run codo
   - cd doc
   - git add -A
   - git commit -m 'Generate documents.'
-  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/trymore/pencil.git 2> /dev/null'
+  - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push https://$GH_TOKEN@github.com/trymore/pencil.git 2> /dev/null'
