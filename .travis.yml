@@ -11,11 +11,11 @@ env:
 after_success:
   - npm run coveralls
   - git clone https://github.com/trymore/pencil.git doc
-  - pushd doc
+  - pushed && cd doc
   - git checkout -b gh-pages
   - popd
   - npm run codo
-  - pushd doc
+  - cd doc
   - git add -A
   - git commit -m 'Generate documents.'
   - '[ "$TRAVIS_BRANCH" == "master" ] && [ $GH_TOKEN ] && git push --quiet https://$GH_TOKEN@github.com/trymore/pencil.git 2> /dev/null'
