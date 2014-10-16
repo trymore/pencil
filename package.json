@@ -12,6 +12,7 @@
     "browserify-istanbul": "^0.1.2",
     "browserify-shim": "^3.8.0",
     "chai": "^1.9.1",
+    "codo": "^2.0.9",
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
     "coveralls": "^2.11.1",
@@ -40,7 +41,7 @@
     "karma": "./node_modules/karma/bin/karma start",
     "test": "./node_modules/karma/bin/karma start --no-auto-watch --single-run",
     "coveralls": "cat ./coverage/phantomjs/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "codo": "codo models views"
+    "codo": "./node_modules/codo/bin/codo models views"
   },
   "repository": {
     "type": "git",
