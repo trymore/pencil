@@ -7,14 +7,14 @@ View = require '../view'
 module.exports =
 class Select extends View
 
-  label: '.js-label'
+  labelSelector: '.js-label'
 
   ###
   Creates a Select instance.
   ###
   constructor: ->
     super
-    @$label = @$ @label
+    @$label = @$ @labelSelector
     @$select = @$ 'select'
     .on 'change', @update
     @update()

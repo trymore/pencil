@@ -20,7 +20,7 @@ class Radio extends View
   ###
   @property String ラジオボタンが`checked`になった際に要素に付与されるクラス名です。
   ###
-  checked: 'is-checked'
+  classChecked: 'is-checked'
 
   ###
   インスタンスを生成します。
@@ -41,7 +41,7 @@ class Radio extends View
   ###
   update: =>
     if @radio.prop 'checked'
-      @addClass @checked
+      @addClass @classChecked
       @otherRadios?.trigger 'radioChange'
     else
-      @removeClass @checked
+      @removeClass @classChecked

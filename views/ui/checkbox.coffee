@@ -7,7 +7,7 @@ View = require '../view'
 module.exports =
 class Checkbox extends View
 
-  checked: 'is-checked'
+  classChecked: 'is-checked'
 
   ###
   Creates a Checkbox instance.
@@ -23,6 +23,6 @@ class Checkbox extends View
   ###
   update: =>
     if @$checkbox.prop 'checked'
-      @addClass @checked
+      @addClass @classChecked
     else
-      @removeClass @checked
+      @removeClass @classChecked
