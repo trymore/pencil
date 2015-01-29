@@ -1,9 +1,10 @@
-View = require '../view'
-$ = require 'jquery'
-{clone, assign} = require 'lodash'
-Point = require '../../models/geom/point'
+View              = require '../view'
+$ = window.jQuery = require 'jquery'
+{clone, assign}   = require 'lodash'
+Point             = require '../../models/geom/point'
+{parse}           = require '../../models/query-string'
 require('../../models/easing').jquerize $
-{parse} = require '../../models/query-string'
+require 'velocity'
 
 
 module.exports =
@@ -17,17 +18,18 @@ class Slide extends View
   classDotNavSelected : 'is-selected'
   attrOptions         : 'data-slide'
   defaultOptions:
-    autoplay: false
-    autoplayInterval: 8000
-    duration: 1000
-    easing: 'easeOutCubic'
+    autoplay         : false
+    autoplayInterval : 8000
+    duration         : 1000
+    easing           : 'easeOutCubic'
+    dotNavtype       : '<li></li>'
 
   constructor: ->
     super
 
     optionsStr = @attr @attrOptions
     if optionsStr?
-      options = parse optionsStr, null, null, parseType: true
+      options  = parse optionsStr, null, null, parseType: true
       @options = assign clone(@defaultOptions), options
     else
       @options = clone @defaultOptions
@@ -35,23 +37,22 @@ class Slide extends View
     @$viewport = @$ @selectorViewport
       .css
         position: 'relative'
+
     @$content = @$ @selectorContent
       .css
         position: 'absolute'
         top: 0
         left: 0
-    @$contentItems = @$content.children()
-    @$prevButton = @$ @selectorPrevButton
-      .on 'click', @onPrevButtonClicked
-    @$nextButton = @$ @selectorNextButton
-      .on 'click', @onNextButtonClicked
-    @$dotNav = @$ @selectorDotNav
-    @$dotNavItem = @$dotNav.children().eq(0).clone()
 
+    @$contentItems = @$content.children()
+    @$prevButton   = @$ @selectorPrevButton
+    @$nextButton   = @$ @selectorNextButton
+    @$dotNav       = @$ @selectorDotNav
     @contentItemsLength = length = @$contentItems.length
-    @minIndex = 0
-    @maxIndex = if length is 0 then 0 else length - 1
+    @minIndex  = 0
+    @maxIndex  = if length is 0 then 0 else length - 1
     @unitWidth = 0
+
     for contentItem in @$contentItems
       @unitWidth += $(contentItem).outerWidth true
 
@@ -59,8 +60,11 @@ class Slide extends View
     @setupContent length
     @setupDotNav length
     @updateTo 0
-
     @startAutoplay()
+
+    @$prevButton.on 'click', @onPrevButtonClicked
+    @$nextButton.on 'click', @onNextButtonClicked
+    @$dotNav.children().on 'click', @onDotNavClicked
 
   setupContentItems: ->
 
@@ -68,10 +72,11 @@ class Slide extends View
     @$content.width @unitWidth
 
   setupDotNav: (length) ->
-    @$dotNav.empty()
+    dotNavhtml = ''
     i = length
     while i-- > 0
-      @$dotNav.append @$dotNavItem.clone()
+      dotNavhtml += @options.dotNavtype
+    @$dotNav.html dotNavhtml
 
   verifyIndex: (index) ->
     return @minIndex if index < @minIndex
@@ -81,6 +86,11 @@ class Slide extends View
   onPrevButtonClicked: => @prev()
 
   onNextButtonClicked: => @next()
+
+  onDotNavClicked: (event) =>
+    $self = $ event.currentTarget
+    index = $self.index()
+    @moveTo index
 
   prev: -> @move -1
 
@@ -95,7 +105,7 @@ class Slide extends View
     @currentIndex = index
     @updateDotNav()
     @$content
-      .stop true, false
+      .velocity 'stop', true
       .css left: -point.x
 
   moveTo: (index) ->
@@ -109,8 +119,8 @@ class Slide extends View
     @updateDotNav()
     @stopAutoplay()
     @$content
-      .stop true, false
-      .animate
+      .velocity 'stop', true
+      .velocity
         left: -point.x
       ,
         duration: @options.duration

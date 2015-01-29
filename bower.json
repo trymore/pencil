@@ -1,10 +1,11 @@
 {
   "name": "pencil",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "jQuery wrapper",
   "homepage": "https://github.com/trymore/pencil",
   "authors": [
-    "Daisuke Mino <minodisk@trymore-inc.jp>"
+    "Daisuke Mino <minodisk@trymore-inc.jp>",
+    "koya teruya <teruya@trymore-inc.jp>"
   ],
   "main": "pencil.js",
   "scripts": {

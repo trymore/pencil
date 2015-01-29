@@ -10,11 +10,12 @@ jQueryをクラスとして継承することのできるViewクラス、それ�
 
 * [jQuery](https://github.com/jquery/jquery) v1.11.0〜 or v2.1.0〜
 * [Lodash](https://github.com/lodash/lodash) v2.4.0〜
+* [velocity](https://github.com/julianshapiro/velocity) v1.2.1〜
 
 ## フェッチ
 
 ```bash
-bower install jquery lodash pencil
+bower install jquery lodash velocity pencil
 ```
 
 ## ビルド

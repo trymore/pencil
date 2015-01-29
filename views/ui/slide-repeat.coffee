@@ -1,7 +1,7 @@
-$ = require 'jquery'
-Slide = require './slide'
-Point = require '../../models/geom/point'
-
+$ = window.jQuery = require 'jquery'
+Slide             = require './slide'
+Point             = require '../../models/geom/point'
+require 'velocity'
 
 module.exports =
 class SlideRepeat extends Slide
@@ -29,7 +29,7 @@ class SlideRepeat extends Slide
     @currentIndex = index
     @updateDotNav()
     @$content
-      .stop true, false
+      .velocity 'stop', true
       .css
         left: to.mul(-1).x
 
@@ -48,10 +48,10 @@ class SlideRepeat extends Slide
     @updateDotNav()
     @stopAutoplay()
     @$content
-      .stop true, false
+      .velocity 'stop', true
       .css
         left: from.mul(-1).x
-      .animate
+      .velocity
         left: to.mul(-1).x
       ,
         duration: @options.duration
