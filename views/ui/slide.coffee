@@ -23,6 +23,7 @@ class Slide extends View
     duration         : 1000
     easing           : 'easeOutCubic'
     dotNavtype       : '<li></li>'
+    contentPosition  : 'absolute'
 
   constructor: ->
     super
@@ -40,7 +41,7 @@ class Slide extends View
 
     @$content = @$ @selectorContent
       .css
-        position: 'absolute'
+        position: @options.contentPosition
         top: 0
         left: 0
 
