@@ -21,7 +21,7 @@ class Browser
       R_WEBKIT.exec(ua) or
       R_OPERA.exec(ua) or
       R_MSIE.exec(ua) or
-      UA.indexOf("compatible") < 0 and R_MOZILLA.exec(ua) or
+      ua.indexOf("compatible") < 0 and R_MOZILLA.exec(ua) or
       []
 
     if name
