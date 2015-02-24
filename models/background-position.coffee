@@ -1,7 +1,13 @@
+Browser = require './browser'
+
 module.exports =
 
   jquerize: ($) ->
     return if $.jquerized?['background-position']
+
+    browser = new Browser
+    if browser.msie and browser.version.match /6.0|7.0|8.0/
+      return
 
     replacer =
       left: '0px'
@@ -11,6 +17,7 @@ module.exports =
     normalize = (val) -> replacer[val] or val
     getBackgroundSizes = (el) ->
       $.css(el, 'background-position').split /\s+/, 2
+
 
     for direction, i in ['x', 'y']
       do (direction, i) ->
