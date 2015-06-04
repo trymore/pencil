@@ -1,3 +1,4 @@
+$ = require 'jquery'
 {createTweetUrl} = require '../../models/sns/twitter'
 View = require '../view'
 
@@ -11,9 +12,22 @@ class Twitter extends View
 
   constructor: ->
     super
+
+    attrText = @attr @attrText
+    optText =
+      if attrText
+        attrText
+      else
+        ogp = $('meta[property="og:description"]').attr 'content'
+        if ogp then ogp else $('title').text()
+
+    attrUrl = @attr @attrUrl
+    optUrl =
+      if attrUrl then attrUrl else location.href
+
     url = createTweetUrl
-      text: @attr @attrText
-      url: @attr @attrUrl
+      text: optText
+      url: optUrl
       hashtags: @attr @attrHashTags
     @attr @attrDest, url
 

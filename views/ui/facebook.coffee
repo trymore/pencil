@@ -9,8 +9,13 @@ class Facebook extends View
 
   constructor: ->
     super
+
+    attrUrl = @attr @attrUrl
+    optUrl =
+      if attrUrl then attrUrl else location.href
+
     url = createShareUrl
-      url: @attr @attrUrl
+      url: optUrl
     @attr @attrDest, url
 
 
