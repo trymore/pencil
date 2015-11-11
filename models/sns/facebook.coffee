@@ -32,7 +32,7 @@ class Facebook
       type: 'get'
       cache: false
       data:
-        url: url
+        id: url
       dataType: 'jsonp'
       success: ({ shares }) ->
         unless shares?
